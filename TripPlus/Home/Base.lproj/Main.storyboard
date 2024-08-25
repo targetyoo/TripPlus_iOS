@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xP8-LF-ea0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qjg-3g-uuZ">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
@@ -10,164 +10,179 @@
     </dependencies>
     <scenes>
         <!--홈-->
-        <scene sceneID="tne-QT-ifu">
+        <scene sceneID="aFs-zW-bLG">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TripPlus" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                <viewController id="oOY-eN-PyD" customClass="ViewController" customModule="TripPlus" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GJv-fU-BZx">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <viewLayoutGuide key="safeArea" id="AOD-Ai-aE1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="홈" image="home" selectedImage="home_selected" id="BSx-5p-bLc"/>
+                    <tabBarItem key="tabBarItem" title="홈" image="home" selectedImage="home_selected" id="0PU-0L-ESJ"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q20-w6-poq" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-625" y="758"/>
         </scene>
         <!--View Controller-->
-        <scene sceneID="cq2-2n-jzs">
+        <scene sceneID="qHi-jI-nBN">
             <objects>
-                <viewController id="Z1A-Xv-LWB" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Obe-1r-UsR">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Zd-um-qUp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController id="Hrx-YK-AeD" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ivM-dM-6Ot">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="POe-ZH-ZkQ"/>
+                        <viewLayoutGuide key="safeArea" id="qD8-Dm-MKq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="DTW-bN-eMf"/>
+                    <navigationItem key="navigationItem" id="dLJ-wt-Wjn"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="QzG-VY-vaO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="94" y="1528"/>
         </scene>
         <!--View Controller-->
-        <scene sceneID="bEy-5e-PTD">
+        <scene sceneID="J16-hi-zFZ">
             <objects>
-                <viewController id="8S5-oV-hcd" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8Jf-bW-0SG">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UiR-ZE-mCb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController id="qRS-EN-3Z9" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fCb-zQ-ZF9">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="wYT-Ce-0mI"/>
+                        <viewLayoutGuide key="safeArea" id="muq-Yf-wnv"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="gHb-cH-XEK"/>
+                    <navigationItem key="navigationItem" id="5bl-b8-1t2"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="867-kV-NYe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="801" y="1527"/>
         </scene>
         <!--여행 팁-->
-        <scene sceneID="wFC-ja-XQ3">
+        <scene sceneID="cVw-ak-bE1">
             <objects>
-                <viewController id="YwK-RQ-2Bz" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="l0t-0R-Vuz">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wCr-De-xL6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController id="Udw-78-Kvf" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zzn-vh-UJv">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="6pV-aG-3Do"/>
+                        <viewLayoutGuide key="safeArea" id="T3j-gS-Hjb"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="여행 팁" image="tip" selectedImage="tip_selected" id="NL6-qR-nmN"/>
+                    <tabBarItem key="tabBarItem" title="여행 팁" image="tip" selectedImage="tip_selected" id="dZq-d6-qe0"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NNE-Fg-7Kh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1517" y="758"/>
         </scene>
         <!--View Controller-->
-        <scene sceneID="HEO-TB-gXa">
+        <scene sceneID="d2j-42-A2p">
             <objects>
-                <viewController id="0jI-hK-iw0" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ToT-sX-Cgi">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Sru-zu-V1f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController id="tL4-MV-GbN" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="puK-KM-Q2y">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="ghz-vk-iLb"/>
+                        <viewLayoutGuide key="safeArea" id="93n-sF-v1F"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="IJL-Ah-4oW"/>
+                    <navigationItem key="navigationItem" id="C2l-zU-Mna"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="b5F-yG-tYT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2256" y="1527"/>
         </scene>
         <!--Tab Bar Controller-->
-        <scene sceneID="1Vl-DH-oFB">
+        <scene sceneID="22n-Q4-got">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="xP8-LF-ea0" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bas-aF-hqW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="sbH-33-AP3" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="FP1-VI-fvn">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="EPg-Sq-v58">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" name="grayC"/>
                         <color key="selectedImageTintColor" name="tripGreen"/>
                     </tabBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="Zh1-e6-gZf"/>
-                        <segue destination="2zU-Ab-QEv" kind="relationship" relationship="viewControllers" id="iBe-Tx-wzp"/>
-                        <segue destination="3Bf-pq-Fba" kind="relationship" relationship="viewControllers" id="ZhC-Oh-kzC"/>
-                        <segue destination="YwK-RQ-2Bz" kind="relationship" relationship="viewControllers" id="vfl-fE-Hyt"/>
-                        <segue destination="36d-UK-uXS" kind="relationship" relationship="viewControllers" id="b5C-pQ-Wut"/>
+                        <segue destination="oOY-eN-PyD" kind="relationship" relationship="viewControllers" id="6mE-wx-dJ0"/>
+                        <segue destination="n1R-yI-qwR" kind="relationship" relationship="viewControllers" id="Kxq-tN-mkd"/>
+                        <segue destination="Imh-Kd-mEp" kind="relationship" relationship="viewControllers" id="aVA-IY-0yk"/>
+                        <segue destination="Udw-78-Kvf" kind="relationship" relationship="viewControllers" id="MHK-eE-CSC"/>
+                        <segue destination="x6Q-mS-U8m" kind="relationship" relationship="viewControllers" id="CrB-y0-qnB"/>
                     </connections>
                 </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IFc-LJ-LD9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="801" y="-82"/>
         </scene>
         <!--여행 준비-->
-        <scene sceneID="K7g-Iv-pc1">
+        <scene sceneID="XXz-OU-OwX">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2zU-Ab-QEv" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="여행 준비" image="manage" selectedImage="manage_selected" id="AxZ-eC-UOS"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YWz-Q3-VvT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="n1R-yI-qwR" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="여행 준비" image="manage" selectedImage="manage_selected" id="oD0-hL-yrs"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="30t-ad-dOb">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6LE-mG-NbT">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Z1A-Xv-LWB" kind="relationship" relationship="rootViewController" id="kyN-FB-ECP"/>
+                        <segue destination="Hrx-YK-AeD" kind="relationship" relationship="rootViewController" id="O6K-nF-oJe"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="k2u-AW-NJL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="93.89312977099236" y="757.74647887323943"/>
         </scene>
         <!--여행 후기-->
-        <scene sceneID="D0D-uE-yDY">
+        <scene sceneID="L15-gp-WmK">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3Bf-pq-Fba" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="여행 후기" image="reivew" selectedImage="review_selected" id="Pyd-Am-bps"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yLO-zP-g8r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Imh-Kd-mEp" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="여행 후기" image="reivew" selectedImage="review_selected" id="t6G-p7-7nd"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nYT-Ze-vlF">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xq2-d5-ENV">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="8S5-oV-hcd" kind="relationship" relationship="rootViewController" id="ha9-it-gNQ"/>
+                        <segue destination="qRS-EN-3Z9" kind="relationship" relationship="rootViewController" id="FcZ-cb-hMJ"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="q26-SY-8Hx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="800.76335877862596" y="757.74647887323943"/>
         </scene>
         <!--더보기-->
-        <scene sceneID="Fwf-v5-Chm">
+        <scene sceneID="cvM-Qk-wQK">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="36d-UK-uXS" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="더보기" image="menu" selectedImage="menu_selected" id="hPx-pw-qlL"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ec8-an-XOZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="x6Q-mS-U8m" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="더보기" image="menu" selectedImage="menu_selected" id="mxK-eu-g4q"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="J9i-qp-90L">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pxA-w0-a9A">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="0jI-hK-iw0" kind="relationship" relationship="rootViewController" id="vL4-J5-Jas"/>
+                        <segue destination="tL4-MV-GbN" kind="relationship" relationship="rootViewController" id="KMb-7f-usr"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3gp-cq-dex" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2255.7251908396947" y="757.74647887323943"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="J7u-8H-aIf">
+            <objects>
+                <viewController id="qjg-3g-uuZ" customClass="LoginViewController" customModule="TripPlus" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6BK-25-2EV">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="IxD-z5-bJl"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Obn-1M-cJf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1056" y="-51"/>
         </scene>
     </scenes>
     <resources>

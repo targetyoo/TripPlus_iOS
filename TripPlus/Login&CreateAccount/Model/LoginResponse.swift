@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+struct LoginResponse: Codable {
+    let name: String
+    
+    init(name:String) {
+        self.name = name
+    }
+    
+    //Response시 필요한 값들 추가 필요
+}

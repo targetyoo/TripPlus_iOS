@@ -7,15 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		321F3D7A9A2A7212B763C920 /* Pods_TripPlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9835D1350C85BA0FD5E41D95 /* Pods_TripPlus.framework */; };
 		810A193C2C723859003C168B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810A193B2C723859003C168B /* AppDelegate.swift */; };
 		810A193E2C723859003C168B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810A193D2C723859003C168B /* SceneDelegate.swift */; };
 		810A19402C723859003C168B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810A193F2C723859003C168B /* ViewController.swift */; };
 		810A19432C723859003C168B /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 810A19422C723859003C168B /* Base */; };
 		810A19452C72385B003C168B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 810A19442C72385B003C168B /* Assets.xcassets */; };
 		810A19482C72385B003C168B /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 810A19472C72385B003C168B /* Base */; };
+		810A19512C7B423E003C168B /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 810A19502C7B423E003C168B /* Login.storyboard */; };
+		810A19552C7B4295003C168B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810A19542C7B4295003C168B /* LoginViewController.swift */; };
+		810A195A2C7B42DB003C168B /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810A19592C7B42DB003C168B /* LoginRequest.swift */; };
+		810A195C2C7B42E7003C168B /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810A195B2C7B42E7003C168B /* LoginResponse.swift */; };
+		810A195E2C7B431A003C168B /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810A195D2C7B431A003C168B /* LoginViewModel.swift */; };
+		810A19622C7B4D6F003C168B /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810A19612C7B4D6F003C168B /* APIManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		38B6CB52784C5A19DF9EED24 /* Pods-TripPlus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripPlus.debug.xcconfig"; path = "Target Support Files/Pods-TripPlus/Pods-TripPlus.debug.xcconfig"; sourceTree = "<group>"; };
 		810A19382C723859003C168B /* TripPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		810A193B2C723859003C168B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		810A193D2C723859003C168B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +32,14 @@
 		810A19442C72385B003C168B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		810A19472C72385B003C168B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		810A19492C72385B003C168B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		810A19502C7B423E003C168B /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		810A19542C7B4295003C168B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		810A19592C7B42DB003C168B /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
+		810A195B2C7B42E7003C168B /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
+		810A195D2C7B431A003C168B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		810A19612C7B4D6F003C168B /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		9835D1350C85BA0FD5E41D95 /* Pods_TripPlus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TripPlus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5468B6947D9BE9FED87B542 /* Pods-TripPlus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripPlus.release.xcconfig"; path = "Target Support Files/Pods-TripPlus/Pods-TripPlus.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +47,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				321F3D7A9A2A7212B763C920 /* Pods_TripPlus.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		182B7A27864760E6E35D5094 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				38B6CB52784C5A19DF9EED24 /* Pods-TripPlus.debug.xcconfig */,
+				E5468B6947D9BE9FED87B542 /* Pods-TripPlus.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		810A192F2C723859003C168B = {
 			isa = PBXGroup;
 			children = (
 				810A193A2C723859003C168B /* TripPlus */,
 				810A19392C723859003C168B /* Products */,
+				182B7A27864760E6E35D5094 /* Pods */,
+				92121300DC2843DDB75F7F0D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +84,77 @@
 		810A193A2C723859003C168B /* TripPlus */ = {
 			isa = PBXGroup;
 			children = (
+				810A19462C72385B003C168B /* LaunchScreen.storyboard */,
 				810A193B2C723859003C168B /* AppDelegate.swift */,
 				810A193D2C723859003C168B /* SceneDelegate.swift */,
-				810A193F2C723859003C168B /* ViewController.swift */,
-				810A19412C723859003C168B /* Main.storyboard */,
+				810A19602C7B4D12003C168B /* CommonModel */,
+				810A194F2C7B41F5003C168B /* Login&CreateAccount */,
+				810A195F2C7B433B003C168B /* Home */,
 				810A19442C72385B003C168B /* Assets.xcassets */,
-				810A19462C72385B003C168B /* LaunchScreen.storyboard */,
 				810A19492C72385B003C168B /* Info.plist */,
 			);
 			path = TripPlus;
+			sourceTree = "<group>";
+		};
+		810A194F2C7B41F5003C168B /* Login&CreateAccount */ = {
+			isa = PBXGroup;
+			children = (
+				810A19502C7B423E003C168B /* Login.storyboard */,
+				810A19582C7B42BA003C168B /* Model */,
+				810A19572C7B42B8003C168B /* View */,
+				810A19562C7B42B5003C168B /* ViewModel */,
+			);
+			path = "Login&CreateAccount";
+			sourceTree = "<group>";
+		};
+		810A19562C7B42B5003C168B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				810A195D2C7B431A003C168B /* LoginViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		810A19572C7B42B8003C168B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				810A19542C7B4295003C168B /* LoginViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		810A19582C7B42BA003C168B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				810A19592C7B42DB003C168B /* LoginRequest.swift */,
+				810A195B2C7B42E7003C168B /* LoginResponse.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		810A195F2C7B433B003C168B /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				810A193F2C723859003C168B /* ViewController.swift */,
+				810A19412C723859003C168B /* Main.storyboard */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		810A19602C7B4D12003C168B /* CommonModel */ = {
+			isa = PBXGroup;
+			children = (
+				810A19612C7B4D6F003C168B /* APIManager.swift */,
+			);
+			path = CommonModel;
+			sourceTree = "<group>";
+		};
+		92121300DC2843DDB75F7F0D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9835D1350C85BA0FD5E41D95 /* Pods_TripPlus.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +164,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 810A194C2C72385B003C168B /* Build configuration list for PBXNativeTarget "TripPlus" */;
 			buildPhases = (
+				FE0C6C45BD7134A4DF29F2FD /* [CP] Check Pods Manifest.lock */,
 				810A19342C723859003C168B /* Sources */,
 				810A19352C723859003C168B /* Frameworks */,
 				810A19362C723859003C168B /* Resources */,
+				21FCC9DBDC365056FA1356C1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -125,6 +217,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				810A19512C7B423E003C168B /* Login.storyboard in Resources */,
 				810A19452C72385B003C168B /* Assets.xcassets in Resources */,
 				810A19482C72385B003C168B /* Base in Resources */,
 				810A19432C723859003C168B /* Base in Resources */,
@@ -133,14 +226,61 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		21FCC9DBDC365056FA1356C1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TripPlus/Pods-TripPlus-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TripPlus/Pods-TripPlus-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TripPlus/Pods-TripPlus-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FE0C6C45BD7134A4DF29F2FD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TripPlus-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		810A19342C723859003C168B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				810A19622C7B4D6F003C168B /* APIManager.swift in Sources */,
+				810A19552C7B4295003C168B /* LoginViewController.swift in Sources */,
 				810A19402C723859003C168B /* ViewController.swift in Sources */,
+				810A195C2C7B42E7003C168B /* LoginResponse.swift in Sources */,
 				810A193C2C723859003C168B /* AppDelegate.swift in Sources */,
+				810A195A2C7B42DB003C168B /* LoginRequest.swift in Sources */,
 				810A193E2C723859003C168B /* SceneDelegate.swift in Sources */,
+				810A195E2C7B431A003C168B /* LoginViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,7 +343,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -266,7 +406,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -287,6 +427,7 @@
 		};
 		810A194D2C72385B003C168B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 38B6CB52784C5A19DF9EED24 /* Pods-TripPlus.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -315,6 +456,7 @@
 		};
 		810A194E2C72385B003C168B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E5468B6947D9BE9FED87B542 /* Pods-TripPlus.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

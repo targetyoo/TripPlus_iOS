@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+struct LoginRequest {
+    let email: String
+    let password: String
+    
+    //Request시 필요한 값들 추가 필요
+}
