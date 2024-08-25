@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xP8-LF-ea0">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--홈-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TripPlus" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="홈" image="home" selectedImage="home_selected" id="BSx-5p-bLc"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-625" y="758"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="cq2-2n-jzs">
+            <objects>
+                <viewController id="Z1A-Xv-LWB" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Obe-1r-UsR">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="POe-ZH-ZkQ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="DTW-bN-eMf"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QzG-VY-vaO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="94" y="1528"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="bEy-5e-PTD">
+            <objects>
+                <viewController id="8S5-oV-hcd" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8Jf-bW-0SG">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="wYT-Ce-0mI"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="gHb-cH-XEK"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="867-kV-NYe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="801" y="1527"/>
+        </scene>
+        <!--여행 팁-->
+        <scene sceneID="wFC-ja-XQ3">
+            <objects>
+                <viewController id="YwK-RQ-2Bz" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="l0t-0R-Vuz">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="6pV-aG-3Do"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="여행 팁" image="tip" selectedImage="tip_selected" id="NL6-qR-nmN"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NNE-Fg-7Kh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1517" y="758"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="HEO-TB-gXa">
+            <objects>
+                <viewController id="0jI-hK-iw0" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ToT-sX-Cgi">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="ghz-vk-iLb"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="IJL-Ah-4oW"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b5F-yG-tYT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2256" y="1527"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="1Vl-DH-oFB">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="xP8-LF-ea0" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="FP1-VI-fvn">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" name="grayC"/>
+                        <color key="selectedImageTintColor" name="tripGreen"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="Zh1-e6-gZf"/>
+                        <segue destination="2zU-Ab-QEv" kind="relationship" relationship="viewControllers" id="iBe-Tx-wzp"/>
+                        <segue destination="3Bf-pq-Fba" kind="relationship" relationship="viewControllers" id="ZhC-Oh-kzC"/>
+                        <segue destination="YwK-RQ-2Bz" kind="relationship" relationship="viewControllers" id="vfl-fE-Hyt"/>
+                        <segue destination="36d-UK-uXS" kind="relationship" relationship="viewControllers" id="b5C-pQ-Wut"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IFc-LJ-LD9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="801" y="-82"/>
+        </scene>
+        <!--여행 준비-->
+        <scene sceneID="K7g-Iv-pc1">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2zU-Ab-QEv" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="여행 준비" image="manage" selectedImage="manage_selected" id="AxZ-eC-UOS"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="30t-ad-dOb">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Z1A-Xv-LWB" kind="relationship" relationship="rootViewController" id="kyN-FB-ECP"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k2u-AW-NJL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="93.89312977099236" y="757.74647887323943"/>
+        </scene>
+        <!--여행 후기-->
+        <scene sceneID="D0D-uE-yDY">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3Bf-pq-Fba" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="여행 후기" image="reivew" selectedImage="review_selected" id="Pyd-Am-bps"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nYT-Ze-vlF">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="8S5-oV-hcd" kind="relationship" relationship="rootViewController" id="ha9-it-gNQ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q26-SY-8Hx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="800.76335877862596" y="757.74647887323943"/>
+        </scene>
+        <!--더보기-->
+        <scene sceneID="Fwf-v5-Chm">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="36d-UK-uXS" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="더보기" image="menu" selectedImage="menu_selected" id="hPx-pw-qlL"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="J9i-qp-90L">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="0jI-hK-iw0" kind="relationship" relationship="rootViewController" id="vL4-J5-Jas"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3gp-cq-dex" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2255.7251908396947" y="757.74647887323943"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="home" width="24" height="24"/>
+        <image name="home_selected" width="24" height="24"/>
+        <image name="manage" width="24" height="24"/>
+        <image name="manage_selected" width="24" height="24"/>
+        <image name="menu" width="24" height="24"/>
+        <image name="menu_selected" width="24" height="24"/>
+        <image name="reivew" width="24" height="24"/>
+        <image name="review_selected" width="24" height="24"/>
+        <image name="tip" width="25" height="24"/>
+        <image name="tip_selected" width="24" height="24"/>
+        <namedColor name="grayC">
+            <color red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="tripGreen">
+            <color red="0.26666666666666666" green="0.4392156862745098" blue="0.32941176470588235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
