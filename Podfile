@@ -11,5 +11,7 @@ target 'TripPlus' do
   pod 'SnapKit'   #5.7.1
   pod 'RxSwift'   #6.7.1
   pod 'RxCocoa'	  #6.7.1
+  pod 'Alamofire' #5.7.1
+
 
 end

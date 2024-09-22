@@ -17,12 +17,69 @@ protocol BaseViewControllerAttribute {
 }
 
 
+//https://so-kyte.tistory.com/197
+
 final class LoginViewController: UIViewController{
     // MARK: - UI Property
 //    private var idTextField = UITextField().then {
 //        $0.borderStyle = .roundedRect
 //    }
 //    
+    
+    
+    private var logoImg: UIImageView = {
+        let imgView = UIImageView()
+        imgView.backgroundColor = .systemGray5
+        imgView.layer.cornerRadius = 14.0
+        return imgView
+    }()
+    
+    private var introLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Pretendard-Medium", size: 20.0)
+        label.text = "여행보다 즐거운 여행준비 \n Trip+"
+        label.numberOfLines = 0
+        label.textColor = .grayA
+        label.textAlignment = .center
+        return label
+    }()
+    
+    private var kakaoLoginBtn: UIButton = {
+        let btn = UIButton()
+        btn.layer.cornerRadius = 14.0
+        btn.setTitle("카카오 로그인", for: .normal)
+        btn.setTitleColor(.grayA, for: .normal)
+        btn.titleLabel?.font = UIFont(name: "Pretendard-Regular", size: 18.0)
+        btn.backgroundColor = .grayC
+        return btn
+    }()
+    
+    private var googleLoginBtn: UIButton = {
+        let btn = UIButton()
+        btn.layer.cornerRadius = 14.0
+        btn.setTitle("구글 로그인", for: .normal)
+        btn.setTitleColor(.grayA, for: .normal)
+        btn.titleLabel?.font = UIFont(name: "Pretendard-Regular", size: 18.0)
+        btn.backgroundColor = .grayC
+        return btn
+    }()
+    
+    private var appleLoginBtn: UIButton = {
+        let btn = UIButton()
+        btn.layer.cornerRadius = 14.0
+        btn.setTitle("애플 로그인", for: .normal)
+        btn.setTitleColor(.grayA, for: .normal)
+        btn.titleLabel?.font = UIFont(name: "Pretendard-Regular", size: 18.0)
+        btn.backgroundColor = .grayC
+        return btn
+    }()
+    
+    
+//    내가 하고 싶은 것 : 버튼을 눌렀을 때, RxSwift 옵저빙을 통해서
+//    Demo API를 호출하고, 그 결과값을 뭐 라벨이든 어디든 표현하는(상호작용과 Networking에 따라 UI가 변동되는, 그리고 Realm까지 추가로 되면 더 좋고)
+    
+    
+    
     
     private var idTextField: UITextField = {
         let txtField = UITextField()
@@ -65,6 +122,41 @@ final class LoginViewController: UIViewController{
 
 extension LoginViewController: BaseViewControllerAttribute {
     func configureHierarchy() {
+        
+//        [logoImg, introLabel, kakaoLoginBtn, googleLoginBtn, appleLoginBtn].forEach({
+//            view.addSubview($0)
+//        })
+//        
+//        introLabel.snp.makeConstraints { make in
+//            make.centerX.equalToSuperview()
+//            make.centerY.equalToSuperview()
+//        }
+//        
+//        logoImg.snp.makeConstraints { make in
+//            make.centerX.equalToSuperview()
+//            make.bottom.equalTo(introLabel.snp.top).offset(-30.0)
+//            make.height.equalTo(128.0)
+//            make.width.equalTo(128.0)
+//        }
+//        
+//        appleLoginBtn.snp.makeConstraints { make in
+//            make.height.equalTo(50.0)
+//            make.leading.trailing.equalToSuperview().inset(20.0)
+//            make.bottom.equalTo(view.snp.bottom).offset(-50.0)
+//        }
+//        
+//        googleLoginBtn.snp.makeConstraints { make in
+//            make.height.equalTo(50.0)
+//            make.leading.trailing.equalToSuperview().inset(20.0)
+//            make.bottom.equalTo(appleLoginBtn.snp.top).offset(-20.0)
+//        }
+//        
+//        kakaoLoginBtn.snp.makeConstraints { make in
+//            make.height.equalTo(50.0)
+//            make.leading.trailing.equalToSuperview().inset(20.0)
+//            make.bottom.equalTo(googleLoginBtn.snp.top).offset(-20.0)
+//        }
+        
         view.addSubview(idTextField)
         view.addSubview(passwordTextField)
         view.addSubview(loginButton)

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qjg-3g-uuZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
@@ -28,7 +28,6 @@
         <!--View Controller-->
         <scene sceneID="qHi-jI-nBN">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7Zd-um-qUp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="Hrx-YK-AeD" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ivM-dM-6Ot">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
@@ -38,13 +37,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="dLJ-wt-Wjn"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Zd-um-qUp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="94" y="1528"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="J16-hi-zFZ">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UiR-ZE-mCb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="qRS-EN-3Z9" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fCb-zQ-ZF9">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
@@ -54,13 +53,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="5bl-b8-1t2"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UiR-ZE-mCb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="801" y="1527"/>
         </scene>
         <!--여행 팁-->
         <scene sceneID="cVw-ak-bE1">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wCr-De-xL6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="Udw-78-Kvf" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zzn-vh-UJv">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
@@ -70,13 +69,13 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="여행 팁" image="tip" selectedImage="tip_selected" id="dZq-d6-qe0"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wCr-De-xL6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1517" y="758"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="d2j-42-A2p">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Sru-zu-V1f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="tL4-MV-GbN" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="puK-KM-Q2y">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
@@ -86,13 +85,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="C2l-zU-Mna"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Sru-zu-V1f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2256" y="1527"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="22n-Q4-got">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Bas-aF-hqW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="sbH-33-AP3" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="EPg-Sq-v58">
@@ -109,13 +108,13 @@
                         <segue destination="x6Q-mS-U8m" kind="relationship" relationship="viewControllers" id="CrB-y0-qnB"/>
                     </connections>
                 </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bas-aF-hqW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="801" y="-82"/>
         </scene>
         <!--여행 준비-->
         <scene sceneID="XXz-OU-OwX">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YWz-Q3-VvT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="n1R-yI-qwR" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="여행 준비" image="manage" selectedImage="manage_selected" id="oD0-hL-yrs"/>
                     <toolbarItems/>
@@ -128,13 +127,13 @@
                         <segue destination="Hrx-YK-AeD" kind="relationship" relationship="rootViewController" id="O6K-nF-oJe"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YWz-Q3-VvT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="93.89312977099236" y="757.74647887323943"/>
         </scene>
         <!--여행 후기-->
         <scene sceneID="L15-gp-WmK">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yLO-zP-g8r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Imh-Kd-mEp" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="여행 후기" image="reivew" selectedImage="review_selected" id="t6G-p7-7nd"/>
                     <toolbarItems/>
@@ -147,13 +146,13 @@
                         <segue destination="qRS-EN-3Z9" kind="relationship" relationship="rootViewController" id="FcZ-cb-hMJ"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yLO-zP-g8r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="800.76335877862596" y="757.74647887323943"/>
         </scene>
         <!--더보기-->
         <scene sceneID="cvM-Qk-wQK">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ec8-an-XOZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="x6Q-mS-U8m" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="더보기" image="menu" selectedImage="menu_selected" id="mxK-eu-g4q"/>
                     <toolbarItems/>
@@ -166,23 +165,9 @@
                         <segue destination="tL4-MV-GbN" kind="relationship" relationship="rootViewController" id="KMb-7f-usr"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ec8-an-XOZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2255.7251908396947" y="757.74647887323943"/>
-        </scene>
-        <!--Login View Controller-->
-        <scene sceneID="J7u-8H-aIf">
-            <objects>
-                <viewController id="qjg-3g-uuZ" customClass="LoginViewController" customModule="TripPlus" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="6BK-25-2EV">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="IxD-z5-bJl"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Obn-1M-cJf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1056" y="-51"/>
         </scene>
     </scenes>
     <resources>

@@ -73,36 +73,56 @@ final class LoginViewModel {
     
     
     func requestLogin(_ loginRequest: LoginRequest) {
-        let url = ""
+        let url = "https://jsonplaceholder.typicode.com/todos/1/users"
         let headers : HTTPHeaders = ["Content-Type" : "application/json"]
-        let params: Parameters = ["email": loginRequest.email, "password" : loginRequest.password]
+//        let params: Parameters = ["email": loginRequest.email, "password" : loginRequest.password]
         
         let request = AF.request(url,
                                  method: .post,
-                                 parameters: params,
+//                                 parameters: params,
                                  encoding: JSONEncoding.default,
                                  headers: headers)
         
-        request.responseDecodable(of: LoginResponse.self) { [weak self] response in
-            guard let self = self else { return }
-            
+        request.response(completionHandler: { [weak self] response in
             switch response.result {
             case .success(let value):
-                
                 guard let statusCode = response.response?.statusCode else { return }
                 
-                if statusCode == 200 {
-                    self.isLoginSucceed.onNext(value)
+                if statusCode == 201 {
+                    let ii = LoginResponse(name: "Suc")
+                    self?.isLoginSucceed.onNext(ii)
                 } else if statusCode == 400 {
-                    self.isLoginSucceed.onError(LoginError.badRequest)
+                    self?.isLoginSucceed.onError(LoginError.badRequest)
                 } else if statusCode  == 500 {
-                    self.isLoginSucceed.onError(LoginError.serverError)
+                    self?.isLoginSucceed.onError(LoginError.serverError)
                 }
                 
             case .failure(let error):
-                self.isLoginSucceed.onError(LoginError.badRequest)
+                self?.isLoginSucceed.onError(LoginError.badRequest)
                 print(error)
             }
-        }
+        })
+            
+//        request.responseDecodable(of: LoginResponse.self) { [weak self] response in
+//            guard let self = self else { return }
+//            
+//            switch response.result {
+//            case .success(let value):
+//                
+//                guard let statusCode = response.response?.statusCode else { return }
+//                
+//                if statusCode == 200 {
+//                    self.isLoginSucceed.onNext(value)
+//                } else if statusCode == 400 {
+//                    self.isLoginSucceed.onError(LoginError.badRequest)
+//                } else if statusCode  == 500 {
+//                    self.isLoginSucceed.onError(LoginError.serverError)
+//                }
+//                
+//            case .failure(let error):
+//                self.isLoginSucceed.onError(LoginError.badRequest)
+//                print(error)
+//            }
+//        }
     }
 }
