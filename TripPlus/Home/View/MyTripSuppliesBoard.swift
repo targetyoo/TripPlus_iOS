@@ -21,6 +21,7 @@ class MyTripSuppliesBoard : UIView{
     }
     
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 >>>>>>> 4438042 ([UI] 홈 화면 일부 구현)
@@ -35,6 +36,8 @@ class MyTripSuppliesBoard : UIView{
 <<<<<<< HEAD
 =======
 =======
+=======
+>>>>>>> f8ce86e (git error fixing)
     private lazy var inadequateSuppliesHeader: UILabel = {
          let label = UILabel()
          label.textColor = UIColor(named: "grayA")
@@ -169,16 +172,22 @@ class MyTripSuppliesBoard : UIView{
          return label
      }()
 
+<<<<<<< HEAD
 >>>>>>> 3ee07a3 ([UI] 홈 화면 일부 구현)
 >>>>>>> 4438042 ([UI] 홈 화면 일부 구현)
+=======
+>>>>>>> f8ce86e (git error fixing)
     
 //    private func setupView(with data: YourDataModel) {
     private func setupView() {
         // 서브뷰 생성 및 레이아웃 설정
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> f8ce86e (git error fixing)
         
         [inadequateSuppliesHeader, inadequateSuppliesHeader2,
          inadequateSuppliesBox,
@@ -191,11 +200,14 @@ class MyTripSuppliesBoard : UIView{
         })
 
         
+<<<<<<< HEAD
         
         
         
 >>>>>>> 3ee07a3 ([UI] 홈 화면 일부 구현)
 >>>>>>> 4438042 ([UI] 홈 화면 일부 구현)
+=======
+>>>>>>> f8ce86e (git error fixing)
     }
     
     required init?(coder: NSCoder) {

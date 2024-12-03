@@ -25,6 +25,7 @@ class HomeViewController: UIViewController {
         return label
     }()
     
+<<<<<<< HEAD
     
     
 <<<<<<< HEAD
@@ -39,10 +40,15 @@ class HomeViewController: UIViewController {
         let view = UIProgressView()
 >>>>>>> 3ee07a3 ([UI] 홈 화면 일부 구현)
 >>>>>>> 4438042 ([UI] 홈 화면 일부 구현)
+=======
+    private lazy var mainProgressbar: UIProgressView = {
+        let view = UIProgressView()
+>>>>>>> f8ce86e (git error fixing)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -72,6 +78,9 @@ class HomeViewController: UIViewController {
 >>>>>>> 3ee07a3 ([UI] 홈 화면 일부 구현)
 >>>>>>> 4438042 ([UI] 홈 화면 일부 구현)
     
+=======
+ 
+>>>>>>> f8ce86e (git error fixing)
     
     override func viewDidLoad() {
         super.viewDidLoad()
