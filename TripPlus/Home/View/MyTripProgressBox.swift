@@ -6,13 +6,6 @@
 //
 
 import Foundation
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-=======
->>>>>>> f8ce86e (git error fixing)
 import UIKit
 import SnapKit
 
@@ -102,8 +95,3 @@ class MyTripProgressBox : UIView{
         fatalError("init(coder:) has not been implemented")
     }
 }
-<<<<<<< HEAD
->>>>>>> 3ee07a3 ([UI] 홈 화면 일부 구현)
->>>>>>> 4438042 ([UI] 홈 화면 일부 구현)
-=======
->>>>>>> f8ce86e (git error fixing)
