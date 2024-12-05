@@ -15,9 +15,9 @@ class MyTripSuppliesBoard : UIView{
     init() {
         super.init(frame: .zero)
 //        setupView(with: data)
-        setupView()
-        self.layer.cornerRadius = 14
-        self.backgroundColor = UIColor(named: "grayD")
+        setupViews()
+//        self.layer.cornerRadius = 14
+//        self.backgroundColor = UIColor(named: "grayD")
     }
     
     private lazy var inadequateSuppliesHeader: UILabel = {
@@ -53,10 +53,10 @@ class MyTripSuppliesBoard : UIView{
      private lazy var inadequateSuppliesBoxHeader: UILabel = {
          let label = UILabel()
          label.textColor = UIColor(named: "grayA")
-         label.font = UIFont(name: "PRETENDARD-Regular", size: 16)
+         label.font = UIFont(name: "PRETENDARD-Medium", size: 20)
          label.numberOfLines = 0
          label.translatesAutoresizingMaskIntoConstraints = false
-         label.text = "여권은 넉넉하게 한 달 전에 준비하는 걸 추천드려요"
+         label.text = "아직 못챙긴 준비물"
          return label
      }()
      
@@ -89,6 +89,10 @@ class MyTripSuppliesBoard : UIView{
      private lazy var inadequateSuppliesBox_ItemIcon1: UIImageView = {
          let imgView = UIImageView()
          imgView.tintColor = UIColor(named: "tripGreen")
+         imgView.image = UIImage(named: "checkCircle_checked")
+         imgView.snp.makeConstraints { make in
+             make.height.width.equalTo(24)
+         }
          imgView.translatesAutoresizingMaskIntoConstraints = false
          return imgView
      }()
@@ -98,6 +102,9 @@ class MyTripSuppliesBoard : UIView{
          label.textColor = UIColor(named: "grayA")
          label.font = UIFont(name: "PRETENDARD-Regular", size: 16)
          label.numberOfLines = 0
+         label.snp.makeConstraints { make in
+             make.height.equalTo(24)
+         }
          label.translatesAutoresizingMaskIntoConstraints = false
          label.text = "아이템1"
          return label
@@ -106,6 +113,10 @@ class MyTripSuppliesBoard : UIView{
      private lazy var inadequateSuppliesBox_ItemIcon2: UIImageView = {
          let imgView = UIImageView()
          imgView.tintColor = UIColor(named: "tripGreen")
+         imgView.image = UIImage(named: "checkCircle_checked")
+         imgView.snp.makeConstraints { make in
+             make.height.width.equalTo(24)
+         }
          imgView.translatesAutoresizingMaskIntoConstraints = false
          return imgView
      }()
@@ -115,6 +126,9 @@ class MyTripSuppliesBoard : UIView{
          label.textColor = UIColor(named: "grayA")
          label.font = UIFont(name: "PRETENDARD-Regular", size: 16)
          label.numberOfLines = 0
+         label.snp.makeConstraints { make in
+             make.height.equalTo(24)
+         }
          label.translatesAutoresizingMaskIntoConstraints = false
          label.text = "아이템2"
          return label
@@ -123,6 +137,10 @@ class MyTripSuppliesBoard : UIView{
      private lazy var inadequateSuppliesBox_ItemIcon3: UIImageView = {
          let imgView = UIImageView()
          imgView.tintColor = UIColor(named: "tripGreen")
+         imgView.image = UIImage(named: "checkCircle_checked")
+         imgView.snp.makeConstraints { make in
+             make.height.width.equalTo(24)
+         }
          imgView.translatesAutoresizingMaskIntoConstraints = false
          return imgView
      }()
@@ -132,6 +150,9 @@ class MyTripSuppliesBoard : UIView{
          label.textColor = UIColor(named: "grayA")
          label.font = UIFont(name: "PRETENDARD-Regular", size: 16)
          label.numberOfLines = 0
+         label.snp.makeConstraints { make in
+             make.height.equalTo(24)
+         }
          label.translatesAutoresizingMaskIntoConstraints = false
          label.text = "아이템3"
          return label
@@ -140,6 +161,10 @@ class MyTripSuppliesBoard : UIView{
      private lazy var inadequateSuppliesBox_ItemIcon4: UIImageView = {
          let imgView = UIImageView()
          imgView.tintColor = UIColor(named: "tripGreen")
+         imgView.image = UIImage(named: "checkCircle_checked")
+         imgView.snp.makeConstraints { make in
+             make.height.width.equalTo(24)
+         }
          imgView.translatesAutoresizingMaskIntoConstraints = false
          return imgView
      }()
@@ -149,27 +174,87 @@ class MyTripSuppliesBoard : UIView{
          label.textColor = UIColor(named: "grayA")
          label.font = UIFont(name: "PRETENDARD-Regular", size: 16)
          label.numberOfLines = 0
+         label.snp.makeConstraints { make in
+             make.height.equalTo(24)
+         }
          label.translatesAutoresizingMaskIntoConstraints = false
          label.text = "아이템4"
          return label
      }()
+    
+    
+    private lazy var inadequateSuppliesBox_StackView1: UIStackView = {
+        let view = UIStackView(arrangedSubviews: [inadequateSuppliesBox_ItemIcon1, inadequateSuppliesBox_ItemName1,
+                                                  inadequateSuppliesBox_ItemIcon2, inadequateSuppliesBox_ItemName2])
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.alignment = .fill
+        view.axis = .horizontal
+        view.spacing = 30.0
+        return view
+    }()
+    
+    private lazy var inadequateSuppliesBox_StackView2: UIStackView = {
+        let view = UIStackView(arrangedSubviews: [inadequateSuppliesBox_ItemIcon3, inadequateSuppliesBox_ItemName3,
+                                                  inadequateSuppliesBox_ItemIcon4, inadequateSuppliesBox_ItemName4])
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.alignment = .fill
+        view.axis = .horizontal
+        view.spacing = 30.0
+        return view
+    }()
 
     
 //    private func setupView(with data: YourDataModel) {
-    private func setupView() {
-        // 서브뷰 생성 및 레이아웃 설정
+    private func setupViews(){
+        [inadequateSuppliesHeader, inadequateSuppliesHeader2, inadequateSuppliesBox
+        ].forEach({ self.addSubview($0) })
         
-        [inadequateSuppliesHeader, inadequateSuppliesHeader2,
-         inadequateSuppliesBox,
-         inadequateSuppliesBoxHeader, inadequateSuppliesBoxButton,
-         inadequateSuppliesBox_ItemIcon1, inadequateSuppliesBox_ItemName1,
-         inadequateSuppliesBox_ItemIcon2, inadequateSuppliesBox_ItemName2,
-         inadequateSuppliesBox_ItemIcon3, inadequateSuppliesBox_ItemName3,
-         inadequateSuppliesBox_ItemIcon4, inadequateSuppliesBox_ItemName4 ].forEach({
-            self.addSubview($0)
+        [inadequateSuppliesBoxHeader, inadequateSuppliesBoxButton,
+         inadequateSuppliesBox_StackView1, inadequateSuppliesBox_StackView2
+        ].forEach({self.inadequateSuppliesBox.addSubview($0)})
+        
+        
+        inadequateSuppliesHeader.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(20)
+            make.leading.equalToSuperview().offset(15)
+        }
+        
+        inadequateSuppliesHeader2.snp.makeConstraints { make in
+            make.top.equalTo(inadequateSuppliesHeader.snp.bottom).offset(10)
+            make.leading.equalToSuperview().offset(15)
+        }
+        
+        inadequateSuppliesBox.snp.makeConstraints { make in
+            make.top.equalTo(inadequateSuppliesHeader2.snp.bottom).offset(10)
+            make.leading.trailing.equalToSuperview().offset(15)
+            make.height.equalTo(155)
+        }
+     
+        
+        //Box 내부
+        inadequateSuppliesBoxHeader.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(20)
+            make.leading.equalToSuperview().offset(10)
+        }
+        
+        inadequateSuppliesBoxButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-10)
+        }
+        
+        inadequateSuppliesBox_StackView1.snp.makeConstraints { make in
+            make.top.equalTo(inadequateSuppliesBoxHeader.snp.bottom).offset(20)
+            make.leading.trailing.equalToSuperview().offset(10)
+        }
+        
+        inadequateSuppliesBox_StackView2.snp.makeConstraints({ make in
+            make.top.equalTo(inadequateSuppliesBox_StackView1.snp.bottom).offset(15)
+            make.leading.trailing.equalToSuperview().offset(10)
         })
-
+        
+        
     }
+
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

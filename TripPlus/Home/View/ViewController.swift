@@ -38,7 +38,7 @@ class HomeViewController: UIViewController {
     }
 
     private func setViews(){
-        
+        //ScrollView 때문에, 모듈화 한 View들의 Height을 명시해줘야 할 수도 있음
     }
 
 }
