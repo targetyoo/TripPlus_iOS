@@ -17,11 +17,16 @@ class MyTripProgressBox : UIView{
         super.init(frame: .zero)
 //        setupView(with: data)
         setupView()
-        self.layer.cornerRadius = 14
-        self.backgroundColor = UIColor(named: "grayD")
     }
     
-
+    private lazy var contentView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 14
+        view.backgroundColor = UIColor(named: "grayD")
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     private lazy var ddayLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
@@ -58,7 +63,7 @@ class MyTripProgressBox : UIView{
     
     private lazy var destinationLabel : UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(named: "tripGreen")
+        label.textColor = .black
         label.text = "찬란한 파리"
         label.font = UIFont(name: "PRETENDARD-Semibold", size: 24)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -68,27 +73,55 @@ class MyTripProgressBox : UIView{
     
 //    private func setupView(with data: YourDataModel) {
     private func setupView() {
+        
+        self.addSubview(contentView)
+        
         [ddayLabel, progressbarTitle, progressPercent, progressbar, destinationLabel].forEach({
-            self.addSubview($0)
+            self.contentView.addSubview($0)
         })
         
-        ddayLabel.snp.makeConstraints{ snp in
-            snp.leading.top.equalToSuperview().offset(20.0)
+        contentView.snp.makeConstraints({ make in
+            make.edges.equalTo(self)
+            make.width.equalTo(self)
+            make.height.equalTo(150.0)
+        })
+        contentView에 그림자 넣어야함!
+        
+        ddayLabel.snp.makeConstraints{ make in
+            make.leading.top.equalToSuperview().offset(20.0)
         }
         
-        progressbar.snp.makeConstraints{ snp in
-            snp.leading.bottom.equalToSuperview().offset(20.0)
+        destinationLabel.snp.makeConstraints({ make in
+            make.trailing.equalToSuperview().offset(-20.0)
+            make.bottom.equalTo(progressbar.snp.bottom)
+        })
+        
+        progressbar.snp.makeConstraints{ make in
+            make.leading.equalToSuperview().offset(20.0)
+            make.trailing.equalTo(destinationLabel.snp.leading).offset(-20)
+            make.bottom.equalToSuperview().offset(-20.0)
         }
         
-        progressbarTitle.snp.makeConstraints{ snp in
-            snp.leading.equalTo(progressbar.snp.leading)
-            snp.bottom.equalTo(progressbar.snp.top).offset(5.0)
+        progressbarTitle.snp.makeConstraints{ make in
+            make.leading.equalTo(progressbar.snp.leading)
+            make.bottom.equalTo(progressbar.snp.top).offset(-5.0)
         }
         
-        progressPercent.snp.makeConstraints{ snp in
-            snp.trailing.equalTo(progressbar.snp.trailing     )
-            snp.bottom.equalTo(progressbar.snp.top).offset(5.0)
+        progressPercent.snp.makeConstraints{ make in
+            make.trailing.equalTo(progressbar.snp.trailing)
+            make.bottom.equalTo(progressbar.snp.top).offset(-5.0)
         }
+        
+
+        
+        //TODO: touch 이벤트 추가(self)
+    }
+    
+    func configure(dday: String, percent: Int, destination: String){
+        ddayLabel.text = dday
+        progressPercent.text = "\(percent)%"
+        destinationLabel.text = destination
+        progressbar.progress = Float(percent)
     }
     
     required init?(coder: NSCoder) {

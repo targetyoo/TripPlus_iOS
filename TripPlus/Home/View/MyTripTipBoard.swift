@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 import SnapKit
 
 class MyTripTipBoard: UIView{
@@ -23,6 +24,7 @@ class MyTripTipBoard: UIView{
         label.textColor = UIColor(named: "grayA")
         label.font = UIFont(name: "PRETENDARD-SemiBold", size: 24)
         label.numberOfLines = 0
+        label.text = "여행 가는 ~~ 관련 톡"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -32,6 +34,7 @@ class MyTripTipBoard: UIView{
         label.textColor = UIColor(named: "grayA")
         label.font = UIFont(name: "PRETENDARD-Regular", size: 16)
         label.numberOfLines = 0
+        label.text = "톡만 모았어요"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -111,6 +114,14 @@ class MyTripTipBoard: UIView{
             make.trailing.equalToSuperview().offset(-20)
             make.centerY.equalToSuperview()
         })
+        
+        //TODO: Touch 이벤트 추가(TipBox)
+    }
+    
+    func configure(username: String, destination: String , description: String){
+        tipBox_text.text = description
+        tipHeader.text = "여행 가는 \(destination) 관련 톡"
+        tipHeader2.text = "\(username)님을 위한 \(description)톡만 모았어요"
     }
     
     required init?(coder: NSCoder) {

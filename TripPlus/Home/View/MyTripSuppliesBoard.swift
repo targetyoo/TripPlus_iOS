@@ -7,8 +7,9 @@
 
 import Foundation
 import UIKit
+import SnapKit
 
-class MyTripSuppliesBoard : UIView{
+class MyTripSuppliesBoard : UIView {
     //실 데이터 사용 시, 주석문을 해제하여 사용
     
 //    init(data: YourDataModel) {
@@ -226,7 +227,8 @@ class MyTripSuppliesBoard : UIView{
         
         inadequateSuppliesBox.snp.makeConstraints { make in
             make.top.equalTo(inadequateSuppliesHeader2.snp.bottom).offset(10)
-            make.leading.trailing.equalToSuperview().offset(15)
+            make.leading.equalToSuperview().offset(15)
+            make.trailing.equalToSuperview().offset(-15)
             make.height.equalTo(155)
         }
      
@@ -252,9 +254,14 @@ class MyTripSuppliesBoard : UIView{
             make.leading.trailing.equalToSuperview().offset(10)
         })
         
-        
+        //TODO: touch 이벤트 추가(inadequateSuppliesBox)
     }
 
+    func configure(suppliesList: [String]){
+        //아직 준비물이 뭔지 몰라서 미구현
+        //suppliesList를 통해 아이콘과 name을 붙여준다
+        print(suppliesList)
+    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

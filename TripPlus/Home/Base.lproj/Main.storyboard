@@ -10,29 +10,37 @@
     </dependencies>
     <scenes>
         <!--홈-->
+        <scene sceneID="NXc-WS-chP">
+            <objects>
+                <navigationController id="Sss-Yo-0hf" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="홈" image="home" selectedImage="home_selected" id="oHU-Cf-men"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="mdV-45-yTR">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="oOY-eN-PyD" kind="relationship" relationship="rootViewController" id="yjP-qH-wkh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xce-gB-Fj3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-579" y="758"/>
+        </scene>
+        <!--Home View Controller-->
         <scene sceneID="aFs-zW-bLG">
             <objects>
-                <viewController id="oOY-eN-PyD" customClass="ViewController" customModule="TripPlus" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="oOY-eN-PyD" customClass="HomeViewController" customModule="TripPlus" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GJv-fU-BZx">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kcX-Yn-y1f">
-                                <rect key="frame" x="151" y="397" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="AOD-Ai-aE1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="홈" image="home" selectedImage="home_selected" id="0PU-0L-ESJ"/>
+                    <navigationItem key="navigationItem" id="0si-cz-Vhp"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q20-w6-poq" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-625" y="758"/>
+            <point key="canvasLocation" x="-579" y="1473"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="qHi-jI-nBN">
@@ -57,7 +65,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Zd-um-qUp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="94" y="1528"/>
+            <point key="canvasLocation" x="123" y="1473"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="J16-hi-zFZ">
@@ -73,7 +81,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UiR-ZE-mCb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="801" y="1527"/>
+            <point key="canvasLocation" x="801" y="1473"/>
         </scene>
         <!--여행 팁-->
         <scene sceneID="cVw-ak-bE1">
@@ -105,7 +113,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sru-zu-V1f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2256" y="1527"/>
+            <point key="canvasLocation" x="2256" y="1473"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="22n-Q4-got">
@@ -119,11 +127,11 @@
                         <color key="selectedImageTintColor" name="tripGreen"/>
                     </tabBar>
                     <connections>
-                        <segue destination="oOY-eN-PyD" kind="relationship" relationship="viewControllers" id="6mE-wx-dJ0"/>
-                        <segue destination="n1R-yI-qwR" kind="relationship" relationship="viewControllers" id="Kxq-tN-mkd"/>
-                        <segue destination="Imh-Kd-mEp" kind="relationship" relationship="viewControllers" id="aVA-IY-0yk"/>
-                        <segue destination="Udw-78-Kvf" kind="relationship" relationship="viewControllers" id="MHK-eE-CSC"/>
-                        <segue destination="x6Q-mS-U8m" kind="relationship" relationship="viewControllers" id="CrB-y0-qnB"/>
+                        <segue destination="Sss-Yo-0hf" kind="relationship" relationship="viewControllers" id="H03-nl-2go"/>
+                        <segue destination="n1R-yI-qwR" kind="relationship" relationship="viewControllers" id="Tlt-DP-AkM"/>
+                        <segue destination="Imh-Kd-mEp" kind="relationship" relationship="viewControllers" id="Zc9-g9-HGB"/>
+                        <segue destination="Udw-78-Kvf" kind="relationship" relationship="viewControllers" id="6YC-sb-wyq"/>
+                        <segue destination="x6Q-mS-U8m" kind="relationship" relationship="viewControllers" id="dEh-94-9ZT"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bas-aF-hqW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -147,7 +155,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YWz-Q3-VvT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="93.89312977099236" y="757.74647887323943"/>
+            <point key="canvasLocation" x="123" y="758"/>
         </scene>
         <!--여행 후기-->
         <scene sceneID="L15-gp-WmK">

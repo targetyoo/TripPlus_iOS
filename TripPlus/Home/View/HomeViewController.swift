@@ -14,7 +14,14 @@ class HomeViewController: UIViewController {
         let scrView = UIScrollView()
         scrView.bouncesHorizontally = false
         scrView.translatesAutoresizingMaskIntoConstraints = false
+        scrView.showsVerticalScrollIndicator = false
         return scrView
+    }()
+    
+    private lazy var contentView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     private lazy var logoLabel: UILabel = {
@@ -48,12 +55,12 @@ class HomeViewController: UIViewController {
         layout.minimumInteritemSpacing = 0
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .clear
+        collectionView.backgroundColor = .lightGray
         collectionView.isPagingEnabled = true
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
-        collectionView.register(MainCollectionViewCell.self, forCellWithReuseIdentifier: "cellId")
+        collectionView.register(MainCollectionViewCell.self, forCellWithReuseIdentifier: "MainCollectionViewCell")
         collectionView.delegate = self
         collectionView.dataSource = self
         
@@ -89,13 +96,28 @@ class HomeViewController: UIViewController {
         //ScrollView 때문에, 모듈화 한 View들의 Height을 명시해줘야 할 수도 있음
         //logoLabel -> NavigationBar Title로 사용 될 수도.
 
-        [scrollView, mainCollectionView, logoLabel, mainProgressbar, mainProgressbarLabel,
-         myProgressBox, myTripSuppliesBoard, myTripTipBoard
-        ].forEach({ self.view.addSubview($0) })
+        self.view.addSubview(scrollView)
+        self.view.addSubview(logoLabel)
         
+        scrollView.addSubview(contentView)
+        
+        [mainCollectionView, mainProgressbar, mainProgressbarLabel,
+         myProgressBox, myTripSuppliesBoard, myTripTipBoard
+        ].forEach({ self.contentView.addSubview($0) })
+        
+        logoLabel.snp.makeConstraints({ make in
+            make.top.equalTo(self.view.safeAreaInsets.top)
+            make.leading.equalToSuperview().inset(15.0)
+        })
         
         scrollView.snp.makeConstraints({ make in
-            make.top.leading.trailing.bottom.equalToSuperview()
+            make.edges.equalToSuperview()
+        })
+        
+        contentView.snp.makeConstraints({ make in
+            make.edges.equalTo(scrollView.contentLayoutGuide)
+            make.width.equalTo(scrollView.frameLayoutGuide)
+            make.height.equalTo(1600.0)
         })
         
         mainCollectionView.snp.makeConstraints({ make in
@@ -104,26 +126,36 @@ class HomeViewController: UIViewController {
         })
 
         mainProgressbar.snp.makeConstraints({ make in
-            make.bottom.equalTo(mainCollectionView.snp.bottom).offset(17.0)
+            make.bottom.equalTo(mainCollectionView.snp.bottom).offset(-17.0)
             make.centerX.equalToSuperview()
+            make.height.equalTo(20.0)
         })
         
         mainProgressbarLabel.snp.makeConstraints({ make in
             make.leading.equalTo(mainProgressbar.snp.trailing).offset(8.0)
-            make.bottom.equalTo(mainCollectionView.snp.bottom).offset(17.0)
+            make.bottom.equalTo(mainCollectionView.snp.bottom).offset(-17.0)
         })
         
         myProgressBox.snp.makeConstraints({ make in
-            
+            make.top.equalTo(mainCollectionView.snp.bottom).offset(20.0)
+            make.leading.equalToSuperview().offset(15.0)
+            make.trailing.equalToSuperview().offset(-15.0)
         })
         
         myTripSuppliesBoard.snp.makeConstraints({ make in
-            
+            make.top.equalTo(myProgressBox.snp.bottom)
+            make.leading.trailing.equalToSuperview()
         })
         
+        수정 필요
         myTripTipBoard.snp.makeConstraints({ make in
-            
+            make.top.equalTo(myTripSuppliesBoard.snp.bottom).offset(150.0)
+            make.leading.trailing.equalToSuperview()
         })
+        
+//        myProgressBox.configure(dday: <#T##String#>, percent: <#T##Int#>, destination: <#T##String#>)
+//        myTripSuppliesBoard.configure(suppliesList: <#T##[String]#>)
+//        myTripTipBoard.configure(username: <#T##String#>, destination: <#T##String#>, description: <#T##String#>)
     }
 
 }
@@ -139,9 +171,11 @@ extension HomeViewController : UICollectionViewDataSource, UICollectionViewDeleg
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomCell.identifier, for: indexPath) as? CustomCell else {
-                   return UICollectionViewCell()
-               }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.identifier, for: indexPath) as? MainCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        
+        cell.configure(title: "A", description: "B", writtenBy: "C")
         
         return cell
     }
