@@ -69,6 +69,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		8163D37D2D0B2F81001075F1 /* CommonView */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = CommonView; sourceTree = "<group>"; };
 		81BA56972CF759C40007FA69 /* Model */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Model; sourceTree = "<group>"; };
 		81BA56982CF759C80007FA69 /* ViewModel */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ViewModel; sourceTree = "<group>"; };
 		81BA569A2CF759D40007FA69 /* View */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = View; sourceTree = "<group>"; };
@@ -120,6 +121,7 @@
 				810A193B2C723859003C168B /* AppDelegate.swift */,
 				810A193D2C723859003C168B /* SceneDelegate.swift */,
 				810A19602C7B4D12003C168B /* CommonModel */,
+				8163D37D2D0B2F81001075F1 /* CommonView */,
 				81F6A7D42CA053420059FE6F /* MakingNewTrip */,
 				810A194F2C7B41F5003C168B /* Login&CreateAccount */,
 				810A195F2C7B433B003C168B /* Home */,
@@ -271,6 +273,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				8163D37D2D0B2F81001075F1 /* CommonView */,
 				81BA56972CF759C40007FA69 /* Model */,
 				81BA56982CF759C80007FA69 /* ViewModel */,
 				81BA569A2CF759D40007FA69 /* View */,

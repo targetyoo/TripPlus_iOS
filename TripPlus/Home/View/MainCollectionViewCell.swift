@@ -26,6 +26,7 @@ class MainCollectionViewCell : UICollectionViewCell{
         label.textColor = UIColor(named: "grayD")
         label.numberOfLines = 0
         label.text = "Title"
+        label.setLineSpacing(lineSpacing: label.font.lineHeight)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -34,9 +35,10 @@ class MainCollectionViewCell : UICollectionViewCell{
         let label = UILabel()
         label.font = UIFont(name: "PRETENDARD-Light", size: 12)
         label.textColor = UIColor(named: "grayD")
-        label.numberOfLines = 0
+        label.numberOfLines = 2
         label.lineBreakMode = .byTruncatingTail
         label.text = "description"
+        label.setLineSpacing(lineSpacing: label.font.lineHeight)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -54,35 +56,38 @@ class MainCollectionViewCell : UICollectionViewCell{
     // MARK: - Lifecycle
      override init(frame: CGRect) {
          super.init(frame: frame)
-         setupUI()
+         setViews()
      }
      
      required init?(coder: NSCoder) {
          fatalError("init(coder:) has not been implemented")
      }
     
-    private func setupUI() {
+    private func setViews() {
         [thumbnailImageView, titleLabel, descriptionLabel, writtenByLabel].forEach({
             self.addSubview($0)
         })
         
         thumbnailImageView.snp.makeConstraints({make in
-            make.top.bottom.leading.trailing.equalToSuperview()
+            make.edges.equalToSuperview()
         })
         
         writtenByLabel.snp.makeConstraints({ make in
             make.bottom.equalToSuperview().offset(-54)
             make.leading.equalToSuperview().offset(15)
+            make.width.lessThanOrEqualTo(220)
         })
 
         descriptionLabel.snp.makeConstraints({ make in
-            make.bottom.equalTo(writtenByLabel.snp.top).offset(10)
+            make.bottom.equalTo(writtenByLabel.snp.top).offset(-10)
             make.leading.equalToSuperview().offset(15)
+            make.width.lessThanOrEqualTo(220)
         })
         
         titleLabel.snp.makeConstraints({ make in
-            make.bottom.equalTo(descriptionLabel.snp.top).offset(10)
+            make.bottom.equalTo(descriptionLabel.snp.top).offset(-10)
             make.leading.equalToSuperview().offset(15)
+            make.width.lessThanOrEqualTo(220)
         })
     }
     

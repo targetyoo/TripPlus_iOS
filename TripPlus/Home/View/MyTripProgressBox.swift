@@ -23,6 +23,20 @@ class MyTripProgressBox : UIView{
         let view = UIView()
         view.layer.cornerRadius = 14
         view.backgroundColor = UIColor(named: "grayD")
+//        view.backgroundColor = .darkGray
+        
+        // 그림자 설정        
+//        view.layer.shadowPath = UIBezierPath(roundedRect: view.bounds,
+//                                               cornerRadius: view.layer.cornerRadius).cgPath
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOffset = CGSize(width: 0, height: 1)
+        view.layer.shadowOpacity = 0.2
+        view.layer.shadowRadius = 12
+        
+        // 성능 최적화
+        view.layer.shouldRasterize = true
+        view.layer.rasterizationScale = UIScreen.main.scale
+        
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -81,11 +95,12 @@ class MyTripProgressBox : UIView{
         })
         
         contentView.snp.makeConstraints({ make in
-            make.edges.equalTo(self)
-            make.width.equalTo(self)
+            make.top.equalToSuperview().offset(20)
+            make.bottom.equalToSuperview().offset(-20)
+            make.leading.equalToSuperview().offset(15.0)
+            make.trailing.equalToSuperview().offset(-15.0)
             make.height.equalTo(150.0)
         })
-        contentView에 그림자 넣어야함!
         
         ddayLabel.snp.makeConstraints{ make in
             make.leading.top.equalToSuperview().offset(20.0)
