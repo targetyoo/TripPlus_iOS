@@ -42,22 +42,13 @@
             </objects>
             <point key="canvasLocation" x="-579" y="1473"/>
         </scene>
-        <!--View Controller-->
+        <!--My Trip List View Controller-->
         <scene sceneID="qHi-jI-nBN">
             <objects>
-                <viewController id="Hrx-YK-AeD" sceneMemberID="viewController">
+                <viewController id="Hrx-YK-AeD" customClass="MyTripListViewController" customModule="TripPlus" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ivM-dM-6Ot">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fLc-Sy-3Bb">
-                                <rect key="frame" x="175" y="320" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="qD8-Dm-MKq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>

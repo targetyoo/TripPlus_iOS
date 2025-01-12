@@ -19,11 +19,16 @@
 		810A195C2C7B42E7003C168B /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810A195B2C7B42E7003C168B /* LoginResponse.swift */; };
 		810A195E2C7B431A003C168B /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810A195D2C7B431A003C168B /* LoginViewModel.swift */; };
 		810A19622C7B4D6F003C168B /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810A19612C7B4D6F003C168B /* APIManager.swift */; };
-		81F6A7CD2CA0463E0059FE6F /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F6A7CC2CA0463E0059FE6F /* CustomSearchBar.swift */; };
-		81F6A7CF2CA052FC0059FE6F /* LocationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F6A7CE2CA052FC0059FE6F /* LocationList.swift */; };
-		81F6A7D12CA053050059FE6F /* LocationListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F6A7D02CA053050059FE6F /* LocationListCell.swift */; };
+		8138F07A2D27F34F008F1FA8 /* MyTripListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8138F0792D27F34F008F1FA8 /* MyTripListViewController.swift */; };
+		8138F07C2D27F771008F1FA8 /* MyTripEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8138F07B2D27F771008F1FA8 /* MyTripEmptyView.swift */; };
+		81DE3AEB2D2D798900707928 /* MakingNewTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE3AEA2D2D798900707928 /* MakingNewTripViewController.swift */; };
+		81DE3AEF2D2D825100707928 /* MakingNewTripModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE3AEE2D2D825100707928 /* MakingNewTripModel.swift */; };
+		81DE3B0F2D318B8100707928 /* MakingNewTripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE3B0E2D318B8000707928 /* MakingNewTripView.swift */; };
+		81F6A7CD2CA0463E0059FE6F /* CustomSearchBar_test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F6A7CC2CA0463E0059FE6F /* CustomSearchBar_test.swift */; };
+		81F6A7CF2CA052FC0059FE6F /* LocationList_test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F6A7CE2CA052FC0059FE6F /* LocationList_test.swift */; };
+		81F6A7D12CA053050059FE6F /* LocationListCell_test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F6A7D02CA053050059FE6F /* LocationListCell_test.swift */; };
 		81F6A7D32CA0532D0059FE6F /* LocationListCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F6A7D22CA0532D0059FE6F /* LocationListCellData.swift */; };
-		81F6A7DA2CA053B20059FE6F /* NewLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F6A7D92CA053B20059FE6F /* NewLocationViewController.swift */; };
+		81F6A7DA2CA053B20059FE6F /* NewLocationViewController_test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F6A7D92CA053B20059FE6F /* NewLocationViewController_test.swift */; };
 		81F800612C99CF720033C464 /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 81F800582C99CF720033C464 /* Pretendard-Light.otf */; };
 		81F800622C99CF720033C464 /* Pretendard-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 81F800592C99CF720033C464 /* Pretendard-Black.otf */; };
 		81F800632C99CF720033C464 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 81F8005A2C99CF720033C464 /* Pretendard-Bold.otf */; };
@@ -50,11 +55,16 @@
 		810A195B2C7B42E7003C168B /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		810A195D2C7B431A003C168B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		810A19612C7B4D6F003C168B /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
-		81F6A7CC2CA0463E0059FE6F /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
-		81F6A7CE2CA052FC0059FE6F /* LocationList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationList.swift; sourceTree = "<group>"; };
-		81F6A7D02CA053050059FE6F /* LocationListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListCell.swift; sourceTree = "<group>"; };
+		8138F0792D27F34F008F1FA8 /* MyTripListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTripListViewController.swift; sourceTree = "<group>"; };
+		8138F07B2D27F771008F1FA8 /* MyTripEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTripEmptyView.swift; sourceTree = "<group>"; };
+		81DE3AEA2D2D798900707928 /* MakingNewTripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakingNewTripViewController.swift; sourceTree = "<group>"; };
+		81DE3AEE2D2D825100707928 /* MakingNewTripModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakingNewTripModel.swift; sourceTree = "<group>"; };
+		81DE3B0E2D318B8000707928 /* MakingNewTripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakingNewTripView.swift; sourceTree = "<group>"; };
+		81F6A7CC2CA0463E0059FE6F /* CustomSearchBar_test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar_test.swift; sourceTree = "<group>"; };
+		81F6A7CE2CA052FC0059FE6F /* LocationList_test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationList_test.swift; sourceTree = "<group>"; };
+		81F6A7D02CA053050059FE6F /* LocationListCell_test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListCell_test.swift; sourceTree = "<group>"; };
 		81F6A7D22CA0532D0059FE6F /* LocationListCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListCellData.swift; sourceTree = "<group>"; };
-		81F6A7D92CA053B20059FE6F /* NewLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLocationViewController.swift; sourceTree = "<group>"; };
+		81F6A7D92CA053B20059FE6F /* NewLocationViewController_test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLocationViewController_test.swift; sourceTree = "<group>"; };
 		81F800582C99CF720033C464 /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
 		81F800592C99CF720033C464 /* Pretendard-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Black.otf"; sourceTree = "<group>"; };
 		81F8005A2C99CF720033C464 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
@@ -215,10 +225,14 @@
 		81F6A7D72CA0537F0059FE6F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				81F6A7D92CA053B20059FE6F /* NewLocationViewController.swift */,
-				81F6A7CC2CA0463E0059FE6F /* CustomSearchBar.swift */,
-				81F6A7CE2CA052FC0059FE6F /* LocationList.swift */,
-				81F6A7D02CA053050059FE6F /* LocationListCell.swift */,
+				81F6A7D92CA053B20059FE6F /* NewLocationViewController_test.swift */,
+				81F6A7CC2CA0463E0059FE6F /* CustomSearchBar_test.swift */,
+				81F6A7CE2CA052FC0059FE6F /* LocationList_test.swift */,
+				81F6A7D02CA053050059FE6F /* LocationListCell_test.swift */,
+				8138F0792D27F34F008F1FA8 /* MyTripListViewController.swift */,
+				8138F07B2D27F771008F1FA8 /* MyTripEmptyView.swift */,
+				81DE3AEA2D2D798900707928 /* MakingNewTripViewController.swift */,
+				81DE3B0E2D318B8000707928 /* MakingNewTripView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -227,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				81F6A7D22CA0532D0059FE6F /* LocationListCellData.swift */,
+				81DE3AEE2D2D825100707928 /* MakingNewTripModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -389,15 +404,20 @@
 				810A19622C7B4D6F003C168B /* APIManager.swift in Sources */,
 				810A19552C7B4295003C168B /* LoginViewController.swift in Sources */,
 				810A195C2C7B42E7003C168B /* LoginResponse.swift in Sources */,
+				81DE3B0F2D318B8100707928 /* MakingNewTripView.swift in Sources */,
 				81F6A7D32CA0532D0059FE6F /* LocationListCellData.swift in Sources */,
-				81F6A7CF2CA052FC0059FE6F /* LocationList.swift in Sources */,
+				8138F07C2D27F771008F1FA8 /* MyTripEmptyView.swift in Sources */,
+				81F6A7CF2CA052FC0059FE6F /* LocationList_test.swift in Sources */,
+				81DE3AEB2D2D798900707928 /* MakingNewTripViewController.swift in Sources */,
 				810A193C2C723859003C168B /* AppDelegate.swift in Sources */,
+				81DE3AEF2D2D825100707928 /* MakingNewTripModel.swift in Sources */,
 				810A195A2C7B42DB003C168B /* LoginRequest.swift in Sources */,
 				810A193E2C723859003C168B /* SceneDelegate.swift in Sources */,
-				81F6A7CD2CA0463E0059FE6F /* CustomSearchBar.swift in Sources */,
-				81F6A7DA2CA053B20059FE6F /* NewLocationViewController.swift in Sources */,
+				81F6A7CD2CA0463E0059FE6F /* CustomSearchBar_test.swift in Sources */,
+				81F6A7DA2CA053B20059FE6F /* NewLocationViewController_test.swift in Sources */,
+				8138F07A2D27F34F008F1FA8 /* MyTripListViewController.swift in Sources */,
 				810A195E2C7B431A003C168B /* LoginViewModel.swift in Sources */,
-				81F6A7D12CA053050059FE6F /* LocationListCell.swift in Sources */,
+				81F6A7D12CA053050059FE6F /* LocationListCell_test.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -548,9 +568,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = VR4TYTSTXA;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TripPlus/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -565,6 +585,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = daesang.TripPlus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -577,9 +598,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = VR4TYTSTXA;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TripPlus/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -594,6 +615,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = daesang.TripPlus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

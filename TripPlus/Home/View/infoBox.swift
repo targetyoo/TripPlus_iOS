@@ -33,7 +33,7 @@ class InfoBox: UIView {
         label.font = UIFont(name: "PRETENDARD-Regular", size: 12.0)
         label.textColor = UIColor(named: "grayD")
         label.textAlignment = .left
-        label.text = "대표이사 : 유대상"
+        label.text = "대표이사 : OOO"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -130,7 +130,7 @@ class InfoBox: UIView {
         label.font = UIFont(name: "PRETENDARD-Light", size: 12.0)
         label.textColor = UIColor(named: "grayD")
         label.textAlignment = .left
-        label.text = "2345678909876543"
+        label.text = "00000000000000"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -161,7 +161,7 @@ class InfoBox: UIView {
         label.font = UIFont(name: "PRETENDARD-Light", size: 12.0)
         label.textColor = UIColor(named: "grayD")
         label.textAlignment = .left
-        label.text = "010-6666-7777"
+        label.text = "010-0000-0000"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

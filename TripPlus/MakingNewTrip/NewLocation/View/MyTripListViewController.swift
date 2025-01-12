@@ -1,5 +1,5 @@
 //
-//  MyTripViewController.swift
+//  MyTripListViewController.swift
 //  TripPlus
 //
 //  Created by 유대상 on 1/3/25.
@@ -9,13 +9,10 @@ import Foundation
 import UIKit
 import SnapKit
 import Combine
-import RxSwift
-import RxCocoa
 
-class MyTripViewController: UIViewController {
+class MyTripListViewController: UIViewController {
     
     private var cancellables = Set<AnyCancellable>()
-    private let disposeBag = DisposeBag()
 
     private lazy var myTripEmptyView: MyTripEmptyView = {
         let view = MyTripEmptyView()
@@ -48,14 +45,28 @@ class MyTripViewController: UIViewController {
 //            }
 //            .store(in: &cancellables)
         
-        myTripEmptyView.makeTripBtn.rx.tap
-                   .subscribe(onNext: { [weak self] in
-//                       self?.myTripEmptyView.isHidden = true
-//                       self?.myTripEmptyView.makeTripBtn.titleLabel?.textColor = UIColor(named: "grayA")
+        myTripEmptyView.makeTripBtn.publisher(for: .touchUpInside)
+             .sink { [weak self] _ in
+                 let makingNewTripVC = MakingNewTripViewController()
+                 
+                 // 필요한 데이터 전달 (예: tripName)
+                 makingNewTripVC.tripName = "새로운 여행" // tripName 변수를 설정
+                 
+                 
+//                 let backBarButtonItem = UIBarButtonItem(title: "이전", style: .plain, target: self, action: nil)
+//                 self?.navigationItem.backBarButtonItem = backBarButtonItem
+                 
+                 let backAttributes = [NSAttributedString.Key.font: UIFont(name: "PRETENDARD-Regular", size: 16)]
+                 let titleAttributes = [NSAttributedString.Key.font: UIFont(name: "PRETENDARD-SemiBold", size: 16)]
 
-                       print("삑")
-                   })
-                   .disposed(by: disposeBag)
+//                 self?.navigationItem.backBarButtonItem?.setTitleTextAttributes(backAttributes as [NSAttributedString.Key : Any], for: .normal)
+                 self?.navigationController?.navigationBar.titleTextAttributes = titleAttributes as [NSAttributedString.Key : Any]
+
+                 // 현재 ViewController에서 새로운 ViewController로 이동
+                 self?.navigationController?.pushViewController(makingNewTripVC, animated: true)
+
+             }
+             .store(in: &cancellables)
     }
     
 }
