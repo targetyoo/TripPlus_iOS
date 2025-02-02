@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import SnapKit
 
+// Used in SelectLocationViewController, SelectCategoryViewController
 
 enum SEARCH_TYPE{
     case TYPE_DESTINATION
@@ -77,8 +78,16 @@ class SearchBarView: UIView{
         })
     }
     
-    
-    
+    func configure(type: SEARCH_TYPE){
+        switch type {
+        case .TYPE_DESTINATION:
+            searchBarTitle.text = "여행 장소를 선택해 주세요"
+            searchBar.placeholder = "장소 검색"
+        case .TYPE_CATEGORY:
+            searchBarTitle.text = "여행 카테고리를 선택해 주세요"
+            searchBar.placeholder = "카테고리 검색"
+        }
+    }
     
     
     required init?(coder: NSCoder) {

@@ -10,11 +10,12 @@ import UIKit
 import SnapKit
 
 class AddItemCell: UICollectionViewCell{
-    
+    static let identifier = "AddItemCell"
+
     lazy var addBtn: UIButton = {
         let btn = UIButton()
-        btn.setImage(UIImage(named: "plus"), for: .normal)
-        btn.setTitleColor(UIColor(named: "grayB"), for: .normal)
+        btn.setImage(UIImage(named: "cellPlus"), for: .normal)
+        btn.tintColor = UIColor(named: "grayB")
         btn.snp.makeConstraints({make in
             make.width.height.equalTo(24.0)
         })
@@ -31,11 +32,10 @@ class AddItemCell: UICollectionViewCell{
         self.addSubview(addBtn)
         
         addBtn.snp.makeConstraints({ make in
-            make.centerX.centerY.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
+            make.centerY.equalToSuperview()
         })
     }
-    
-    
     
 //    override func prepareForReuse() {
 //        super.prepareForReuse()

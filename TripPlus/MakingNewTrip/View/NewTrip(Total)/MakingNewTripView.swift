@@ -77,7 +77,7 @@ class MakingNewTripView: UIView {
         return label
     }()
     
-    private lazy var travelDestinationLabel: UILabel = {
+    private lazy var travellocationLabel: UILabel = {
         let label = UILabel()
         label.text = "여행 경로"
         label.font = UIFont(name: "PRETENDARD-Regular", size: 16.0)
@@ -129,9 +129,9 @@ class MakingNewTripView: UIView {
         return icon
     }()
     
-    private lazy var travelDestinationIcon: UIImageView = {
+    private lazy var travellocationIcon: UIImageView = {
         let icon = UIImageView()
-        icon.image = UIImage(named: "travelDestination")
+        icon.image = UIImage(named: "travellocation")
         icon.tintColor = UIColor(named: "grayB")
         icon.snp.makeConstraints({ make in
             make.height.width.equalTo(24.0)
@@ -227,20 +227,30 @@ class MakingNewTripView: UIView {
     }()
     
     lazy var setCategoryCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
+        let layout = RightAlignedFlowLayout()
+        layout.minimumLineSpacing = 10.0
+        layout.minimumInteritemSpacing = 10.0
+        
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .white
-//        collectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: CategoryCollectionViewCell.identifier)
+        collectionView.isScrollEnabled = false
+        collectionView.register(RightAlignedCollectionViewCell.self, forCellWithReuseIdentifier: RightAlignedCollectionViewCell.identifier)
+        collectionView.register(AddItemCell.self, forCellWithReuseIdentifier: AddItemCell.identifier)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        
         return collectionView
     }()
     
-    lazy var setDestinationCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
+    lazy var setlocationCollectionView: UICollectionView = {
+        let layout = RightAlignedFlowLayout()
+        layout.minimumLineSpacing = 10.0
+        layout.minimumInteritemSpacing = 10.0
+        
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .white
-//        collectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: CategoryCollectionViewCell.identifier)
+        collectionView.isScrollEnabled = false
+        collectionView.register(RightAlignedCollectionViewCell.self, forCellWithReuseIdentifier: RightAlignedCollectionViewCell.identifier)
+        collectionView.register(AddItemCell.self, forCellWithReuseIdentifier: AddItemCell.identifier)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+
         return collectionView
     }()
     
@@ -261,10 +271,10 @@ class MakingNewTripView: UIView {
             suppliesTypeIcon, suppliesTypeLabel,
             travelPeriodIcon, travelPeriodLabel,
             travelCategoryIcon, travelCategoryLabel,
-            travelDestinationIcon, travelDestinationLabel,
+            travellocationIcon, travellocationLabel,
 //            travelCompanionIcon, travelCompanionLabel,
             howMuchStackView, setDateButton,
-            setCategoryCollectionView, setDestinationCollectionView //setCompanionCollectionView,
+            setCategoryCollectionView, setlocationCollectionView //setCompanionCollectionView,
         ].forEach({ self.addSubview($0) })
 
         makeConstraint()
@@ -321,13 +331,13 @@ class MakingNewTripView: UIView {
             make.leading.equalToSuperview().offset(15.0)
         })
         
-        travelDestinationIcon.snp.makeConstraints({ make in
+        travellocationIcon.snp.makeConstraints({ make in
             make.top.equalTo(setCategoryCollectionView.snp.bottom).offset(25.0)
             make.leading.equalToSuperview().offset(15.0)
         })
         
 //        travelCompanionIcon.snp.makeConstraints({ make in
-//            make.top.equalTo(setDestinationCollectionView.snp.bottom).offset(25.0)
+//            make.top.equalTo(setlocationCollectionView.snp.bottom).offset(25.0)
 //            make.leading.equalToSuperview().offset(15.0)
 //        })
         
@@ -350,9 +360,9 @@ class MakingNewTripView: UIView {
 //            make.centerY.equalTo(travelCompanionIcon.snp.centerY)
 //        })
         
-        travelDestinationLabel.snp.makeConstraints({ make in
-            make.leading.equalTo(travelDestinationIcon.snp.trailing).offset(10.0)
-            make.centerY.equalTo(travelDestinationIcon.snp.centerY)
+        travellocationLabel.snp.makeConstraints({ make in
+            make.leading.equalTo(travellocationIcon.snp.trailing).offset(10.0)
+            make.centerY.equalTo(travellocationIcon.snp.centerY)
         })
         
         
@@ -368,14 +378,14 @@ class MakingNewTripView: UIView {
         
         setCategoryCollectionView.snp.makeConstraints({ make in
             make.width.equalTo(205.0)
-            make.height.equalTo(80.0) //temp
+            make.height.equalTo(120.0) //temp
             make.trailing.equalToSuperview().offset(-15.0)
             make.top.equalTo(setDateButton.snp.bottom).offset(25.0)
         })
         
-        setDestinationCollectionView.snp.makeConstraints({ make in
+        setlocationCollectionView.snp.makeConstraints({ make in
             make.width.equalTo(205.0)
-            make.height.equalTo(30.0) //temp
+            make.height.equalTo(120.0) //temp
             make.trailing.equalToSuperview().offset(-15.0)
             make.top.equalTo(setCategoryCollectionView.snp.bottom).offset(25.0)
         })
@@ -384,12 +394,9 @@ class MakingNewTripView: UIView {
 //            make.width.equalTo(205.0)
 //            make.height.equalTo(30.0) //temp
 //            make.trailing.equalToSuperview().offset(-15.0)
-//            make.top.equalTo(setDestinationCollectionView.snp.bottom).offset(25.0)
+//            make.top.equalTo(setlocationCollectionView.snp.bottom).offset(25.0)
 //        })
         
-        setCategoryCollectionView.backgroundColor = .grayB
-        setDestinationCollectionView.backgroundColor = .grayB
-//        setCompanionCollectionView.backgroundColor = .grayB
     }
     
     required init?(coder: NSCoder) {
