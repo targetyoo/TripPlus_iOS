@@ -29,7 +29,7 @@ class CardCollectionViewCell: UICollectionViewCell{
            label.text = "My Location"
            label.textAlignment = .left
            label.numberOfLines = 0
-           label.setLineSpacing(lineSpacing: label.font.lineHeight)
+           label.setLineSpacing(lineHeight: label.font.lineHeight)
            label.translatesAutoresizingMaskIntoConstraints = false
            return label
        }()

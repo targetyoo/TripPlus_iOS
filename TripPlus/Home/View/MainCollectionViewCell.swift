@@ -26,7 +26,7 @@ class MainCollectionViewCell : UICollectionViewCell{
         label.textColor = UIColor(named: "grayD")
         label.numberOfLines = 0
         label.text = "Title"
-        label.setLineSpacing(lineSpacing: label.font.lineHeight)
+        label.setLineSpacing(lineHeight: label.font.lineHeight)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -38,7 +38,7 @@ class MainCollectionViewCell : UICollectionViewCell{
         label.numberOfLines = 2
         label.lineBreakMode = .byTruncatingTail
         label.text = "description"
-        label.setLineSpacing(lineSpacing: label.font.lineHeight)
+        label.setLineSpacing(lineHeight: label.font.lineHeight)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

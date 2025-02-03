@@ -8,10 +8,12 @@
 import Foundation
 import UIKit
 import SnapKit
+import Combine
 
 class CategoryCollectionViewCell: UICollectionViewCell{
     static let identifier = "CategoryCollectionViewCell"
-    
+    private var cancellables = Set<AnyCancellable>()
+
     private lazy var categoryLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "PRETENDARD-Regular", size: 16.0)
@@ -20,16 +22,20 @@ class CategoryCollectionViewCell: UICollectionViewCell{
         return label
     }()
     
-    private lazy var selectBtn: UIButton = {
+    lazy var selectBtn: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "checkCircle"), for: .normal)
+        button.contentVerticalAlignment = .fill
+        button.contentHorizontalAlignment = .fill
+        button.tintColor = UIColor(named: "grayB")
+        button.isUserInteractionEnabled = true
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     private lazy var cellBoarder: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(named: "grayB")
+        view.backgroundColor = UIColor(named: "grayC")
         view.snp.makeConstraints({ make in
             make.height.equalTo(1.0)
         })
@@ -52,6 +58,7 @@ class CategoryCollectionViewCell: UICollectionViewCell{
         selectBtn.snp.makeConstraints({ make in
             make.trailing.equalToSuperview().offset(-15.0)
             make.centerY.equalToSuperview()
+            make.width.height.equalTo(24.0)
         })
         
         cellBoarder.snp.makeConstraints({ make in
@@ -60,14 +67,20 @@ class CategoryCollectionViewCell: UICollectionViewCell{
         })
     }
     
-    func configure(category: String) {
+    func configure(category: String, onSelect: @escaping (String) -> Void) {
         categoryLabel.text = category
+        
+        selectBtn.publisher(for: .touchUpInside)
+            .sink { _ in
+                onSelect(category)
+            }
+            .store(in: &cancellables)
     }
      
      override func prepareForReuse() {
          super.prepareForReuse()
+         cancellables.removeAll()
          categoryLabel.text = ""
-         selectBtn.setImage(UIImage(named: "checkCircle"), for: .normal)
      }
     
     required init?(coder: NSCoder) {

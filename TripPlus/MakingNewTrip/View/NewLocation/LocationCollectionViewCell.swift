@@ -39,13 +39,14 @@ class LocationCollectionViewCell: UICollectionViewCell{
     lazy var selectBtn: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "checkCircle"), for: .normal)
+        button.tintColor = UIColor(named: "grayB")
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     private lazy var cellBoarder: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(named: "grayB")
+        view.backgroundColor = UIColor(named: "grayC")
         view.snp.makeConstraints({ make in
             make.height.equalTo(1.0)
         })

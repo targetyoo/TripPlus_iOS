@@ -30,15 +30,21 @@ class SearchBarView: UIView{
         return label
     }()
     
+    lazy var searchBarBackgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(named: "grayC")
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.masksToBounds = true
+        view.layer.cornerRadius = 14.0
+        return view
+    }()
+    
     lazy var searchBar: UITextField = {
         let txtField = UITextField()
-        txtField.backgroundColor = UIColor(named: "grayC")
-        txtField.textColor = UIColor(named: "grayA")
+        txtField.textColor = UIColor(named: "grayB")
         txtField.font = UIFont(name: "PRETENDARD-Regular", size: 16.0)
         txtField.placeholder = "장소 검색"
         txtField.translatesAutoresizingMaskIntoConstraints = false
-        txtField.layer.masksToBounds = true
-        txtField.layer.cornerRadius = 14.0
         return txtField
     }()
     
@@ -56,7 +62,7 @@ class SearchBarView: UIView{
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        [ searchBarTitle, searchBar, searchBarIcon
+        [ searchBarTitle, searchBarBackgroundView, searchBar, searchBarIcon
         ].forEach({ self.addSubview($0) })
 
         makeConstraint()
@@ -67,14 +73,22 @@ class SearchBarView: UIView{
             make.top.leading.equalToSuperview()
         })
         
-        searchBar.snp.makeConstraints({ make in
-            make.top.equalTo(searchBarTitle.snp.bottom).offset(5.0)
+        searchBarBackgroundView.snp.makeConstraints({ make in
+            make.top.equalTo(searchBarTitle.snp.bottom).offset(20.0)
             make.leading.trailing.equalToSuperview()
+            make.height.equalTo(35.0)
+        })
+        
+        searchBar.snp.makeConstraints({ make in
+            make.centerY.equalTo(searchBarBackgroundView.snp.centerY)
+            make.leading.equalTo(searchBarBackgroundView.snp.leading).offset(10.0)
+            make.trailing.equalTo(searchBarBackgroundView.snp.trailing).offset(-10.0)
+            make.height.equalTo(35.0)
         })
         
         searchBarIcon.snp.makeConstraints({ make in
             make.centerY.equalTo(searchBar.snp.centerY)
-            make.trailing.equalTo(searchBar.snp.trailing).offset(5.0)
+            make.trailing.equalTo(searchBar.snp.trailing).offset(-5.0)
         })
     }
     

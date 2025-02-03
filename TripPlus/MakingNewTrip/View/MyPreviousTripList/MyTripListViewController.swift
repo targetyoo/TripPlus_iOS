@@ -56,13 +56,15 @@ class MyTripListViewController: UIViewController {
 //                 let backBarButtonItem = UIBarButtonItem(title: "이전", style: .plain, target: self, action: nil)
 //                 self?.navigationItem.backBarButtonItem = backBarButtonItem
                  
-                 let backAttributes = [NSAttributedString.Key.font: UIFont(name: "PRETENDARD-Regular", size: 16)]
-                 let titleAttributes = [NSAttributedString.Key.font: UIFont(name: "PRETENDARD-SemiBold", size: 16)]
-
-//                 self?.navigationItem.backBarButtonItem?.setTitleTextAttributes(backAttributes as [NSAttributedString.Key : Any], for: .normal)
-                 self?.navigationController?.navigationBar.titleTextAttributes = titleAttributes as [NSAttributedString.Key : Any]
+//                 let backAttributes = [NSAttributedString.Key.font: UIFont(name: "PRETENDARD-Regular", size: 16)]
+//                 let titleAttributes = [NSAttributedString.Key.font: UIFont(name: "PRETENDARD-SemiBold", size: 16)]
+//
+////                 self?.navigationItem.backBarButtonItem?.setTitleTextAttributes(backAttributes as [NSAttributedString.Key : Any], for: .normal)
+//                 self?.navigationController?.navigationBar.titleTextAttributes = titleAttributes as [NSAttributedString.Key : Any]
 
                  // 현재 ViewController에서 새로운 ViewController로 이동
+                 makingNewTripVC.modalPresentationStyle = .fullScreen
+                 self?.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
                  self?.navigationController?.pushViewController(makingNewTripVC, animated: true)
 
              }

@@ -49,7 +49,7 @@ class ListCollectionViewCell: UICollectionViewCell{
            label.text = "여행을 어디로갈까아 여행을 어디로갈까아 여행을 어디로갈까아 여행을 어디로갈까아 여행을 어디로갈까아 여행을 어디로갈까아 여행을 어디로갈까아 여행을 어디로갈까아 여행을 어디로갈까아 여행을 어디로갈까아 여행을 어디로갈까아 여행을 어디로갈까아"
            label.numberOfLines = 3
            label.lineBreakMode = .byTruncatingTail
-           label.setLineSpacing(lineSpacing: label.font.lineHeight)
+           label.setLineSpacing(lineHeight: label.font.lineHeight)
            label.translatesAutoresizingMaskIntoConstraints = false
            return label
        }()

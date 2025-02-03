@@ -220,7 +220,7 @@ class MakingNewTripView: UIView {
         btn.setTitleColor(UIColor(named: "grayB"), for: .normal)
         btn.backgroundColor = UIColor(named: "grayC")
         btn.snp.makeConstraints({ make in
-            make.width.equalTo(155.0)
+            make.width.equalTo(170.0)
         })
         btn.translatesAutoresizingMaskIntoConstraints = false
         return btn
@@ -284,6 +284,13 @@ class MakingNewTripView: UIView {
 
     
     private func setButtonTitleDate(){
+        
+        /*
+         Actually.. ViewModel의 날짜 변수와 바인딩을 해주어야 함
+         그리고, 초기에 날짜를 받아오든 선택되든 변수따라 그냥 묶여서 바뀌기만 하면 됨
+         아래처럼 직접 View를 변경하는 방법은 X. 수정 해야함
+         */
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yy.MM.dd" // 원하는 날짜 형식 설정
         
