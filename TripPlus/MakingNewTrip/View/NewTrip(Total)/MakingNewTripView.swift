@@ -18,6 +18,7 @@ class MakingNewTripView: UIView {
     lazy var tripTitleTextView: UITextView = {
         let txtView = UITextView()
         txtView.text = "여행 제목을 입력해 주세요(공백 포함 20자)"
+        txtView.backgroundColor = .white
         txtView.font = UIFont(name: "PRETENDARD-Regular", size: 16.0)
         txtView.textColor = UIColor(named: "grayB")
         txtView.isEditable = true
@@ -129,7 +130,7 @@ class MakingNewTripView: UIView {
         return icon
     }()
     
-    private lazy var travellocationIcon: UIImageView = {
+    private lazy var travelLocationIcon: UIImageView = {
         let icon = UIImageView()
         icon.image = UIImage(named: "travellocation")
         icon.tintColor = UIColor(named: "grayB")
@@ -232,6 +233,7 @@ class MakingNewTripView: UIView {
         layout.minimumInteritemSpacing = 10.0
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .white
         collectionView.isScrollEnabled = false
         collectionView.register(RightAlignedCollectionViewCell.self, forCellWithReuseIdentifier: RightAlignedCollectionViewCell.identifier)
         collectionView.register(AddItemCell.self, forCellWithReuseIdentifier: AddItemCell.identifier)
@@ -240,12 +242,13 @@ class MakingNewTripView: UIView {
         return collectionView
     }()
     
-    lazy var setlocationCollectionView: UICollectionView = {
+    lazy var setLocationCollectionView: UICollectionView = {
         let layout = RightAlignedFlowLayout()
         layout.minimumLineSpacing = 10.0
         layout.minimumInteritemSpacing = 10.0
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .white
         collectionView.isScrollEnabled = false
         collectionView.register(RightAlignedCollectionViewCell.self, forCellWithReuseIdentifier: RightAlignedCollectionViewCell.identifier)
         collectionView.register(AddItemCell.self, forCellWithReuseIdentifier: AddItemCell.identifier)
@@ -271,10 +274,10 @@ class MakingNewTripView: UIView {
             suppliesTypeIcon, suppliesTypeLabel,
             travelPeriodIcon, travelPeriodLabel,
             travelCategoryIcon, travelCategoryLabel,
-            travellocationIcon, travellocationLabel,
+            travelLocationIcon, travellocationLabel,
 //            travelCompanionIcon, travelCompanionLabel,
             howMuchStackView, setDateButton,
-            setCategoryCollectionView, setlocationCollectionView //setCompanionCollectionView,
+            setCategoryCollectionView, setLocationCollectionView //setCompanionCollectionView,
         ].forEach({ self.addSubview($0) })
 
         makeConstraint()
@@ -338,7 +341,7 @@ class MakingNewTripView: UIView {
             make.leading.equalToSuperview().offset(15.0)
         })
         
-        travellocationIcon.snp.makeConstraints({ make in
+        travelLocationIcon.snp.makeConstraints({ make in
             make.top.equalTo(setCategoryCollectionView.snp.bottom).offset(25.0)
             make.leading.equalToSuperview().offset(15.0)
         })
@@ -368,8 +371,8 @@ class MakingNewTripView: UIView {
 //        })
         
         travellocationLabel.snp.makeConstraints({ make in
-            make.leading.equalTo(travellocationIcon.snp.trailing).offset(10.0)
-            make.centerY.equalTo(travellocationIcon.snp.centerY)
+            make.leading.equalTo(travelLocationIcon.snp.trailing).offset(10.0)
+            make.centerY.equalTo(travelLocationIcon.snp.centerY)
         })
         
         
@@ -385,14 +388,14 @@ class MakingNewTripView: UIView {
         
         setCategoryCollectionView.snp.makeConstraints({ make in
             make.width.equalTo(205.0)
-            make.height.equalTo(120.0) //temp
+//            make.height.equalTo(30.0)
             make.trailing.equalToSuperview().offset(-15.0)
             make.top.equalTo(setDateButton.snp.bottom).offset(25.0)
         })
         
-        setlocationCollectionView.snp.makeConstraints({ make in
+        setLocationCollectionView.snp.makeConstraints({ make in
             make.width.equalTo(205.0)
-            make.height.equalTo(120.0) //temp
+//            make.height.equalTo(30.0)
             make.trailing.equalToSuperview().offset(-15.0)
             make.top.equalTo(setCategoryCollectionView.snp.bottom).offset(25.0)
         })

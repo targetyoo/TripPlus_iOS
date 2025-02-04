@@ -8,10 +8,12 @@
 import Foundation
 import UIKit
 import SnapKit
+import Combine
 
 class LocationCollectionViewCell: UICollectionViewCell{
     static let identifier = "LocationCollectionViewCell"
-    
+    private var cancellables = Set<AnyCancellable>()
+
     private lazy var cityNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "PRETENDARD-Regular", size: 16.0)
@@ -77,9 +79,15 @@ class LocationCollectionViewCell: UICollectionViewCell{
         })
     }
     
-    func configure(city: String, nation: String) {
+    func configure(city: String, nation: String, onSelect: @escaping (String) -> Void) {
         cityNameLabel.text = city
         nationNameLabel.text = nation
+        
+        selectBtn.publisher(for: .touchUpInside)
+            .sink { _ in
+                onSelect(city)
+            }
+            .store(in: &cancellables)
     }
     
     override func prepareForReuse() {

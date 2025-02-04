@@ -17,7 +17,7 @@
 		810A19552C7B4295003C168B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810A19542C7B4295003C168B /* LoginViewController.swift */; };
 		810A195A2C7B42DB003C168B /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810A19592C7B42DB003C168B /* LoginRequest.swift */; };
 		810A195C2C7B42E7003C168B /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810A195B2C7B42E7003C168B /* LoginResponse.swift */; };
-		810A195E2C7B431A003C168B /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810A195D2C7B431A003C168B /* LoginViewModel.swift */; };
+		810A195E2C7B431A003C168B /* LoginViewModel_test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810A195D2C7B431A003C168B /* LoginViewModel_test.swift */; };
 		810A19622C7B4D6F003C168B /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810A19612C7B4D6F003C168B /* APIManager.swift */; };
 		8134227A2D50F08900E3035B /* AlignedFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813422722D50F08900E3035B /* AlignedFlowLayout.swift */; };
 		8134227B2D50F08900E3035B /* CardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813422732D50F08900E3035B /* CardCollectionViewCell.swift */; };
@@ -55,7 +55,7 @@
 		810A19542C7B4295003C168B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		810A19592C7B42DB003C168B /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 		810A195B2C7B42E7003C168B /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
-		810A195D2C7B431A003C168B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		810A195D2C7B431A003C168B /* LoginViewModel_test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel_test.swift; sourceTree = "<group>"; };
 		810A19612C7B4D6F003C168B /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		813422722D50F08900E3035B /* AlignedFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignedFlowLayout.swift; sourceTree = "<group>"; };
 		813422732D50F08900E3035B /* CardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -163,7 +163,7 @@
 		810A19562C7B42B5003C168B /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				810A195D2C7B431A003C168B /* LoginViewModel.swift */,
+				810A195D2C7B431A003C168B /* LoginViewModel_test.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -442,7 +442,7 @@
 				81DE3AEF2D2D825100707928 /* MakingNewTripModel.swift in Sources */,
 				810A195A2C7B42DB003C168B /* LoginRequest.swift in Sources */,
 				810A193E2C723859003C168B /* SceneDelegate.swift in Sources */,
-				810A195E2C7B431A003C168B /* LoginViewModel.swift in Sources */,
+				810A195E2C7B431A003C168B /* LoginViewModel_test.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

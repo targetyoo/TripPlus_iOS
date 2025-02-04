@@ -28,6 +28,7 @@ class MyTripListViewController: UIViewController {
     
     
     private func setViews() {
+        self.view.backgroundColor = .white
         
         self.view.addSubview(myTripEmptyView)
         

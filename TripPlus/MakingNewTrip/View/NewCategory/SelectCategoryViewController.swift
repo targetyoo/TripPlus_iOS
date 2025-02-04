@@ -20,7 +20,6 @@ class SelectCategoryViewController: UIViewController {
     
     weak var delegate: SelectCategoryDelegate?
 
-    
     private lazy var searchBar: SearchBarView = {
         let view = SearchBarView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -36,6 +35,7 @@ class SelectCategoryViewController: UIViewController {
         layout.minimumInteritemSpacing = 0
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .white
         collectionView.isPagingEnabled = false
         collectionView.showsVerticalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -43,7 +43,6 @@ class SelectCategoryViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        
         return collectionView
     }()
     
@@ -93,6 +92,8 @@ class SelectCategoryViewController: UIViewController {
     }
     
     private func setViews(){
+        self.view.backgroundColor = .white
+        
         [searchBar, selectedItemsView, categoryCollectionView, completeBtn].forEach({ self.view.addSubview($0)})
         self.view.bringSubviewToFront(completeBtn)
         
@@ -122,7 +123,7 @@ class SelectCategoryViewController: UIViewController {
             make.trailing.equalToSuperview().offset(-15.0)
         })
         
-        searchBar.configure(type: .TYPE_DESTINATION)
+        searchBar.configure(type: .TYPE_CATEGORY)
         
         completeBtn.publisher(for: .touchUpInside)
             .sink { _ in
@@ -132,6 +133,8 @@ class SelectCategoryViewController: UIViewController {
     }
     
     private func setupNavigationBar(){
+        navigationController?.navigationBar.tintColor = .black
+
         let backButton = UIButton(type: .system)
         backButton.setImage(UIImage(named: "back"), for: .normal) // SF Symbols에서 아이콘 사용
         backButton.titleLabel?.font = UIFont(name: "PRETENDARD-Regular", size: 16.0)
@@ -220,7 +223,6 @@ extension SelectCategoryViewController: UICollectionViewDataSource, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         let category = viewModel.categoryItems[indexPath.row]
         let isSelected = viewModel.selectedCategoryItems.contains(category)
         
@@ -228,6 +230,7 @@ extension SelectCategoryViewController: UICollectionViewDataSource, UICollection
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionViewCell.identifier, for: indexPath) as? CategoryCollectionViewCell else {
                 return UICollectionViewCell()
             }
+  
             cell.configure(category: self.viewModel.categoryItems[indexPath.row]){ [weak self] category in
                 guard let self = self else { return }
                                 
@@ -238,6 +241,9 @@ extension SelectCategoryViewController: UICollectionViewDataSource, UICollection
                 }
                 print(self.viewModel.selectedCategoryItems)
             }
+            
+            cell.selectBtn.setImage(UIImage(named: isSelected ? "checkCircle_checked" : "checkCircle"), for: .normal)
+            
             return cell
         }
         
@@ -249,10 +255,8 @@ extension SelectCategoryViewController: UICollectionViewDataSource, UICollection
                 guard let self = self else { return }
                 self.viewModel.removeSelectedCategoryElement(element: category)
             }
-
             return cell
         }
-        
         return UICollectionViewCell()
     }
     
@@ -262,12 +266,10 @@ extension SelectCategoryViewController: UICollectionViewDataSource, UICollection
             // 일반 박스 셀: 텍스트 길이에 맞게 크기 조정
             let text = viewModel.selectedCategoryItems[indexPath.row]
             let font = UIFont(name: "PRETENDARD-Regular", size: 16.0)!
- 
             let width = self.getTextWidth(text: text, font: font, space: 35.0)
 
             return CGSize(width: width, height: 30) // 높이는 고정
         } else {
-            // + 버튼 셀: 고정된 크기
            return CGSize(width: self.view.frame.width, height: 80.0)
         }
     }

@@ -10,7 +10,17 @@ import Combine
 
 class MakingNewTripModel {
     @Published var categoryItems: [String] = ["배낭 여행", "신혼 여행", "드라이브", "등산", "관광", "크루즈", "해외 여행", "국내 여행", "뚜벅이 여행", "출장", "호캉스"] //temp data
-    @Published var locationItems: [String:String] = ["강릉":"대한민국, 강원도", "부산광역시":"대한민국, 경상도", "도쿄":"일본, 도쿄도", "오사카":"일본, 오사카부", "제주도":"대한민국, 제주특별자치도"] //Temp data
+    @Published var locationItems: [String : String] = [
+        "강릉" : "대한민국, 강원도",
+        "부산광역시" : "대한민국, 경상도",
+        "도쿄" : "일본, 도쿄도",
+        "오사카" : "일본, 오사카부",
+        "제주도" : "대한민국, 제주특별자치도"
+    ] //Temp data
+    
+    var locationItemKeys: [String] {
+           return Array(locationItems.keys) // Dictionary의 키를 배열로 변환
+    }
     
     @Published var selectedCategoryItems: [String] = []
     @Published var selectedLocationItems: [String] = []

@@ -8,9 +8,11 @@
 import Foundation
 import UIKit
 import SnapKit
+import Combine
 
 class AddItemCell: UICollectionViewCell{
     static let identifier = "AddItemCell"
+    private var cancellables = Set<AnyCancellable>()
 
     lazy var addBtn: UIButton = {
         let btn = UIButton()
@@ -37,9 +39,18 @@ class AddItemCell: UICollectionViewCell{
         })
     }
     
-//    override func prepareForReuse() {
-//        super.prepareForReuse()
-//    }
+    func configure(onSelect: @escaping () -> Void){
+        addBtn.publisher(for: .touchUpInside)
+            .sink { _ in
+                onSelect()
+            }
+            .store(in: &cancellables)
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        cancellables.removeAll()
+    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

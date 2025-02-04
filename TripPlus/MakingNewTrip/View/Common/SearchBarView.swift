@@ -93,13 +93,20 @@ class SearchBarView: UIView{
     }
     
     func configure(type: SEARCH_TYPE){
+        // NSAttributedString을 사용하여 placeholder의 색상 설정
+        let placeholderColor = UIColor(named: "grayB")!
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: placeholderColor,
+            .font: UIFont(name: "PRETENDARD-Regular", size: 16.0)! // 원하는 폰트와 크기
+        ]
+
         switch type {
         case .TYPE_DESTINATION:
             searchBarTitle.text = "여행 장소를 선택해 주세요"
-            searchBar.placeholder = "장소 검색"
+            searchBar.attributedPlaceholder = NSAttributedString(string: "장소 검색", attributes: attributes)
         case .TYPE_CATEGORY:
             searchBarTitle.text = "여행 카테고리를 선택해 주세요"
-            searchBar.placeholder = "카테고리 검색"
+            searchBar.attributedPlaceholder = NSAttributedString(string: "카테고리 검색", attributes: attributes)
         }
     }
     

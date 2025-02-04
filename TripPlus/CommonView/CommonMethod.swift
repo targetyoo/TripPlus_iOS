@@ -22,13 +22,12 @@ extension UIViewController{
     ///
     func getTextWidth(text: String, font: UIFont, space: CGFloat) -> CGFloat{
         let text = text
-        let font = UIFont(name: "PRETENDARD-Regular", size: 16.0)
         
         // 텍스트의 실제 너비 계산
         let textWidth = (text as NSString).boundingRect(
             with: CGSize(width: CGFloat.greatestFiniteMagnitude, height: 30),
             options: [.usesLineFragmentOrigin, .usesFontLeading],
-            attributes: [.font: font!],
+            attributes: [.font: font],
             context: nil
         ).width
         
