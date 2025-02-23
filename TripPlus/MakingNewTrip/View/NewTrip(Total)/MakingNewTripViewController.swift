@@ -119,7 +119,18 @@ class MakingNewTripViewController: UIViewController {
         makingNewTripView.setLocationCollectionView.snp.makeConstraints{ make in
             make.height.equalTo(30.0)
         }
-
+        
+        makingNewTripView.setDateButton.publisher(for: .touchUpInside)
+            .sink { [weak self] _ in
+                self?.viewModel.openAddDateVC()
+            }
+            .store(in: &cancellables)
+        
+        createSuppliesBtn.publisher(for: .touchUpInside)
+            .sink { [weak self] _ in
+                self?.viewModel.completeBtnAction()
+            }
+            .store(in: &cancellables)
     }
     
     
@@ -211,6 +222,23 @@ class MakingNewTripViewController: UIViewController {
                 self.navigationController?.pushViewController(selectLocationVC, animated: true)
             }
             .store(in: &cancellables)
+        
+        viewModel.openAddDateButtonTapped
+            .sink{ [weak self] in
+                guard let self = self else { return }
+                let selectDateVC = SelectDateViewController()
+                selectDateVC.modalPresentationStyle = .overFullScreen
+                selectDateVC.modalTransitionStyle = .crossDissolve
+                self.present(selectDateVC, animated: true, completion: nil)
+            }
+            .store(in: &cancellables)
+        
+        viewModel.completeButtonTapped
+            .sink{ [weak self] in
+                guard let self = self else { return }
+                print("준비물 생성하기")
+            }
+            .store(in: &cancellables)
     }
 
 }
@@ -300,16 +328,6 @@ extension MakingNewTripViewController: UICollectionViewDelegate, UICollectionVie
             if indexPath.row < viewModel.selectedLocationItems.count {
                 let text = viewModel.selectedLocationItems[indexPath.row]
                 let width = self.getTextWidth(text: text, font: font, space: 30.0)
-                // 텍스트의 실제 너비 계산
-                //            let textWidth = (text as NSString).boundingRect(
-                //                with: CGSize(width: CGFloat.greatestFiniteMagnitude, height: 30),
-                //                options: [.usesLineFragmentOrigin, .usesFontLeading],
-                //                attributes: [.font: font!],
-                //                context: nil
-                //            ).width
-                
-                // 여백 추가
-                //            let width = textWidth + 30 // 24(deleteBtn width) + 6(space )
                 return CGSize(width: width, height: 30) // 높이는 고정
             } else {
                 // + 버튼 셀: 고정된 크기

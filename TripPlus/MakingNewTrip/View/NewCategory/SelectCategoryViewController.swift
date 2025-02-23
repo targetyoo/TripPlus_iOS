@@ -10,6 +10,8 @@ import SnapKit
 import Combine
 import UIKit
 
+//TODO: Category / Loca tion 삭제할 때 깜빡이지말고 한줄씩 밀리게끔
+
 protocol SelectCategoryDelegate: AnyObject {
     func finishSelectCategories(selectedCategories: [String])
 }

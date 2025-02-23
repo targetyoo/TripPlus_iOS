@@ -12,6 +12,6 @@ target 'TripPlus' do
   pod 'RxSwift'   #6.7.1
   pod 'RxCocoa'	  #6.7.1
   pod 'Alamofire' #5.7.1
-
+  pod 'FSCalendar'
 
 end

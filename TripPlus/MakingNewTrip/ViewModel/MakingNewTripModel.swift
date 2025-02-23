@@ -10,6 +10,7 @@ import Combine
 
 class MakingNewTripModel {
     @Published var categoryItems: [String] = ["배낭 여행", "신혼 여행", "드라이브", "등산", "관광", "크루즈", "해외 여행", "국내 여행", "뚜벅이 여행", "출장", "호캉스"] //temp data
+    
     @Published var locationItems: [String : String] = [
         "강릉" : "대한민국, 강원도",
         "부산광역시" : "대한민국, 경상도",
@@ -58,6 +59,11 @@ class MakingNewTripModel {
         return openAddLocationSubject.eraseToAnyPublisher()
     }
     
+    var openAddDateButtonTapped: AnyPublisher<Void, Never> {
+        return openAddDateSubject.eraseToAnyPublisher()
+    }
+    
+    
     var addCategoryItem: AnyPublisher<Void, Never> {
         return openAddLocationSubject.eraseToAnyPublisher()
     }
@@ -66,6 +72,8 @@ class MakingNewTripModel {
         return openAddLocationSubject.eraseToAnyPublisher()
     }
     
+    
+    
     private let backButtonSubject = PassthroughSubject<Void, Never>()
     private let rightButtonSubject = PassthroughSubject<Void, Never>()
     
@@ -73,9 +81,11 @@ class MakingNewTripModel {
     
     private let openAddCategorySubject = PassthroughSubject<Void, Never>()
     private let openAddLocationSubject = PassthroughSubject<Void, Never>()
+    private let openAddDateSubject = PassthroughSubject<Void, Never>()
+
     private let addCategorySubject = PassthroughSubject<Void, Never>()
     private let addLocationSubject = PassthroughSubject<Void, Never>()
-    
+
     private let textViewBeginEditingSubject = PassthroughSubject<Void, Never>()
     private let textViewEndEditingSubject = PassthroughSubject<Void, Never>()
     
@@ -111,6 +121,12 @@ class MakingNewTripModel {
     func openAddLocationVC() {
         openAddLocationSubject.send()
     }
+    
+    func openAddDateVC(){
+        openAddDateSubject.send()
+    }
+    
+    
     
     func addSelectedCategoryElement(element: String) {
         addCategorySubject.send()
