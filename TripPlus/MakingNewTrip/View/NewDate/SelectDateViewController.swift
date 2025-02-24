@@ -103,7 +103,7 @@ extension SelectDateViewController: FSCalendarDataSource, FSCalendarDelegate{
            guard let cell = calendar.dequeueReusableCell(withIdentifier: DateCollectionViewCell.identifier, for: date, at: position) as? DateCollectionViewCell else { return FSCalendarCell() }
 
            // 현재 그리는 셀의 date의 타입에 기반해서 셀 디자인
-//           cell.updateBackImage(typeOfDate(date))
+           cell.updateBackImage(typeOfDate(date))
 
            return cell
        }

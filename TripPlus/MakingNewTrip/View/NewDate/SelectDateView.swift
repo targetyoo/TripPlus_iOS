@@ -29,8 +29,12 @@ class SelectDateView: UIView{
         
         view.register(DateCollectionViewCell.self, forCellReuseIdentifier: DateCollectionViewCell.identifier)
 //        view.register(DateCollectionViewHeader.self, forSupplementaryViewOfKind: JTACMonthView.elementKindSectionHeader, withReuseIdentifier: DateCollectionViewHeader.identifier)
+        view.allowsMultipleSelection = true
+        view.appearance.selectionColor = .clear
         view.scrollDirection = .horizontal
         view.today = Date()
+        view.appearance.todayColor = UIColor(named: "tripOrange")
+
         view.weekdayHeight = 22
         view.locale = Locale(identifier: "ko_KR")
         view.headerHeight = 0
@@ -40,8 +44,8 @@ class SelectDateView: UIView{
         view.appearance.weekdayTextColor = UIColor(named: "grayA")
 //        view.appearance.caseOptions = .headerUsesCapitalized
         // 기본 색상 선택
-        view.appearance.todayColor = UIColor(named: "tripOrange")
-        
+//        view.appearance.titleSelectionColor = UIColor(named: "tripGreen")?.withAlphaComponent(0.5)
+
         
         
 //        view.allowsMultipleSelection = true
