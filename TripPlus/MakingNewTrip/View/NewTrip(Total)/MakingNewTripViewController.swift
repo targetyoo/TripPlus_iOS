@@ -58,15 +58,24 @@ class MakingNewTripViewController: UIViewController {
         return view
     }()
     
+    private var newTripProgressView: NewTripProgressView = {
+        let view = NewTripProgressView()
+        view.snp.makeConstraints({ make in
+            make.height.equalTo(55.0)
+        })
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     private lazy var createSuppliesBtn: UIButton = {
         let btn = UIButton()
-        btn.layer.cornerRadius = 14.0
+        btn.layer.cornerRadius = DesignSystem.Button.cornerRadius
         btn.setTitle("준비물 생성하기", for: .normal)
         btn.setTitleColor(UIColor(named: "grayB"), for: .normal)
         btn.titleLabel?.font = UIFont(name: "Pretendard-Regular", size: 16.0)
         btn.backgroundColor = UIColor(named: "grayC")
         btn.snp.makeConstraints({ make in
-            make.height.equalTo(50.0)
+            make.height.equalTo(DesignSystem.Button.height)
         })
         btn.translatesAutoresizingMaskIntoConstraints = false
         return btn
@@ -92,26 +101,31 @@ class MakingNewTripViewController: UIViewController {
     private func setView(){
         self.view.backgroundColor = .white
         
-        [makingNewTripView, createSuppliesBtn].forEach({self.view.addSubview($0)})
+        [makingNewTripView, newTripProgressView, createSuppliesBtn].forEach({self.view.addSubview($0)})
         
         makingNewTripView.snp.makeConstraints({ make in
             make.top.equalTo(self.view.safeAreaLayoutGuide).offset(10.0)
             make.trailing.bottom.leading.equalTo(view.safeAreaLayoutGuide)
         })
+        makingNewTripView.setCategoryCollectionView.delegate = self
+        makingNewTripView.setCategoryCollectionView.dataSource = self
+        makingNewTripView.setLocationCollectionView.delegate = self
+        makingNewTripView.setLocationCollectionView.dataSource = self
         
         createSuppliesBtn.snp.makeConstraints({ make in
-            make.bottom.equalToSuperview().offset(50.0)
+            make.bottom.equalToSuperview().offset(-50.0)
             make.leading.equalToSuperview().offset(15.0)
             make.trailing.equalToSuperview().offset(-15.0)
         })
         
-        makingNewTripView.setCategoryCollectionView.delegate = self
-        makingNewTripView.setCategoryCollectionView.dataSource = self
-
-        makingNewTripView.setLocationCollectionView.delegate = self
-        makingNewTripView.setLocationCollectionView.dataSource = self
-//        makingNewTripView.setDateButton
+        newTripProgressView.snp.makeConstraints({ make in
+            make.bottom.equalTo(createSuppliesBtn.snp.top)
+            make.leading.equalTo(createSuppliesBtn.snp.leading)
+            make.trailing.equalTo(createSuppliesBtn.snp.trailing)
+        })
+        newTripProgressView.configure(currentProgress: 1)
         
+            
         
         makingNewTripView.setCategoryCollectionView.snp.makeConstraints { make in
             make.height.equalTo(30.0)
@@ -152,12 +166,12 @@ class MakingNewTripViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = backButtonItem
         
         // 오른쪽 버튼 설정
-        let addGuestButton = UIButton(type: .system)
-        addGuestButton.isUserInteractionEnabled = false
-        addGuestButton.setTitle("1/n", for: .normal) // 앞에 공백 추가
-        addGuestButton.titleLabel?.font = UIFont(name: "PRETENDARD-Regular", size: 16.0)
-        let rightButtonItem = UIBarButtonItem(customView: addGuestButton)
-        self.navigationItem.rightBarButtonItem = rightButtonItem
+//        let addGuestButton = UIButton(type: .system)
+//        addGuestButton.isUserInteractionEnabled = false
+//        addGuestButton.setTitle("1/n", for: .normal) // 앞에 공백 추가
+//        addGuestButton.titleLabel?.font = UIFont(name: "PRETENDARD-Regular", size: 16.0)
+//        let rightButtonItem = UIBarButtonItem(customView: addGuestButton)
+//        self.navigationItem.rightBarButtonItem = rightButtonItem
         
         backButton.publisher(for: .touchUpInside)
                  .sink { [weak self] _ in

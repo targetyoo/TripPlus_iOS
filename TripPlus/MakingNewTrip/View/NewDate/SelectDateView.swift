@@ -32,26 +32,16 @@ class SelectDateView: UIView{
         view.allowsMultipleSelection = true
         view.appearance.selectionColor = .clear
         view.scrollDirection = .horizontal
-        view.today = Date()
-        view.appearance.todayColor = UIColor(named: "tripOrange")
-
+        view.today = nil
+//        view.appearance.todayColor = UIColor(named: "tripOrange")
         view.weekdayHeight = 22
         view.locale = Locale(identifier: "ko_KR")
         view.headerHeight = 0
-        view.appearance.titleFont = UIFont(name: "PRETENDARD-Regular", size: 16.0)
-        view.appearance.titleDefaultColor = UIColor(named: "grayA")
-        view.appearance.weekdayFont = UIFont(name: "PRETENDARD-Regular", size: 16.0)
-        view.appearance.weekdayTextColor = UIColor(named: "grayA")
-//        view.appearance.caseOptions = .headerUsesCapitalized
-        // 기본 색상 선택
-//        view.appearance.titleSelectionColor = UIColor(named: "tripGreen")?.withAlphaComponent(0.5)
-
-        
-        
-//        view.allowsMultipleSelection = true
-//        view.allowsRangedSelection = true
-//        view.rangeSelectionMode = .continuous
-//        view.showsHorizontalScrollIndicator = false
+        view.collectionView.automaticallyAdjustsScrollIndicatorInsets = false
+        view.appearance.titleFont = DesignSystem.Calendar.font
+        view.appearance.titleDefaultColor = DesignSystem.Calendar.thisMonth_fontColor
+        view.appearance.weekdayFont = DesignSystem.Calendar.font
+        view.appearance.weekdayTextColor = DesignSystem.Calendar.thisMonth_fontColor
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -59,7 +49,7 @@ class SelectDateView: UIView{
     private lazy var departureDateLabel: UILabel = {
         let label = UILabel()
         label.text = "출발일"
-        label.font = UIFont(name: "PRETENDARD-Light", size: 12.0)
+        label.font = DesignSystem.Calendar.button_font
         label.textColor = UIColor(named: "grayA")
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -68,8 +58,8 @@ class SelectDateView: UIView{
     private lazy var arrivalDateLabel: UILabel = {
         let label = UILabel()
         label.text = "도착일"
-        label.font = UIFont(name: "PRETENDARD-Light", size: 12.0)
-        label.textColor = UIColor(named: "grayA")
+        label.font = DesignSystem.Calendar.button_font
+        label.textColor =  DesignSystem.Calendar.thisMonth_fontColor
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -78,14 +68,14 @@ class SelectDateView: UIView{
     lazy var departureDateButton: UIButton = {
         let btn = UIButton()
         btn.layer.masksToBounds = false
-        btn.layer.cornerRadius = 7
-        btn.layer.borderWidth = 1.0
+        btn.layer.cornerRadius = DesignSystem.Calendar.button_CornerRadius
+        btn.layer.borderWidth = DesignSystem.Calendar.button_Selected_BorderWidth
         btn.setTitle("0000년 00월 00일", for: .normal)
-        btn.titleLabel?.font = UIFont(name: "PRETENDARD-Regular", size: 16.0)
-        btn.setTitleColor(UIColor(named: "grayB"), for: .normal)
+        btn.titleLabel?.font =  DesignSystem.Calendar.font
+        btn.setTitleColor(UIColor(named: "grayA"), for: .normal)
         
-        btn.layer.borderColor = UIColor(named: "tripGreen")?.cgColor
-        btn.backgroundColor = UIColor(named: "tripGreen")!.withAlphaComponent(0.25)
+        btn.layer.borderColor = DesignSystem.Calendar.button_Selected_BorderColor.cgColor
+        btn.backgroundColor = DesignSystem.Calendar.button_Selected_BackgroundColor
         btn.translatesAutoresizingMaskIntoConstraints = false
         return btn
     }()
@@ -93,12 +83,11 @@ class SelectDateView: UIView{
     lazy var arrivalDateButton: UIButton = {
         let btn = UIButton()
         btn.layer.masksToBounds = false
-        btn.layer.cornerRadius = 7
+        btn.layer.cornerRadius = DesignSystem.Calendar.button_CornerRadius
         btn.setTitle("9999년 99월 99일", for: .normal)
-        btn.titleLabel?.font = UIFont(name: "PRETENDARD-Regular", size: 16.0)
-        btn.setTitleColor(UIColor(named: "grayB"), for: .normal)
-        
-        btn.backgroundColor = UIColor(named: "grayC")
+        btn.titleLabel?.font = DesignSystem.Calendar.font
+        btn.setTitleColor(DesignSystem.Calendar.button_Unselected_FontColor, for: .normal)
+        btn.backgroundColor = DesignSystem.Calendar.button_Unselected_BackgroundColor
         btn.translatesAutoresizingMaskIntoConstraints = false
         return btn
     }()
@@ -128,6 +117,42 @@ class SelectDateView: UIView{
         return view
     }()
     
+     lazy var cancelBtn: UIButton = {
+        let btn = UIButton()
+        btn.layer.cornerRadius = DesignSystem.Button.cornerRadius
+        btn.setTitle("닫기", for: .normal)
+        btn.titleLabel?.font = UIFont(name: "PRETENDARD-Regular", size: 16.0)
+        btn.setTitleColor(DesignSystem.Button.close_FontColor, for: .normal)
+        btn.backgroundColor = DesignSystem.Button.close_BackgroundColor
+        btn.snp.makeConstraints({ make in
+            make.height.equalTo(DesignSystem.Button.height)
+        })
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        return btn
+    }()
+    
+     lazy var confirmBtn: UIButton = {
+        let btn = UIButton()
+        btn.layer.cornerRadius = DesignSystem.Button.cornerRadius
+        btn.setTitle("확인", for: .normal)
+        btn.titleLabel?.font = UIFont(name: "PRETENDARD-Regular", size: 16.0)
+         btn.setTitleColor(DesignSystem.Button.confirm_FontColor, for: .normal)
+         btn.backgroundColor = DesignSystem.Button.confirm_BackgroundColor
+        btn.snp.makeConstraints({ make in
+            make.height.equalTo(DesignSystem.Button.height)
+        })
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        return btn
+    }()
+    
+    private lazy var horizontalStackView2: UIStackView = {
+        let view = UIStackView(arrangedSubviews: [cancelBtn, confirmBtn])
+        view.axis = .horizontal
+        view.spacing = 20.0
+        view.distribution = .fillEqually
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
     
     lazy var monthLabel: UILabel = {
@@ -142,7 +167,7 @@ class SelectDateView: UIView{
     lazy var previousMonthBtn: UIButton = {
         let btn = UIButton()
         btn.snp.makeConstraints({ make in
-            make.width.height.equalTo(24.0)
+            make.width.height.equalTo(DesignSystem.Common.icon_size)
         })
         btn.setImage(UIImage(named: "arrow_right"), for: .normal)
         btn.tintColor = UIColor(named: "grayA")
@@ -153,7 +178,7 @@ class SelectDateView: UIView{
     lazy var nextMonthBtn: UIButton = {
         let btn = UIButton()
         btn.snp.makeConstraints({ make in
-            make.width.height.equalTo(24.0)
+            make.width.height.equalTo(DesignSystem.Common.icon_size)
         })
         btn.setImage(UIImage(named: "arrow_left"), for: .normal)
         btn.tintColor = UIColor(named: "grayA")
@@ -164,21 +189,21 @@ class SelectDateView: UIView{
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        [ horizontalStackView, calendarView, monthLabel, previousMonthBtn, nextMonthBtn ].forEach({ self.addSubview($0) })
+        [ horizontalStackView, calendarView, monthLabel, previousMonthBtn, nextMonthBtn, horizontalStackView2 ].forEach({ self.addSubview($0) })
         
         horizontalStackView.snp.makeConstraints({ make in
-            make.top.leading.equalToSuperview().offset(24.0)
-            make.trailing.equalToSuperview().offset(-24.0)
+            make.top.leading.equalToSuperview().offset(20.0)
+            make.trailing.equalToSuperview().offset(-20.0)
         })
         
         monthLabel.snp.makeConstraints({ make in
             make.top.equalTo(horizontalStackView.snp.bottom).offset(20.0)
-            make.leading.equalToSuperview().offset(24.0)
+            make.leading.equalToSuperview().offset(20.0)
         })
         
         nextMonthBtn.snp.makeConstraints({ make in
             make.top.equalTo(horizontalStackView.snp.bottom).offset(20.0)
-            make.trailing.equalToSuperview().offset(-24.0)
+            make.trailing.equalToSuperview().offset(-20.0)
         })
         
         previousMonthBtn.snp.makeConstraints({ make in
@@ -188,11 +213,16 @@ class SelectDateView: UIView{
         
         calendarView.snp.makeConstraints({ make in
             make.top.equalTo(monthLabel.snp.bottom).offset(15.0)
-            make.leading.equalToSuperview().offset(10.0)
-            make.trailing.equalToSuperview().offset(-10.0)
+            make.leading.equalToSuperview().offset(20.0)
+            make.trailing.equalToSuperview().offset(-20.0)
             make.height.equalTo(240.0)
         })
         
+        horizontalStackView2.snp.makeConstraints({ make in
+            make.leading.equalToSuperview().offset(20.0)
+            make.trailing.equalToSuperview().offset(-20.0)
+            make.top.equalTo(calendarView.snp.bottom).offset(15.0)
+        })
     }
 
     

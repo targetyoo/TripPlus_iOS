@@ -15,7 +15,7 @@ class RightAlignedCollectionViewCell: UICollectionViewCell{
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "PRETENDARD-Regular", size: 16.0)
-        label.textColor = UIColor(named: "grayB")
+        label.textColor = UIColor(named: "grayA")
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -26,7 +26,7 @@ class RightAlignedCollectionViewCell: UICollectionViewCell{
         btn.setTitleColor(UIColor(named: "grayB"), for: .normal)
         btn.tintColor = UIColor(named: "grayB")
         btn.snp.makeConstraints({make in
-            make.width.height.equalTo(24.0)
+            make.width.height.equalTo(DesignSystem.Common.icon_size)
         })
         btn.translatesAutoresizingMaskIntoConstraints = false
         return btn
@@ -43,19 +43,19 @@ class RightAlignedCollectionViewCell: UICollectionViewCell{
         [titleLabel, deleteBtn].forEach({self.addSubview($0)})
         
         titleLabel.snp.makeConstraints({ make in
-            make.leading.equalToSuperview().offset(5.0)
+            make.leading.equalToSuperview().offset(10.0)
             make.centerY.equalToSuperview()
         })
         
         deleteBtn.snp.makeConstraints({ make in
             make.leading.equalTo(titleLabel.snp.trailing)
-            make.trailing.equalToSuperview()
+            make.trailing.equalToSuperview().offset(-5.0)
             make.centerY.equalToSuperview()
         })
   
         self.layer.cornerRadius = RIGHTALIGHNEDCELL_ITEM_RADIUS
         self.layer.masksToBounds = true
-        self.backgroundColor = UIColor(named: "grayC")
+        self.backgroundColor = UIColor(named: "tripGreen")?.withAlphaComponent(0.25)
     }
   
     func configure(title: String){

@@ -12,17 +12,17 @@ import FSCalendar
 class SelectDateViewController: UIViewController{
     
     private var firstDate: Date?    // 배열 중 첫번째 날짜
-        private var lastDate: Date?        // 배열 중 마지막 날짜
-        private var datesRange: [Date] = []    // 선택된 날짜 배열
+    private var lastDate: Date?        // 배열 중 마지막 날짜
+    private var datesRange: [Date] = []    // 선택된 날짜 배열
     
     private lazy var contentView: SelectDateView = {
         let view = SelectDateView()
         view.backgroundColor = .white
-        view.layer.cornerRadius = 14
+        view.layer.cornerRadius = 14.0
         view.layer.shadowColor = UIColor.black.cgColor
-        view.layer.shadowOffset = CGSize(width: 10, height: 3)
+        view.layer.shadowOffset = CGSize(width: 3, height: 3)
         view.layer.shadowOpacity = 0.4
-        view.layer.shadowRadius = 12
+        view.layer.shadowRadius = 20
         view.layer.masksToBounds = false
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -38,12 +38,12 @@ class SelectDateViewController: UIViewController{
     
     func setViews(){
         self.view.backgroundColor = .clear
-        self.view.addSubview(contentView)
+        [contentView].forEach({self.view.addSubview($0)})
         
         contentView.snp.makeConstraints({ make in
-            make.leading.equalToSuperview().offset(10.0)
-            make.trailing.equalToSuperview().offset(-10.0)
-            make.height.equalTo(contentView.snp.width)
+            make.leading.equalToSuperview().offset(15.0)
+            make.trailing.equalToSuperview().offset(-15.0)
+            make.height.equalTo(450.0)
             make.centerY.equalToSuperview().offset(25.0)
         })
         contentView.calendarView.delegate = self
@@ -101,15 +101,41 @@ extension SelectDateViewController: FSCalendarDataSource, FSCalendarDelegate{
 
        func calendar(_ calendar: FSCalendar, cellFor date: Date, at position: FSCalendarMonthPosition) -> FSCalendarCell {
            guard let cell = calendar.dequeueReusableCell(withIdentifier: DateCollectionViewCell.identifier, for: date, at: position) as? DateCollectionViewCell else { return FSCalendarCell() }
-
+           
            // 현재 그리는 셀의 date의 타입에 기반해서 셀 디자인
            cell.updateBackImage(typeOfDate(date))
-
+           
+           let calendar = Calendar.current
+           // 현재 날짜를 KST로 변환
+           let currentDate = Date() // 현재 UTC 시간
+           let kstTimeZone = TimeZone(identifier: "Asia/Seoul")!
+           
+           // KST 기준으로 현재 날짜의 시작 부분(00:00:00)으로 설정
+           let currentDateInKST = calendar.startOfDay(for: currentDate.addingTimeInterval(TimeInterval(kstTimeZone.secondsFromGMT())))
+           
+           // date의 KST 기준 시작 부분(00:00:00)으로 설정
+           let dateInKST = calendar.startOfDay(for: date.addingTimeInterval(TimeInterval(kstTimeZone.secondsFromGMT())))
+              
+           
+           if calendar.isDate(dateInKST, inSameDayAs: currentDateInKST){
+               cell.centerView.backgroundColor = UIColor(named: "tripOrange")
+               cell.titleLabel.textColor = UIColor(named: "grayD")
+               cell.centerView.isHidden = false
+               
+               if typeOfDate(date) == .firstDate || typeOfDate(date) == .lastDate || typeOfDate(date) == .singleDate{
+                   cell.centerView.backgroundColor = UIColor(named: "tripGreen")
+                   cell.titleLabel.textColor = UIColor(named: "grayD")
+                   cell.updateBackImage(typeOfDate(date))
+               }
+           }else{
+               cell.centerView.backgroundColor = UIColor(named: "tripGreen")
+               cell.titleLabel.textColor = UIColor(named: "grayD")
+           }
+           
            return cell
        }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-            
             // case 1. 현재 아무것도 선택되지 않은 경우
                 // 선택 date -> firstDate 설정
             if firstDate == nil {
@@ -169,8 +195,6 @@ extension SelectDateViewController: FSCalendarDataSource, FSCalendarDelegate{
                 contentView.calendarView.reloadData()    // (매번 reload)
                 return
             }
-            
-            
         }
     
     // 이미 선택된 날짜들 중 하나를 선택 -> 선택된 날짜 모두 초기화
@@ -188,107 +212,11 @@ extension SelectDateViewController: FSCalendarDataSource, FSCalendarDelegate{
            
            contentView.calendarView.reloadData()    // (매번 reload)
        }
+    
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, cellSizeFor date: Date) -> CGSize {
+        let cellWidth = 20.0 // 각 셀의 너비 계산
+        let cellHeight = 22.0 // 원하는 셀 높이 설정
+        
+        return CGSize(width: cellWidth, height: cellHeight) // 셀 크기 반환
+    }
 }
-
-//extension SelectDateViewController: JTACMonthViewDelegate, JTACMonthViewDataSource {
-//
-//    func calendar(_ calendar: JTAppleCalendar.JTACMonthView, willDisplay cell: JTAppleCalendar.JTACDayCell, forItemAt date: Date, cellState: JTAppleCalendar.CellState, indexPath: IndexPath) {
-//        configureCell(view: cell, cellState: cellState)
-//        handleCellSelection(view: cell, cellState: cellState)
-//    }
-//    
-//    func calendar(_ calendar: JTAppleCalendar.JTACMonthView, cellForItemAt date: Date, cellState: JTAppleCalendar.CellState, indexPath: IndexPath) -> JTAppleCalendar.JTACDayCell {
-//        let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: DateCollectionViewCell.identifier, for: indexPath) as! DateCollectionViewCell
-////        cell.dateLabel.text = cellState.text
-//
-//        self.calendar(calendar, willDisplay: cell, forItemAt: date, cellState: cellState, indexPath: indexPath)
-//
-//                return cell
-//    }
-//    
-//    func configureCalendar(_ calendar: JTACMonthView) -> ConfigurationParameters {
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "yyyy MM dd"
-//        let startDate = formatter.date(from: "2020 01 01")!
-//        let endDate = Date()
-//        return ConfigurationParameters(startDate: startDate, endDate: endDate)
-//    }
-//    
-//
-//
-//
-//    
-//    
-//    func configureCell(view: JTACDayCell?, cellState: CellState) {
-//       guard let cell = view as? DateCollectionViewCell  else { return }
-//       cell.dateLabel.text = cellState.text
-//       handleCellTextColor(cell: cell, cellState: cellState)
-////        handleCellSelected(cell: cell, cellState: cellState)
-//    }
-//
-//    func handleCellTextColor(cell: DateCollectionViewCell, cellState: CellState) {
-//       if cellState.dateBelongsTo == .thisMonth {
-//           cell.dateLabel.textColor = UIColor(named: "grayA")
-//       } else {
-//          cell.dateLabel.textColor = UIColor(named: "grayB")
-//       }
-//    }
-//    
-////    func handleCellSelected(cell: DateCollectionViewCell, cellState: CellState) {
-//////        if cellState.isSelected {
-//////            cell.selectedView.layer.cornerRadius = 13
-//////            cell.selectedView.isHidden = false
-//////        } else {
-//////            cell.selectedView.isHidden = true
-//////        }
-////    }
-//    
-//    func handleCellSelection(view: JTACDayCell?, cellState: CellState) {
-//        guard let cell = view as? DateCollectionViewCell else {return }
-//        
-//        print(cellState.text)
-//        
-//        switch cellState.selectedPosition() {
-//        case .full:
-//            cell.selectedView.isHidden = false
-//            cell.dateLabel.textColor = UIColor(named: "grayD")
-////            cell.selectedView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner]
-////            cell.selectedView.layer.cornerRadius = cell.selectedView.frame.width / 2
-//        case .left:
-//            cell.selectedView.isHidden = false
-//            cell.dateLabel.textColor = UIColor(named: "grayD")
-//            cell.dateLabel.textColor = .white
-////            cell.layer.cornerRadius = cell.selectedView.frame.width / 2
-////            cell.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
-////            cell.layer.backgroundColor = UIColor(named: "tripGreen")?.withAlphaComponent(50.0).cgColor
-//
-//        case .right:
-//            cell.selectedView.isHidden = false
-//            cell.dateLabel.textColor = UIColor(named: "grayD")
-////            cell.layer.cornerRadius = cell.selectedView.frame.width / 2
-////            cell.layer.backgroundColor = UIColor(named: "tripGreen")?.withAlphaComponent(50.0).cgColor
-////            cell.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
-//            
-//        case .middle:
-//            cell.selectedView.isHidden = true
-////            cell.backgroundColor = UIColor(named: "tripGreen")?.withAlphaComponent(50.0)
-//        case .none:
-//            if cellState.dateBelongsTo == .thisMonth {
-//                cell.dateLabel.textColor = UIColor(named: "grayA")
-//            } else {
-//               cell.dateLabel.textColor = UIColor(named: "grayB")
-//            }
-//            cell.selectedView.isHidden = true
-//        }
-//    }
-//    
-//    func calendar(_ calendar: JTACMonthView, headerViewForDateRange range: (start: Date, end: Date), at indexPath: IndexPath) -> JTACMonthReusableView {
-//        let header = calendar.dequeueReusableJTAppleSupplementaryView(withReuseIdentifier: DateCollectionViewHeader.identifier, for: indexPath) as! DateCollectionViewHeader
-//        return header
-//    }
-//
-//    func calendarSizeForMonths(_ calendar: JTACMonthView?) -> MonthSize? {
-//        return MonthSize(defaultSize: 20)
-//    }
-//}
-//

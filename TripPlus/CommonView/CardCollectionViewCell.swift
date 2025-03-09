@@ -17,15 +17,15 @@ class CardCollectionViewCell: UICollectionViewCell{
            imageView.backgroundColor = .lightGray
            imageView.contentMode = .scaleAspectFill
            imageView.clipsToBounds = true
-           imageView.layer.cornerRadius = 14
+           imageView.layer.cornerRadius = DesignSystem.CardCollection.thumbnail_cornerRadius
            imageView.translatesAutoresizingMaskIntoConstraints = false
            return imageView
        }()
        
        private lazy var cellThumbnailName : UILabel = {
            let label = UILabel()
-           label.textColor = UIColor(named: "grayA")
-           label.font = UIFont(name: "PRETENDARD-Regular", size: 16)
+           label.textColor = DesignSystem.CardCollection.thumbnail_name_textColor
+           label.font = DesignSystem.CardCollection.thumbnail_name_font
            label.text = "My Location"
            label.textAlignment = .left
            label.numberOfLines = 0
@@ -57,8 +57,8 @@ class CardCollectionViewCell: UICollectionViewCell{
         })
         
         cellThumbnailName.snp.makeConstraints({ make in
-            make.leading.equalToSuperview().offset(10.0)
-            make.bottom.equalToSuperview().offset(-10.0)
+            make.leading.equalToSuperview().offset(DesignSystem.CardCollection.thumbnail_name_leading)
+            make.bottom.equalToSuperview().offset(DesignSystem.CardCollection.thumbnail_name_trailing)
         })
     }
     

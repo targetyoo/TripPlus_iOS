@@ -30,6 +30,7 @@
 		814F45022D47BBD600E5480C /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F44FB2D47BBD600E5480C /* SearchBarView.swift */; };
 		814F45212D48168F00E5480C /* SelectedItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F45202D48168F00E5480C /* SelectedItems.swift */; };
 		815EC2082D64F4A300C2A89B /* DateCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815EC2072D64F4A300C2A89B /* DateCollectionViewHeader.swift */; };
+		818E9A3B2D75AA2F008B9144 /* NewTripProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818E9A3A2D75AA2F008B9144 /* NewTripProgressView.swift */; };
 		81DE3AEF2D2D825100707928 /* MakingNewTripModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE3AEE2D2D825100707928 /* MakingNewTripModel.swift */; };
 		81F6A7D32CA0532D0059FE6F /* LocationListCellData_test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F6A7D22CA0532D0059FE6F /* LocationListCellData_test.swift */; };
 		81F800612C99CF720033C464 /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 81F800582C99CF720033C464 /* Pretendard-Light.otf */; };
@@ -82,6 +83,7 @@
 		814F44FB2D47BBD600E5480C /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		814F45202D48168F00E5480C /* SelectedItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedItems.swift; sourceTree = "<group>"; };
 		815EC2072D64F4A300C2A89B /* DateCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCollectionViewHeader.swift; sourceTree = "<group>"; };
+		818E9A3A2D75AA2F008B9144 /* NewTripProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTripProgressView.swift; sourceTree = "<group>"; };
 		81DE3AEE2D2D825100707928 /* MakingNewTripModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakingNewTripModel.swift; sourceTree = "<group>"; };
 		81F6A7D22CA0532D0059FE6F /* LocationListCellData_test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListCellData_test.swift; sourceTree = "<group>"; };
 		81F800582C99CF720033C464 /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 			children = (
 				814F45202D48168F00E5480C /* SelectedItems.swift */,
 				814F44FB2D47BBD600E5480C /* SearchBarView.swift */,
+				818E9A3A2D75AA2F008B9144 /* NewTripProgressView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -515,6 +518,7 @@
 				8134227F2D50F08900E3035B /* LabelUtility.swift in Sources */,
 				813422802D50F08900E3035B /* ListCollectionViewCell.swift in Sources */,
 				810A19622C7B4D6F003C168B /* APIManager.swift in Sources */,
+				818E9A3B2D75AA2F008B9144 /* NewTripProgressView.swift in Sources */,
 				810A19552C7B4295003C168B /* LoginViewController.swift in Sources */,
 				81F958F82D58959700CDE027 /* AddItemCell.swift in Sources */,
 				81F958F92D58959700CDE027 /* MakingNewTripView.swift in Sources */,

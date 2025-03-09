@@ -19,7 +19,7 @@ class AddItemCell: UICollectionViewCell{
         btn.setImage(UIImage(named: "cellPlus"), for: .normal)
         btn.tintColor = UIColor(named: "grayB")
         btn.snp.makeConstraints({make in
-            make.width.height.equalTo(24.0)
+            make.width.height.equalTo(DesignSystem.CommonConstraint.icon_size)
         })
         btn.translatesAutoresizingMaskIntoConstraints = false
         return btn

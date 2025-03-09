@@ -35,10 +35,10 @@ class DateCollectionViewCell: FSCalendarCell{
     lazy var centerView: UIView = {
         let view = UIView()
         view.snp.makeConstraints({ make in
-            make.width.equalTo(20.0)
-            make.height.equalTo(22.0)
+            make.width.equalTo(DesignSystem.Calendar.day_selectWidth)
+            make.height.equalTo(DesignSystem.Calendar.day_selectHeight)
         })
-        view.layer.cornerRadius = 6.0
+        view.layer.cornerRadius = DesignSystem.Calendar.day_cornerRadius
         view.backgroundColor = UIColor(named: "tripGreen")
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -46,9 +46,9 @@ class DateCollectionViewCell: FSCalendarCell{
     
     lazy var leftView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(named: "tripGreen")?.withAlphaComponent(0.5)
+        view.backgroundColor = DesignSystem.Calendar.selected_range_BackgroundColor
         view.snp.makeConstraints({ make in
-            make.height.equalTo(22.0)
+            make.height.equalTo(DesignSystem.Calendar.day_selectHeight)
         })
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -56,9 +56,9 @@ class DateCollectionViewCell: FSCalendarCell{
     
     lazy var rightView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(named: "tripGreen")?.withAlphaComponent(0.5)
+        view.backgroundColor = DesignSystem.Calendar.selected_range_BackgroundColor
         view.snp.makeConstraints({ make in
-            make.height.equalTo(22.0)
+            make.height.equalTo(DesignSystem.Calendar.day_selectHeight)
         })
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -70,23 +70,18 @@ class DateCollectionViewCell: FSCalendarCell{
     }
     
     private func setViews(){
-        
-        
-        
         [leftView, rightView].forEach({
             self.contentView.insertSubview($0, at: 0)
         })
         self.contentView.insertSubview(centerView, at: 0)
         
         leftView.snp.makeConstraints({ make in
-            make.height.equalTo(22.0)
             make.centerY.equalTo(self.titleLabel.snp.centerY)
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview().multipliedBy(0.5)
         })
         
         rightView.snp.makeConstraints({ make in
-            make.height.equalTo(22.0)
             make.centerY.equalTo(self.titleLabel.snp.centerY)
             make.trailing.equalToSuperview()
             make.leading.equalTo(leftView.snp.trailing)
@@ -112,6 +107,7 @@ class DateCollectionViewCell: FSCalendarCell{
     }
     
     func updateBackImage(_ dateType: SelectedDateType) {
+        
             switch dateType {
             case .singleDate:
                 // left right hidden true

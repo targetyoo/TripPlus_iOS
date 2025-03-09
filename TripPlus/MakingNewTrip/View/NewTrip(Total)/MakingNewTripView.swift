@@ -22,11 +22,23 @@ class MakingNewTripView: UIView {
         txtView.font = UIFont(name: "PRETENDARD-Regular", size: 16.0)
         txtView.textColor = UIColor(named: "grayB")
         txtView.isEditable = true
+        txtView.backgroundColor = UIColor(named: "grayC")
         txtView.isScrollEnabled = false
-        txtView.textAlignment = .center
+        txtView.textAlignment = .left
         txtView.textContainerInset = UIEdgeInsets(top: 2, left: 3, bottom: 0, right: 3)
         txtView.translatesAutoresizingMaskIntoConstraints = false
         return txtView
+    }()
+    
+    private lazy var textViewBackground: UIView = {
+        let view = UIView()
+        view.snp.makeConstraints({ make in
+            make.height.equalTo(35.0)
+        })
+        view.layer.cornerRadius = 14.0
+        view.backgroundColor = UIColor(named: "grayC")
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     private lazy var textIcon: UIImageView = {
@@ -34,20 +46,10 @@ class MakingNewTripView: UIView {
         icon.image = UIImage(named: "txtViewIcon")
         icon.tintColor = UIColor(named: "grayB")
         icon.snp.makeConstraints({ make in
-            make.height.width.equalTo(24.0)
+            make.height.width.equalTo(DesignSystem.Common.icon_size)
         })
         icon.translatesAutoresizingMaskIntoConstraints = false
         return icon
-    }()
-    
-    private lazy var lineView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor(named: "grayC")
-        view.snp.makeConstraints({ make in
-            make.height.equalTo(1.0)
-        })
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
     }()
     
     
@@ -102,7 +104,7 @@ class MakingNewTripView: UIView {
         icon.image = UIImage(named: "suppliesType")
         icon.tintColor = UIColor(named: "grayB")
         icon.snp.makeConstraints({ make in
-            make.height.width.equalTo(24.0)
+            make.height.width.equalTo(DesignSystem.Common.icon_size)
         })
         icon.translatesAutoresizingMaskIntoConstraints = false
         return icon
@@ -113,7 +115,7 @@ class MakingNewTripView: UIView {
         icon.image = UIImage(named: "travelPeriod")
         icon.tintColor = UIColor(named: "grayB")
         icon.snp.makeConstraints({ make in
-            make.height.width.equalTo(24.0)
+            make.height.width.equalTo(DesignSystem.Common.icon_size)
         })
         icon.translatesAutoresizingMaskIntoConstraints = false
         return icon
@@ -124,7 +126,7 @@ class MakingNewTripView: UIView {
         icon.image = UIImage(named: "travelCategory")
         icon.tintColor = UIColor(named: "grayB")
         icon.snp.makeConstraints({ make in
-            make.height.width.equalTo(24.0)
+            make.height.width.equalTo(DesignSystem.Common.icon_size)
         })
         icon.translatesAutoresizingMaskIntoConstraints = false
         return icon
@@ -135,7 +137,7 @@ class MakingNewTripView: UIView {
         icon.image = UIImage(named: "travellocation")
         icon.tintColor = UIColor(named: "grayB")
         icon.snp.makeConstraints({ make in
-            make.height.width.equalTo(24.0)
+            make.height.width.equalTo(DesignSystem.Common.icon_size)
         })
         icon.translatesAutoresizingMaskIntoConstraints = false
         return icon
@@ -171,9 +173,9 @@ class MakingNewTripView: UIView {
         label.textAlignment = .center
         label.layer.masksToBounds = true
         label.snp.makeConstraints({ make in
-            make.width.equalTo(50)
+            make.width.equalTo(55)
             make.height.equalTo(30)
-            label.layer.cornerRadius = 7
+            label.layer.cornerRadius = DesignSystem.Badge.cornerRadius
         })
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -188,9 +190,9 @@ class MakingNewTripView: UIView {
         label.textAlignment = .center
         label.layer.masksToBounds = true
         label.snp.makeConstraints({ make in
-            make.width.equalTo(50)
+            make.width.equalTo(55)
             make.height.equalTo(30)
-            label.layer.cornerRadius = 7
+            label.layer.cornerRadius = DesignSystem.Badge.cornerRadius
         })
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -201,13 +203,13 @@ class MakingNewTripView: UIView {
         label.textColor = UIColor(named: "grayA")
         label.font = UIFont(name: "PRETENDARD-Regular", size: 16.0)
         label.backgroundColor = UIColor(named: "grayC")
-        label.text = "적게"
+        label.text = "많이"
         label.textAlignment = .center
         label.layer.masksToBounds = true
         label.snp.makeConstraints({ make in
-            make.width.equalTo(50)
+            make.width.equalTo(55)
             make.height.equalTo(30)
-            label.layer.cornerRadius = 7
+            label.layer.cornerRadius = DesignSystem.Badge.cornerRadius
         })
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -216,7 +218,7 @@ class MakingNewTripView: UIView {
     lazy var setDateButton: UIButton = {
         let btn = UIButton()
         btn.setTitle("dd", for: .normal)
-        btn.layer.cornerRadius = 7
+        btn.layer.cornerRadius = DesignSystem.Badge.cornerRadius
         btn.titleLabel?.font = UIFont(name: "PRETENDARD-Regular", size: 16.0)
         btn.setTitleColor(UIColor(named: "grayB"), for: .normal)
         btn.backgroundColor = UIColor(named: "grayC")
@@ -270,14 +272,14 @@ class MakingNewTripView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        [   tripTitleTextView, textIcon, lineView,
+        [   textViewBackground, tripTitleTextView, textIcon,
             suppliesTypeIcon, suppliesTypeLabel,
             travelPeriodIcon, travelPeriodLabel,
             travelCategoryIcon, travelCategoryLabel,
             travelLocationIcon, travellocationLabel,
 //            travelCompanionIcon, travelCompanionLabel,
             howMuchStackView, setDateButton,
-            setCategoryCollectionView, setLocationCollectionView //setCompanionCollectionView,
+            setCategoryCollectionView, setLocationCollectionView, //setCompanionCollectionView,
         ].forEach({ self.addSubview($0) })
 
         makeConstraint()
@@ -308,26 +310,27 @@ class MakingNewTripView: UIView {
     }
     
     private func makeConstraint(){
-        tripTitleTextView.snp.makeConstraints({ make in
+        
+        textViewBackground.snp.makeConstraints({ make in
             make.top.equalToSuperview()
-            make.leading.equalToSuperview().offset(50.0)
-            make.trailing.equalToSuperview().offset(-50.0)
-            make.height.equalTo(25.0)
-        })
-        
-        textIcon.snp.makeConstraints({ make in
-            make.centerY.equalTo(tripTitleTextView.snp.centerY)
-            make.trailing.equalToSuperview().offset(-15.0)
-        })
-        
-        lineView.snp.makeConstraints({ make in
-            make.top.equalTo(tripTitleTextView.snp.bottom).offset(20.0)
             make.leading.equalToSuperview().offset(15.0)
             make.trailing.equalToSuperview().offset(-15.0)
         })
         
+        tripTitleTextView.snp.makeConstraints({ make in
+            make.centerY.equalTo(textViewBackground.snp.centerY)
+            make.leading.equalTo(textViewBackground.snp.leading)
+//            make.height.equalTo(25.0)
+        })
+        
+        textIcon.snp.makeConstraints({ make in
+            make.centerY.equalTo(textViewBackground.snp.centerY)
+            make.trailing.equalToSuperview().offset(-25.0)
+        })
+        
+        
         suppliesTypeIcon.snp.makeConstraints({ make in
-            make.top.equalTo(lineView.snp.bottom).offset(25.0)
+            make.top.equalTo(tripTitleTextView.snp.bottom).offset(25.0)
             make.leading.equalToSuperview().offset(15.0)
         })
         

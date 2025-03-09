@@ -56,14 +56,14 @@ class SelectLocationViewController: UIViewController{
     
     private lazy var completeBtn: UIButton = {
        let btn = UIButton()
-        btn.layer.cornerRadius = 14.0
+        btn.layer.cornerRadius = DesignSystem.Button.cornerRadius
         btn.clipsToBounds = false   
         btn.setTitle("완료", for: .normal)
         btn.setTitleColor(UIColor(named: "grayA"), for: .normal)
         btn.titleLabel?.font = UIFont(name: "Pretendard-Regular", size: 16.0)
         btn.backgroundColor = UIColor(named: "grayC")
         btn.snp.makeConstraints({ make in
-            make.height.equalTo(50.0)
+            make.height.equalTo(DesignSystem.Button.height)
         })
         btn.layer.shadowColor = UIColor.black.cgColor
         btn.layer.shadowOffset = CGSize(width: 0, height: 3)

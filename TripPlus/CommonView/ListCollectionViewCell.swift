@@ -12,10 +12,10 @@ import SnapKit
 class ListCollectionViewCell: UICollectionViewCell{
     static let identifier = "ListCollectionViewCell"
 
-       private lazy var cellNum : UILabel = {
+       private lazy var cellIndex : UILabel = {
            let label = UILabel()
-           label.textColor = UIColor(named: "grayA")
-           label.font = UIFont(name: "PRETENDARD-Medium", size: 20)
+           label.textColor = DesignSystem.ListCollection.index_textColor
+           label.font = DesignSystem.ListCollection.index_font
            label.text = "\(1)"
            label.numberOfLines = 1
            label.translatesAutoresizingMaskIntoConstraints = false
@@ -24,8 +24,8 @@ class ListCollectionViewCell: UICollectionViewCell{
        
        private lazy var cellTitle : UILabel = {
            let label = UILabel()
-           label.textColor = UIColor(named: "grayA")
-           label.font = UIFont(name: "PRETENDARD-Regular", size: 16)
+           label.textColor = DesignSystem.ListCollection.title_textColor
+           label.font = DesignSystem.ListCollection.title_font
            label.text = "좋았던 여행"
            label.numberOfLines = 1
            label.translatesAutoresizingMaskIntoConstraints = false
@@ -34,8 +34,8 @@ class ListCollectionViewCell: UICollectionViewCell{
        
        private lazy var cellLocation : UILabel = {
            let label = UILabel()
-           label.textColor = UIColor(named: "grayB")
-           label.font = UIFont(name: "PRETENDARD-Light", size: 12)
+           label.textColor = DesignSystem.ListCollection.location_textColor
+           label.font = DesignSystem.ListCollection.location_font
            label.text = "경상도"
            label.numberOfLines = 1
            label.translatesAutoresizingMaskIntoConstraints = false
@@ -44,8 +44,8 @@ class ListCollectionViewCell: UICollectionViewCell{
 
        private lazy var cellBody : UILabel = {
            let label = UILabel()
-           label.textColor = UIColor(named: "grayA")
-           label.font = UIFont(name: "PRETENDARD-Light", size: 12)
+           label.textColor = DesignSystem.ListCollection.body_textColor
+           label.font = DesignSystem.ListCollection.body_font
            label.text = "여행을 어디로갈까아 여행을 어디로갈까아 여행을 어디로갈까아 여행을 어디로갈까아 여행을 어디로갈까아 여행을 어디로갈까아 여행을 어디로갈까아 여행을 어디로갈까아 여행을 어디로갈까아 여행을 어디로갈까아 여행을 어디로갈까아 여행을 어디로갈까아"
            label.numberOfLines = 3
            label.lineBreakMode = .byTruncatingTail
@@ -68,15 +68,15 @@ class ListCollectionViewCell: UICollectionViewCell{
            imageView.backgroundColor = .lightGray
            imageView.contentMode = .scaleAspectFill
            imageView.clipsToBounds = true
-           imageView.layer.cornerRadius = 7
+           imageView.layer.cornerRadius = DesignSystem.ListCollection.thumbnail_cornerRadius
            imageView.translatesAutoresizingMaskIntoConstraints = false
            return imageView
        }()
        
        private lazy var cellThumbnailNum : UILabel = {
            let label = UILabel()
-           label.textColor = UIColor(named: "grayA")
-           label.font = UIFont(name: "PRETENDARD-Light", size: 12)
+           label.textColor = DesignSystem.ListCollection.thumbnail_num_textColor
+           label.font = DesignSystem.ListCollection.thumbnail_num_font
            label.text = "+00"
            label.numberOfLines = 0
            label.translatesAutoresizingMaskIntoConstraints = false
@@ -95,28 +95,28 @@ class ListCollectionViewCell: UICollectionViewCell{
     
     private func setViews() {
         //ListCollectionViewCell,  cell height : 155
-        [cellNum, verticalStackView, cellThumbnailImage].forEach({
+        [cellIndex, verticalStackView, cellThumbnailImage].forEach({
             self.addSubview($0)
         })
         
         cellThumbnailImage.addSubview(cellThumbnailNum)
         
-        cellNum.snp.makeConstraints({ make in
+        cellIndex.snp.makeConstraints({ make in
             make.top.equalTo(verticalStackView.snp.top)
             make.leading.equalToSuperview().offset(15.0)
-            make.width.equalTo(35.0)
+            make.width.equalTo(DesignSystem.ListCollection.index_width)
         })
         
         verticalStackView.snp.makeConstraints({ make in
             make.centerY.equalToSuperview()
-            make.leading.equalTo(cellNum.snp.trailing).offset(20.0)
+            make.leading.equalTo(cellIndex.snp.trailing).offset(20.0)
             make.trailing.equalTo(cellThumbnailImage.snp.leading).offset(-20.0)
         })
         
         cellThumbnailImage.snp.makeConstraints({ make in
             make.top.equalTo(verticalStackView.snp.top)
             make.trailing.equalToSuperview().offset(-15.0)
-            make.width.height.equalTo(97.0)
+            make.width.height.equalTo(DesignSystem.ListCollection.thumbnail_Height)
         })
         
         cellThumbnailNum.snp.makeConstraints({ make in
@@ -126,7 +126,7 @@ class ListCollectionViewCell: UICollectionViewCell{
     
     //CollectionView에서 사용
     func configure(index: Int, title: String, location: String, body: String, thumbnailImage: UIImage, picCount: String) {
-        cellNum.text = "\(index)"
+        cellIndex.text = "\(index)"
         cellTitle.text = title
         cellLocation.text = location
         cellBody.text = body
@@ -136,7 +136,7 @@ class ListCollectionViewCell: UICollectionViewCell{
      
      override func prepareForReuse() {
          super.prepareForReuse()
-         cellNum.text = nil
+         cellIndex.text = nil
          cellTitle.text = nil
          cellLocation.text = nil
          cellBody.text = nil
