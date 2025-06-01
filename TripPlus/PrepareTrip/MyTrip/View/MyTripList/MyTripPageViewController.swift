@@ -67,7 +67,7 @@ class MyTripPageViewController: UIViewController {
             make.width.height.equalTo(55.0)
         })
         btn.tintColor = .white
-        btn.backgroundColor = .systemGreen
+        btn.backgroundColor = UIColor(named: "tripGreen")
         btn.layer.cornerRadius = btn.bounds.width / 2
         btn.layer.shadowColor = UIColor.black.cgColor
         btn.layer.shadowOpacity = 0.3
@@ -78,6 +78,10 @@ class MyTripPageViewController: UIViewController {
     }()
     
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,6 +103,7 @@ class MyTripPageViewController: UIViewController {
         })
         
         pageSegmentedControl.snp.makeConstraints({ make in
+//            make.top.equalTo(view.safeAreaLayoutGuide)
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(50.0)
@@ -112,7 +117,8 @@ class MyTripPageViewController: UIViewController {
         
         floatingBtn.snp.makeConstraints({ make in
             make.trailing.equalToSuperview().offset(-30.0)
-            make.bottom.equalToSuperview().offset(-30.0)
+//            make.bottom.equalToSuperview().offset(-30.0)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-30.0)
         })
         
         floatingBtn.publisher(for: .touchUpInside)
@@ -124,6 +130,7 @@ class MyTripPageViewController: UIViewController {
 
                  // 현재 ViewController에서 새로운 ViewController로 이동
                  makingNewTripVC.modalPresentationStyle = .fullScreen
+                 self?.navigationController?.setNavigationBarHidden(false, animated: true)
                  self?.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
                  self?.navigationController?.pushViewController(makingNewTripVC, animated: true)
 
@@ -132,11 +139,11 @@ class MyTripPageViewController: UIViewController {
         
         //TODO: 여행 데이터가 없다면..
 //        if 나의여행데이터.isEmpty{
-//        [pageSegmentedControl, pageContentView, floatingBtn].forEach({$0.isHidden = true})
-//        [myTripEmptyView].forEach({$0.isHidden = false})
+        [pageSegmentedControl, pageContentView].forEach({$0.isHidden = true})
+        [myTripEmptyView].forEach({$0.isHidden = false})
 //        }else{
-        [pageSegmentedControl, pageContentView, floatingBtn].forEach({$0.isHidden = false})
-        [myTripEmptyView].forEach({$0.isHidden = true})
+//        [pageSegmentedControl, pageContentView].forEach({$0.isHidden = false})
+//        [myTripEmptyView].forEach({$0.isHidden = true})
 //        }
     }
     

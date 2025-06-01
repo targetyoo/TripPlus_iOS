@@ -42,10 +42,10 @@
             </objects>
             <point key="canvasLocation" x="-579" y="1473"/>
         </scene>
-        <!--My Trip Empty View Controller-->
+        <!--My Trip Page View Controller-->
         <scene sceneID="qHi-jI-nBN">
             <objects>
-                <viewController id="Hrx-YK-AeD" customClass="MyTripEmptyViewController" customModule="TripPlus" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Hrx-YK-AeD" customClass="MyTripPageViewController" customModule="TripPlus" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ivM-dM-6Ot">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

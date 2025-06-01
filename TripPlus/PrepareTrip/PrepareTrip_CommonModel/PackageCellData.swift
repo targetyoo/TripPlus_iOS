@@ -12,5 +12,6 @@ struct PackageCellData {
     var title: String
     var icon: UIImage?
     var tintColor: UIColor?
+    var description: String
     var isExpanded: Bool // 확장 상태 추가
 }

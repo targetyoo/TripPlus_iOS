@@ -127,7 +127,7 @@ class NewTripProgressView: UIView {
         
         progressLine1.snp.makeConstraints({make in
             make.leading.equalToSuperview()
-            make.trailing.equalToSuperview().multipliedBy(0.5)
+            make.trailing.equalToSuperview().multipliedBy(0.5).offset(-8.0) // progressPoint3.width/2
             make.top.equalToSuperview()
         })
         

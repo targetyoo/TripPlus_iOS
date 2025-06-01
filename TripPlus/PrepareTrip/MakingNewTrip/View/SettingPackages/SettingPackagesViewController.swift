@@ -159,7 +159,7 @@ class SettingPackagesViewController: UIViewController{
         
         //        그리고 생성하는 cell 맨 위로 올려야 함
         
-        let bottomSheetVC = MakePackageViewController()
+        let bottomSheetVC = AddNewPackageViewController()
         bottomSheetVC.modalPresentationStyle = .pageSheet
         present(bottomSheetVC, animated: true, completion: nil)
         
@@ -197,20 +197,20 @@ class SettingPackagesViewController: UIViewController{
         }, completion: nil)
     }
     
-    private func presentPopover(from button: UIButton) {
-        let popoverVC = PopoverViewController()
-        popoverVC.modalPresentationStyle = .popover
-        
-        // 팝오버 프레젠테이션 컨트롤러 설정
-        if let popoverController = popoverVC.popoverPresentationController {
-            popoverController.sourceView = button // 버튼을 기준으로 팝오버 표시
-            popoverController.sourceRect = button.bounds // 버튼의 bounds를 기준으로 위치 설정
-            popoverController.permittedArrowDirections = [.up, .down] // 화살표 방향 설정
-            popoverController.delegate = self // 델리게이트 설정
-        }
-        
-        present(popoverVC, animated: true, completion: nil)
-    }
+//    private func presentPopover(from button: UIButton) {
+//        let popoverVC = PopoverViewController()
+//        popoverVC.modalPresentationStyle = .popover
+//        
+//        // 팝오버 프레젠테이션 컨트롤러 설정
+//        if let popoverController = popoverVC.popoverPresentationController {
+//            popoverController.sourceView = button // 버튼을 기준으로 팝오버 표시
+//            popoverController.sourceRect = button.bounds // 버튼의 bounds를 기준으로 위치 설정
+//            popoverController.permittedArrowDirections = [.up, .down] // 화살표 방향 설정
+//            popoverController.delegate = self // 델리게이트 설정
+//        }
+//        
+//        present(popoverVC, animated: true, completion: nil)
+//    }
 }
 
 extension SettingPackagesViewController: UIPopoverPresentationControllerDelegate {

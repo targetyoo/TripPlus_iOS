@@ -332,7 +332,7 @@ extension MakingNewTripViewController: UICollectionViewDelegate, UICollectionVie
             if indexPath.row < viewModel.selectedCategoryItems.count {
                 let text = viewModel.selectedCategoryItems[indexPath.row]
                 let width = self.getTextWidth(text: text, font: font, space: 30.0)
-                return CGSize(width: width, height: 30) // 높이는 고정
+                return CGSize(width: width + 10, height: 30) // 높이는 고정
             }else{
                 return CGSize(width: 24, height: 30)
             }
@@ -342,9 +342,11 @@ extension MakingNewTripViewController: UICollectionViewDelegate, UICollectionVie
             if indexPath.row < viewModel.selectedLocationItems.count {
                 let text = viewModel.selectedLocationItems[indexPath.row]
                 let width = self.getTextWidth(text: text, font: font, space: 30.0)
-                return CGSize(width: width, height: 30) // 높이는 고정
+                print("textWidth = \(width)")
+                return CGSize(width: width + 10, height: 30) // 높이는 고정
             } else {
                 // + 버튼 셀: 고정된 크기
+                print("textWidth = 000")
                 return CGSize(width: 24, height: 30)
             }
         }
@@ -353,4 +355,12 @@ extension MakingNewTripViewController: UICollectionViewDelegate, UICollectionVie
     }
 }
 
+
+/*
+ TODO: 0.준비물 타입 바인딩 1. Textfield 바인딩. 2.Calendar 바인딩 3. 데이터 체크하여 "준비물 생성하기" 활성화, 다음 페이지 이동
+ TODO: 1. 패키지 MakingNewPackageModel 자료형에 description 추가 / TripPreview+Package, TripList에 대응하는 자료형도 생성
+ TODO: 2. 패키지 바인딩(색과 아이콘을 선택하면, 그것이 그대로 NewPackageDatga 배열에 추가되도록, 삭제도 지원)
+ TODO: 3. TripList 박스 누르면 내가 만든 여행으로 이동되는거 구현, 거기서 요소 터치 시 수정 페이지로 재이동 구현
+ */
+//
 
