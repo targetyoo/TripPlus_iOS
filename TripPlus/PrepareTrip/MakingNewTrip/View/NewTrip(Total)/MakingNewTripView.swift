@@ -15,19 +15,17 @@ class MakingNewTripView: UIView {
         super.init(frame: .zero)
     }
     
-    lazy var tripTitleTextView: UITextView = {
-        let txtView = UITextView()
-        txtView.text = "여행 제목을 입력해 주세요(공백 포함 20자)"
-        txtView.backgroundColor = .white
-        txtView.font = UIFont(name: "PRETENDARD-Regular", size: 16.0)
-        txtView.textColor = UIColor(named: "grayB")
-        txtView.isEditable = true
-        txtView.backgroundColor = UIColor(named: "grayC")
-        txtView.isScrollEnabled = false
-        txtView.textAlignment = .left
-        txtView.textContainerInset = UIEdgeInsets(top: 2, left: 3, bottom: 0, right: 3)
-        txtView.translatesAutoresizingMaskIntoConstraints = false
-        return txtView
+    lazy var tripTitleTextView: UITextField = {
+        let txtField = UITextField()
+        txtField.placeholder = "여행 제목을 입력해 주세요(공백 포함 20자)."
+        txtField.backgroundColor = .white
+        txtField.font = UIFont(name: "PRETENDARD-Regular", size: 16.0)
+        txtField.textColor = UIColor(named: "grayA")
+        txtField.returnKeyType = .done
+        txtField.backgroundColor = UIColor(named: "grayC")
+        txtField.textAlignment = .left
+        txtField.translatesAutoresizingMaskIntoConstraints = false
+        return txtField
     }()
     
     private lazy var textViewBackground: UIView = {
@@ -156,14 +154,16 @@ class MakingNewTripView: UIView {
 //    }()
 
     
-    private lazy var howMuchStackView: UIStackView = {
+    private lazy var typeStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [lessLabel, normalLabel, moreLabel])
         stackView.axis = .horizontal
         stackView.spacing = 7
+        stackView.isUserInteractionEnabled = true
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
+    let lessLabelTGR = UITapGestureRecognizer()
     lazy var lessLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(named: "grayA")
@@ -172,6 +172,8 @@ class MakingNewTripView: UIView {
         label.text = "적게"
         label.textAlignment = .center
         label.layer.masksToBounds = true
+        label.isUserInteractionEnabled = true
+        label.addGestureRecognizer(lessLabelTGR)
         label.snp.makeConstraints({ make in
             make.width.equalTo(55)
             make.height.equalTo(30)
@@ -180,7 +182,8 @@ class MakingNewTripView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
+    let normalLabelTGR = UITapGestureRecognizer()
     lazy var normalLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(named: "grayD")
@@ -189,6 +192,8 @@ class MakingNewTripView: UIView {
         label.text = "보통"
         label.textAlignment = .center
         label.layer.masksToBounds = true
+        label.isUserInteractionEnabled = true
+        label.addGestureRecognizer(normalLabelTGR)
         label.snp.makeConstraints({ make in
             make.width.equalTo(55)
             make.height.equalTo(30)
@@ -198,6 +203,7 @@ class MakingNewTripView: UIView {
         return label
     }()
     
+    let moreLabelTGR = UITapGestureRecognizer()
     lazy var moreLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(named: "grayA")
@@ -206,6 +212,8 @@ class MakingNewTripView: UIView {
         label.text = "많이"
         label.textAlignment = .center
         label.layer.masksToBounds = true
+        label.isUserInteractionEnabled = true
+        label.addGestureRecognizer(moreLabelTGR)
         label.snp.makeConstraints({ make in
             make.width.equalTo(55)
             make.height.equalTo(30)
@@ -214,6 +222,7 @@ class MakingNewTripView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    
     
     lazy var setDateButton: UIButton = {
         let btn = UIButton()
@@ -278,24 +287,16 @@ class MakingNewTripView: UIView {
             travelCategoryIcon, travelCategoryLabel,
             travelLocationIcon, travellocationLabel,
 //            travelCompanionIcon, travelCompanionLabel,
-            howMuchStackView, setDateButton,
+            typeStackView, setDateButton,
             setCategoryCollectionView, setLocationCollectionView, //setCompanionCollectionView,
         ].forEach({ self.addSubview($0) })
 
         makeConstraint()
-        
         setButtonTitleDate()
     }
 
     
     private func setButtonTitleDate(){
-        
-        /*
-         Actually.. ViewModel의 날짜 변수와 바인딩을 해주어야 함
-         그리고, 초기에 날짜를 받아오든 선택되든 변수따라 그냥 묶여서 바뀌기만 하면 됨
-         아래처럼 직접 View를 변경하는 방법은 X. 수정 해야함
-         */
-        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yy.MM.dd" // 원하는 날짜 형식 설정
         
@@ -319,8 +320,8 @@ class MakingNewTripView: UIView {
         
         tripTitleTextView.snp.makeConstraints({ make in
             make.centerY.equalTo(textViewBackground.snp.centerY)
-            make.leading.equalTo(textViewBackground.snp.leading)
-//            make.height.equalTo(25.0)
+            make.leading.equalTo(textViewBackground.snp.leading).offset(13.0)
+            make.trailing.equalTo(textIcon.snp.leading).offset(-5.0)
         })
         
         textIcon.snp.makeConstraints({ make in
@@ -335,7 +336,7 @@ class MakingNewTripView: UIView {
         })
         
         travelPeriodIcon.snp.makeConstraints({ make in
-            make.top.equalTo(howMuchStackView.snp.bottom).offset(25.0)
+            make.top.equalTo(typeStackView.snp.bottom).offset(25.0)
             make.leading.equalToSuperview().offset(15.0)
         })
         
@@ -379,7 +380,7 @@ class MakingNewTripView: UIView {
         })
         
         
-        howMuchStackView.snp.makeConstraints({ make in
+        typeStackView.snp.makeConstraints({ make in
             make.trailing.equalToSuperview().offset(-15.0)
             make.centerY.equalTo(suppliesTypeIcon.snp.centerY)
         })

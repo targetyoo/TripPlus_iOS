@@ -9,14 +9,15 @@ import Foundation
 import UIKit
 import SnapKit
 import Combine
+import SwiftUI
 
 extension MakingNewTripViewController: SelectCategoryDelegate {
     func finishSelectCategories(selectedCategories: [String]) {
-        viewModel.selectedCategoryItems = selectedCategories // 선택된 카테고리 업데이트
+        makingCategoryVM.selectedCategoryItems = selectedCategories // 선택된 카테고리 업데이트
         makingNewTripView.setCategoryCollectionView.reloadData() // 컬렉션 뷰 업데이트
         
         //collectionView height 업데이트
-        if viewModel.selectedCategoryItems.count > 0 {
+        if makingCategoryVM.selectedCategoryItems.count > 0 {
             let contentHeight =  self.makingNewTripView.setCategoryCollectionView.collectionViewLayout.collectionViewContentSize.height
             self.makingNewTripView.setCategoryCollectionView.snp.updateConstraints { make in
                    make.height.equalTo(contentHeight) // 콘텐츠 높이에 맞게 업데이트
@@ -31,11 +32,11 @@ extension MakingNewTripViewController: SelectCategoryDelegate {
 
 extension MakingNewTripViewController: SelectLocationDelegate {
     func finishSelectLocations(selectedLocations: [String]) {
-        viewModel.selectedLocationItems = selectedLocations // 선택된 카테고리 업데이트
+        makingLocationVM.selectedLocationItems = selectedLocations // 선택된 카테고리 업데이트
         makingNewTripView.setLocationCollectionView.reloadData() // 컬렉션 뷰 업데이트
         
         //collectionView height 업데이트
-        if viewModel.selectedLocationItems.count > 0 {
+        if makingLocationVM.selectedLocationItems.count > 0 {
             let contentHeight =  self.makingNewTripView.setLocationCollectionView.collectionViewLayout.collectionViewContentSize.height
             self.makingNewTripView.setLocationCollectionView.snp.updateConstraints { make in
                    make.height.equalTo(contentHeight) // 콘텐츠 높이에 맞게 업데이트
@@ -51,6 +52,10 @@ extension MakingNewTripViewController: SelectLocationDelegate {
 class MakingNewTripViewController: UIViewController {
     var tripName = ""
     private var viewModel = MakingNewTripModel()
+    private var navigationVM = NavigationViewModel()
+    private var makingCategoryVM = MakingCategoryViewModel()
+    private var makingLocationVM = MakingLocationViewModel()
+    
     private var cancellables = Set<AnyCancellable>()
         
     private lazy var makingNewTripView: MakingNewTripView = {
@@ -96,6 +101,7 @@ class MakingNewTripViewController: UIViewController {
         setView()
         setupNavigationBar()
         bindViewModel()
+        setupTabGesture()
     }
     
     private func setView(){
@@ -107,6 +113,7 @@ class MakingNewTripViewController: UIViewController {
             make.top.equalTo(self.view.safeAreaLayoutGuide).offset(10.0)
             make.trailing.bottom.leading.equalTo(view.safeAreaLayoutGuide)
         })
+        makingNewTripView.tripTitleTextView.delegate = self
         makingNewTripView.setCategoryCollectionView.delegate = self
         makingNewTripView.setCategoryCollectionView.dataSource = self
         makingNewTripView.setLocationCollectionView.delegate = self
@@ -125,7 +132,6 @@ class MakingNewTripViewController: UIViewController {
         })
         newTripProgressView.configure(currentProgress: 1)
         
-            
         
         makingNewTripView.setCategoryCollectionView.snp.makeConstraints { make in
             make.height.equalTo(30.0)
@@ -142,7 +148,32 @@ class MakingNewTripViewController: UIViewController {
         
         createSuppliesBtn.publisher(for: .touchUpInside)
             .sink { [weak self] _ in
-                self?.viewModel.completeBtnAction()
+                self?.navigationVM.completeBtnAction()
+            }
+            .store(in: &cancellables)
+        
+        makingNewTripView.tripTitleTextView.publisher(for: .editingChanged)
+            .sink{ [weak self] _ in
+                self?.viewModel.writingTitle(self?.makingNewTripView.tripTitleTextView.text ?? "")
+            }
+            .store(in: &cancellables)
+    
+        //Label은 UIControl이 없으므로, TabGestureRecognizer를 구현하여 연결
+        makingNewTripView.lessLabelTGR.tapPublisher
+            .sink{ [weak self] _ in
+                self?.viewModel.selectLess()
+            }
+            .store(in: &cancellables)
+        
+        makingNewTripView.normalLabelTGR.tapPublisher
+            .sink{ [weak self] _ in
+                self?.viewModel.selectNormal()
+            }
+            .store(in: &cancellables)
+        
+        makingNewTripView.moreLabelTGR.tapPublisher
+            .sink{ [weak self] _ in
+                self?.viewModel.selectMore()
             }
             .store(in: &cancellables)
     }
@@ -175,7 +206,7 @@ class MakingNewTripViewController: UIViewController {
         
         backButton.publisher(for: .touchUpInside)
                  .sink { [weak self] _ in
-                     self?.viewModel.backButtonAction()
+                     self?.navigationVM.backButtonAction()
                  }
                  .store(in: &cancellables)
         
@@ -187,20 +218,8 @@ class MakingNewTripViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        viewModel.backButtonTapped
-            .sink { [weak self] in
-                self?.navigationController?.popViewController(animated: true)
-            }
-            .store(in: &cancellables)
         
-        viewModel.rightButtonTapped
-            .sink { _ in
-                print("오른쪽 버튼 클릭됨")
-            }
-            .store(in: &cancellables)
-        
-        
-        viewModel.$selectedCategoryItems // $ 기호는 @Published 속성의 퍼블리셔에 접근하기 위해 사용됩
+        makingCategoryVM.$selectedCategoryItems // $ 기호는 @Published 속성의 퍼블리셔에 접근하기 위해 사용됩
             .receive(on: RunLoop.main) // 퍼블리셔가 발행하는 값을 메인 스레드에서 수신(UI 업데이트)
             .sink { [weak self] items in
                 guard let self = self else { return }
@@ -208,7 +227,7 @@ class MakingNewTripViewController: UIViewController {
             }
             .store(in: &cancellables)
         
-        viewModel.$selectedLocationItems
+        makingLocationVM.$selectedLocationItems
             .receive(on: RunLoop.main)
             .sink { [weak self] items in
                 guard let self = self else { return }
@@ -222,7 +241,7 @@ class MakingNewTripViewController: UIViewController {
                 guard let self = self else { return }
                 let selectCategoryVC = SelectCategoryViewController()
                 selectCategoryVC.delegate = self
-                selectCategoryVC.viewModel.selectedCategoryItems = self.viewModel.selectedCategoryItems
+                selectCategoryVC.viewModel.selectedCategoryItems = self.makingCategoryVM.selectedCategoryItems
                 self.navigationController?.pushViewController(selectCategoryVC, animated: true)
             }
             .store(in: &cancellables)
@@ -232,7 +251,7 @@ class MakingNewTripViewController: UIViewController {
                 guard let self = self else { return }
                 let selectLocationVC = SelectLocationViewController()
                 selectLocationVC.delegate = self
-                selectLocationVC.viewModel.selectedLocationItems = self.viewModel.selectedLocationItems
+                selectLocationVC.viewModel.selectedLocationItems = self.makingLocationVM.selectedLocationItems
                 self.navigationController?.pushViewController(selectLocationVC, animated: true)
             }
             .store(in: &cancellables)
@@ -247,10 +266,60 @@ class MakingNewTripViewController: UIViewController {
             }
             .store(in: &cancellables)
         
-        viewModel.completeButtonTapped
+        navigationVM.completeButtonTapped
             .sink{ [weak self] in
                 guard let self = self else { return }
-                print("준비물 생성하기")
+                // 준비물 생성 중 페이지로 이동
+                let preparingPackagesVC = PreparingPackagesViewController()
+                
+                preparingPackagesVC.modalPresentationStyle = .fullScreen
+                self.navigationController?.setNavigationBarHidden(false, animated: true)
+//                self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+                self.navigationController?.pushViewController(preparingPackagesVC, animated: true)
+            }
+            .store(in: &cancellables)
+        
+        navigationVM.backButtonTapped
+            .sink { [weak self] in
+                self?.navigationController?.popViewController(animated: true)
+            }
+            .store(in: &cancellables)
+        
+        
+        
+        viewModel.lessTabbed
+            .receive(on: RunLoop.main)
+            .sink{ [weak self] in
+                self?.makingNewTripView.lessLabel.backgroundColor = UIColor(named: "tripGreen")
+                self?.makingNewTripView.lessLabel.textColor = UIColor(named: "grayC")
+                self?.makingNewTripView.normalLabel.backgroundColor = UIColor(named: "grayC")
+                self?.makingNewTripView.normalLabel.textColor = UIColor(named: "grayA")
+                self?.makingNewTripView.moreLabel.backgroundColor = UIColor(named: "grayC")
+                self?.makingNewTripView.moreLabel.textColor = UIColor(named: "grayA")
+            }
+            .store(in: &cancellables)
+        
+        viewModel.normalTabbed
+            .receive(on: RunLoop.main)
+            .sink{ [weak self] in
+                self?.makingNewTripView.lessLabel.backgroundColor = UIColor(named: "grayC")
+                self?.makingNewTripView.lessLabel.textColor = UIColor(named: "grayA")
+                self?.makingNewTripView.normalLabel.backgroundColor = UIColor(named: "tripGreen")
+                self?.makingNewTripView.normalLabel.textColor = UIColor(named: "grayC")
+                self?.makingNewTripView.moreLabel.backgroundColor = UIColor(named: "grayC")
+                self?.makingNewTripView.moreLabel.textColor = UIColor(named: "grayA")
+            }
+            .store(in: &cancellables)
+        
+        viewModel.moreTabbed
+            .receive(on: RunLoop.main)
+            .sink{ [weak self] in
+                self?.makingNewTripView.lessLabel.backgroundColor = UIColor(named: "grayC")
+                self?.makingNewTripView.lessLabel.textColor = UIColor(named: "grayA")
+                self?.makingNewTripView.normalLabel.backgroundColor = UIColor(named: "grayC")
+                self?.makingNewTripView.normalLabel.textColor = UIColor(named: "grayA")
+                self?.makingNewTripView.moreLabel.backgroundColor = UIColor(named: "tripGreen")
+                self?.makingNewTripView.moreLabel.textColor = UIColor(named: "grayC")
             }
             .store(in: &cancellables)
     }
@@ -263,11 +332,11 @@ extension MakingNewTripViewController: UICollectionViewDelegate, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView == makingNewTripView.setCategoryCollectionView{
-            return viewModel.selectedCategoryItems.count + 1
+            return makingCategoryVM.selectedCategoryItems.count + 1
         }
         
         if collectionView == makingNewTripView.setLocationCollectionView{
-            return viewModel.selectedLocationItems.count + 1
+            return makingLocationVM.selectedLocationItems.count + 1
         }
         
         return 0
@@ -276,11 +345,11 @@ extension MakingNewTripViewController: UICollectionViewDelegate, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if collectionView == makingNewTripView.setCategoryCollectionView{
-            if indexPath.row < viewModel.selectedCategoryItems.count {
+            if indexPath.row < makingCategoryVM.selectedCategoryItems.count {
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RightAlignedCollectionViewCell.identifier, for: indexPath) as? RightAlignedCollectionViewCell else{
                     return UICollectionViewCell()
                 }
-                cell.configure(title: viewModel.selectedCategoryItems[indexPath.row])
+                cell.configure(title: makingCategoryVM.selectedCategoryItems[indexPath.row])
                 return cell
                 
             }else{
@@ -297,11 +366,11 @@ extension MakingNewTripViewController: UICollectionViewDelegate, UICollectionVie
         }
         
         if collectionView == makingNewTripView.setLocationCollectionView{
-            if indexPath.row < viewModel.selectedLocationItems.count{
+            if indexPath.row < makingLocationVM.selectedLocationItems.count{
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RightAlignedCollectionViewCell.identifier, for: indexPath) as? RightAlignedCollectionViewCell else{
                     return UICollectionViewCell()
                 }
-                cell.configure(title: viewModel.selectedLocationItems[indexPath.row])
+                cell.configure(title: makingLocationVM.selectedLocationItems[indexPath.row])
                 return cell
             }else{
                 
@@ -329,8 +398,8 @@ extension MakingNewTripViewController: UICollectionViewDelegate, UICollectionVie
         let font = UIFont(name: "PRETENDARD-Regular", size: 16.0)!
         
         if collectionView == makingNewTripView.setCategoryCollectionView{
-            if indexPath.row < viewModel.selectedCategoryItems.count {
-                let text = viewModel.selectedCategoryItems[indexPath.row]
+            if indexPath.row < makingCategoryVM.selectedCategoryItems.count {
+                let text = makingCategoryVM.selectedCategoryItems[indexPath.row]
                 let width = self.getTextWidth(text: text, font: font, space: 30.0)
                 return CGSize(width: width + 10, height: 30) // 높이는 고정
             }else{
@@ -339,14 +408,12 @@ extension MakingNewTripViewController: UICollectionViewDelegate, UICollectionVie
         }
         
         if collectionView == makingNewTripView.setLocationCollectionView{
-            if indexPath.row < viewModel.selectedLocationItems.count {
-                let text = viewModel.selectedLocationItems[indexPath.row]
+            if indexPath.row < makingLocationVM.selectedLocationItems.count {
+                let text = makingLocationVM.selectedLocationItems[indexPath.row]
                 let width = self.getTextWidth(text: text, font: font, space: 30.0)
-                print("textWidth = \(width)")
                 return CGSize(width: width + 10, height: 30) // 높이는 고정
             } else {
                 // + 버튼 셀: 고정된 크기
-                print("textWidth = 000")
                 return CGSize(width: 24, height: 30)
             }
         }
@@ -355,12 +422,42 @@ extension MakingNewTripViewController: UICollectionViewDelegate, UICollectionVie
     }
 }
 
+extension MakingNewTripViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        // 여행 제목 20글자 제한
+        let currentText = textField.text ?? ""
+        guard let stringRange = Range(range, in: currentText) else { return false }
+        let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+        return updatedText.count <= 20
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder() // 키보드 내리기
+        return true
+    }
+    
+    private func setupTabGesture(){
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dissmissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc private func dissmissKeyboard(){
+        view.endEditing(true)
+    }
+}
 
-/*
- TODO: 0.준비물 타입 바인딩 1. Textfield 바인딩. 2.Calendar 바인딩 3. 데이터 체크하여 "준비물 생성하기" 활성화, 다음 페이지 이동
- TODO: 1. 패키지 MakingNewPackageModel 자료형에 description 추가 / TripPreview+Package, TripList에 대응하는 자료형도 생성
- TODO: 2. 패키지 바인딩(색과 아이콘을 선택하면, 그것이 그대로 NewPackageDatga 배열에 추가되도록, 삭제도 지원)
- TODO: 3. TripList 박스 누르면 내가 만든 여행으로 이동되는거 구현, 거기서 요소 터치 시 수정 페이지로 재이동 구현
- */
+
+//struct MyViewControllerRepresentable: UIViewControllerRepresentable {
+//    func makeUIViewController(context: Context) -> MakingNewTripViewController {
+//        return MakingNewTripViewController()
+//    }
 //
-
+//    func updateUIViewController(_ uiViewController: MakingNewTripViewController, context: Context) {
+//        // 필요 시 업데이트 로직 추가
+//    }
+//}
+//
+//// 3. SwiftUI Preview 제공
+//#Preview {
+//    MyViewControllerRepresentable()
+//}

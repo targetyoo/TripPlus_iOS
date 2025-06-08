@@ -8,17 +8,22 @@
 import Foundation
 import UIKit
 import SnapKit
-
+import SwiftUI
+import Combine
 
 class SettingPackagesViewController: UIViewController{
-    
-    private var tableTempData: [PackageCellData] = [
-        PackageCellData(title: "보조 배터리 1", icon: UIImage(systemName: "battery.100"), isExpanded: false),
-        PackageCellData(title: "워터슈즈 1", icon: UIImage(systemName: "shoe.fill"), isExpanded: false),
-        PackageCellData(title: "워터슈즈 2", icon: UIImage(systemName: "shoe.fill"), isExpanded: false),
-        PackageCellData(title: "워터슈즈 3", icon: UIImage(systemName: "shoe.fill"), isExpanded: false),
-        PackageCellData(title: "워터슈즈 4", icon: UIImage(systemName: "shoe.fill"), isExpanded: false)
-    ]
+    let viewModel = MakingNewPackageModel()
+    let navigationVM = NavigationViewModel()
+    private var cancellables = Set<AnyCancellable>()
+
+
+//    private var tableTempData: [PackageCellData] = [
+//        PackageCellData(title: "보조 배터리", icon: UIImage(systemName: "battery.100"), description: "언제 어디서 조난당할지 몰라요. \n여분의 전력은 선택이 아닌 필수입니다", isExpanded: false),
+//        PackageCellData(title: "워터슈즈", icon: UIImage(systemName: "shoe.fill"), description: "연중 강수량이 높은 지역입니다. \n비싼 신발 들고가면 후회할지도 몰라요", isExpanded: false),
+//        PackageCellData(title: "007 가방", icon: UIImage(systemName: "shoe.fill"), description: "가방을 통째로 도둑맞아도 전혀 걱정없는 가방 \n호신용으로도 사용할 수 있습니다", isExpanded: false),
+//        PackageCellData(title: "물티슈", icon: UIImage(systemName: "shoe.fill"), description: "야시장에서 이것저것 먹을 때, 무더운날 아이스크림을 먹을 때, 핑거푸드 먹을 때", isExpanded: false),
+//        PackageCellData(title: "감성 업그레이드 에세이", icon: UIImage(systemName: "shoe.fill"), description: "공항에서 비는 시간, 이 책 한권과 함께라면 나도 감성적인 여행자", isExpanded: false)
+//    ]
     
     private let cellHeight: CGFloat = 65.0
     private let expandedCellHeight: CGFloat = 160.0 // 확장된 셀 높이
@@ -65,6 +70,7 @@ class SettingPackagesViewController: UIViewController{
         tableView.backgroundColor = .clear
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.showsVerticalScrollIndicator = false
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 100, right: 0)
         tableView.separatorStyle = .none
         tableView.tintAdjustmentMode = .normal
@@ -74,23 +80,38 @@ class SettingPackagesViewController: UIViewController{
     
     private lazy var makeNewMyTripBtn: UIButton = {
         let btn = UIButton()
-        btn.backgroundColor = .systemGreen
+        btn.backgroundColor = UIColor(named: "tripGreen")
         btn.setTitle("여행 생성하기", for: .normal)
         btn.snp.makeConstraints({ make in
             make.height.equalTo(50.0) //temp
         })
-        btn.addTarget(self, action: #selector(makeNewMyTripBtnTapped), for: .touchUpInside)
-        
         btn.layer.cornerRadius = 14.0 //temp
         btn.translatesAutoresizingMaskIntoConstraints = false
         
         return btn
     }()
     
+    private lazy var newTripProgressView: NewTripProgressView = {
+       let view = NewTripProgressView()
+        view.snp.makeConstraints({ make in
+            make.height.equalTo(55.0)
+        })
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
     
-    @objc private func makeNewMyTripBtnTapped() {
-        let myTripPageVC = MyTripPageViewController()
-        self.navigationController?.pushViewController(myTripPageVC, animated: true)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = false
+//        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+        makeNewMyTripBtn.isUserInteractionEnabled = true
+        self.tabBarController?.tabBar.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+//        navigationController?.navigationBar.isHidden = true
     }
     
     override func viewDidLoad() {
@@ -98,11 +119,13 @@ class SettingPackagesViewController: UIViewController{
         self.view.backgroundColor = .white
         navigationController?.navigationItem.title = "여행 만들기"
         setViews()
+        setBinding()
+        setupNavigationBar()
         //        updateTableViewHeight()
     }
     
     private func setViews(){
-        [verticalStackView, settingPackageTableView, makeNewMyTripBtn].forEach({self.view.addSubview($0)})
+        [verticalStackView, settingPackageTableView, newTripProgressView, makeNewMyTripBtn].forEach({self.view.addSubview($0)})
         
         verticalStackView.snp.makeConstraints({ make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(15.0)
@@ -110,32 +133,110 @@ class SettingPackagesViewController: UIViewController{
             make.height.equalTo(85.0)
         })
         
-        makeNewMyTripBtn.snp.makeConstraints({ make in
-            make.leading.equalToSuperview().offset(15.0)
-            make.trailing.equalToSuperview().offset(-15.0)
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-50.0)
-        })
-        
-        //        scrollView.snp.makeConstraints({ make in
-        //            make.top.equalTo(verticalStackView.snp.bottom).offset(25.0)
-        //            make.leading.trailing.equalToSuperview()
-        //
-        //        })
-        
         
         settingPackageTableView.snp.makeConstraints({ make in
             make.top.equalTo(verticalStackView.snp.bottom).offset(25.0)
             make.leading.trailing.equalToSuperview()
-            make.bottom.equalToSuperview()
+            make.bottom.equalTo(newTripProgressView.snp.top).offset(-15.0)
             //            make.edges.equalToSuperview()
             //            make.height.equalToSuperview()
         })
+        
+        makeNewMyTripBtn.snp.makeConstraints({ make in
+            make.bottom.equalToSuperview().offset(-50.0)
+            make.leading.equalToSuperview().offset(15.0)
+            make.trailing.equalToSuperview().offset(-15.0)
+        })
+        
+        newTripProgressView.snp.makeConstraints({ make in
+            make.bottom.equalTo(makeNewMyTripBtn.snp.top)
+            make.leading.equalTo(makeNewMyTripBtn.snp.leading)
+            make.trailing.equalTo(makeNewMyTripBtn.snp.trailing)
+        })
+        newTripProgressView.configure(currentProgress: 2)
+    }
+    
+    
+    private func setBinding(){
+        viewModel.$packageList
+            .receive(on: RunLoop.main)
+            .sink { [weak self] items in
+                guard let self = self else { return }
+                settingPackageTableView.reloadData()
+            }
+            .store(in: &cancellables)
+        
+        makeNewMyTripBtn.publisher(for: .touchUpInside)
+            .sink { [weak self] _ in
+                self?.navigationVM.completeBtnAction()
+            }
+            .store(in: &cancellables)
+        
+        navigationVM.completeButtonTapped
+            .sink{ [weak self] in
+                guard let self = self else { return }
+                makeNewMyTripBtn.isUserInteractionEnabled = false
+                newTripProgressView.configure(currentProgress: 3)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                    //Temp : Api 통신을 통해 여행 등록이 완료되면 넘어감
+                    let makeNewTripCompleteVC = MakeNewTripCompleteViewController()
+                    makeNewTripCompleteVC.modalPresentationStyle = .fullScreen
+                    self.navigationController?.pushViewController(makeNewTripCompleteVC, animated: true)
+                }
+            }
+            .store(in: &cancellables)
+        
+        navigationVM.backButtonTapped
+            .sink { [weak self] in
+                //TODO: backButton을 눌렀을 때, PreparingPackagesViewController가 아닌 MakingNewTripViewController로 돌아가야 한다. PreparingPackagesViewController가 Stack에 추가되는 것이 아니라, Modal로 잠시 뜬 후 API통신이 끝나면 dismiss되었다가 이 화면이 push되어야함.
+                self?.navigationController?.popViewController(animated: true)
+            }
+            .store(in: &cancellables)
+    }
+    
+    
+    private func setupNavigationBar() {
+        navigationController?.navigationBar.tintColor = .black
+        
+        let textAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.black, // 원하는 색상
+              .font: UIFont(name: "PRETENDARD-SemiBold", size: 16.0)! // 원하는 폰트와 크기
+          ]
+        self.navigationController?.navigationBar.titleTextAttributes = textAttributes
+        self.navigationItem.title = "여행 만들기"
+        
+        // 왼쪽 버튼 생성
+        let backButton = UIButton(type: .system)
+        backButton.setImage(UIImage(named: "back"), for: .normal) // SF Symbols에서 아이콘 사용
+        backButton.titleLabel?.font = UIFont(name: "PRETENDARD-Regular", size: 16.0)
+        let backButtonItem = UIBarButtonItem(customView: backButton)
+        self.navigationItem.leftBarButtonItem = backButtonItem
+        
+        // 오른쪽 버튼 설정
+//        let addGuestButton = UIButton(type: .system)
+//        addGuestButton.isUserInteractionEnabled = false
+//        addGuestButton.setTitle("1/n", for: .normal) // 앞에 공백 추가
+//        addGuestButton.titleLabel?.font = UIFont(name: "PRETENDARD-Regular", size: 16.0)
+//        let rightButtonItem = UIBarButtonItem(customView: addGuestButton)
+//        self.navigationItem.rightBarButtonItem = rightButtonItem
+        
+        backButton.publisher(for: .touchUpInside)
+                 .sink { [weak self] _ in
+                     self?.navigationVM.backButtonAction()
+                 }
+                 .store(in: &cancellables)
+        
+//        addGuestButton.publisher(for: .touchUpInside)
+//                 .sink { [weak self] _ in
+//                     self?.viewModel.rightButtonAction()
+//                 }
+//                 .store(in: &cancellables)
     }
     
     // 테이블 뷰 높이를 동적으로 업데이트
     private func updateTableViewHeight() {
         //        let totalHeight = CGFloat(tableTempData.count) * cellHeight //cellHeight
-        let totalHeight = tableTempData.reduce(0) { (result, item) in
+        let totalHeight = viewModel.packageList.reduce(0) { (result, item) in
             result + (item.isExpanded ? expandedCellHeight : cellHeight)
         }
         
@@ -178,8 +279,8 @@ class SettingPackagesViewController: UIViewController{
     
     private func toggleCellExpansion(at indexPath: IndexPath) {
         // 확장 상태 토글
-        let wasExpanded = tableTempData[indexPath.row].isExpanded
-        tableTempData[indexPath.row].isExpanded.toggle()
+        let wasExpanded = viewModel.packageList[indexPath.row].isExpanded
+        viewModel.packageList[indexPath.row].isExpanded.toggle()
         
         // 애니메이션 적용
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
@@ -189,7 +290,7 @@ class SettingPackagesViewController: UIViewController{
             
             // 셀 내부 콘텐츠 애니메이션 동기화
             if let cell = self.settingPackageTableView.cellForRow(at: indexPath) as? PackageTableViewCell {
-                cell.animateExpansion(isExpanded: self.tableTempData[indexPath.row].isExpanded)
+                cell.animateExpansion(isExpanded: self.viewModel.packageList[indexPath.row].isExpanded)
             }
             
             self.settingPackageTableView.scrollToRow(at: indexPath, at: .none, animated: true)
@@ -222,19 +323,19 @@ extension SettingPackagesViewController: UIPopoverPresentationControllerDelegate
 
 extension SettingPackagesViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableTempData.count + 1
+        return viewModel.packageList.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PackageTableViewCell.identifier, for: indexPath) as! PackageTableViewCell
         
-        if tableTempData.count == indexPath.row {
+        if viewModel.packageList.count == indexPath.row {
             cell.configure(with: "", icon: UIImage(systemName: "circle.dotted")!, isExpanded: false)
             cell.onInfoButtonTapped = nil
             return cell
         }
         
-        let item = tableTempData[indexPath.row]
+        let item = viewModel.packageList[indexPath.row]
         //        cell.configure(with: item.0, icon: item.1) //item.0 = 튜플의 첫 번째 요소, item.1 = 튜플의 두 번째 요소 ...
         cell.configure(with: item.title, icon: item.icon, isExpanded: item.isExpanded)
         cell.onInfoButtonTapped = { [weak self] btn in
@@ -248,7 +349,7 @@ extension SettingPackagesViewController: UITableViewDelegate, UITableViewDataSou
         tableView.deselectRow(at: indexPath, animated: true)
         
         // 데이터 추가 셀에서만 터치 이벤트 처리
-        if indexPath.row == tableTempData.count {
+        if indexPath.row == viewModel.packageList.count {
             addNewData()
         }
     }
@@ -259,13 +360,13 @@ extension SettingPackagesViewController: UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        if indexPath.row == tableTempData.count {
+        if indexPath.row == viewModel.packageList.count {
             return nil // 데이터 추가 셀에는 스와이프 동작 비활성화
         }
         
         let deleteAction = UIContextualAction(style: .destructive, title: "삭제") { [weak self] (action, view, completionHandler) in
             // 데이터 삭제
-            self?.tableTempData.remove(at: indexPath.row)
+            self?.viewModel.packageList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
             //            self?.updateTableViewHeight()
             completionHandler(true)
@@ -280,12 +381,27 @@ extension SettingPackagesViewController: UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        if indexPath.row == tableTempData.count {
+        if indexPath.row == viewModel.packageList.count {
             return cellHeight
         }
         
-        let item = tableTempData[indexPath.row]
+        let item = viewModel.packageList[indexPath.row]
         return item.isExpanded ? expandedCellHeight : cellHeight
     }
 }
 
+
+//struct MyViewControllerRepresentable: UIViewControllerRepresentable {
+//    func makeUIViewController(context: Context) -> SettingPackagesViewController {
+//        return SettingPackagesViewController()
+//    }
+//
+//    func updateUIViewController(_ uiViewController: SettingPackagesViewController, context: Context) {
+//        // 필요 시 업데이트 로직 추가
+//    }
+//}
+//
+//// 3. SwiftUI Preview 제공
+//#Preview {
+//    MyViewControllerRepresentable()
+//}

@@ -45,34 +45,40 @@ class NewTripProgressView: UIView {
     
     private var progressPoint1: UIImageView = {
         let view = UIImageView()
+        view.contentMode = .scaleAspectFit
         view.backgroundColor = UIColor(named: "tripGreen")
         view.snp.makeConstraints({ make in
             make.width.height.equalTo(16.0)
         })
+        view.tintColor = UIColor(named: "tripGreen")
         view.layer.masksToBounds = true
         view.layer.cornerRadius = 8.0
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    private var progressPoint2: UIImageView = {
+     private var progressPoint2: UIImageView = {
         let view = UIImageView()
+        view.contentMode = .scaleAspectFit
         view.backgroundColor = UIColor(named: "grayC")
         view.snp.makeConstraints({ make in
             make.width.height.equalTo(16.0)
         })
+        view.tintColor = UIColor(named: "tripGreen")
         view.layer.masksToBounds = true
         view.layer.cornerRadius = 8.0
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    private var progressPoint3 : UIImageView = {
+     private var progressPoint3 : UIImageView = {
         let view = UIImageView()
+        view.contentMode = .scaleAspectFit
         view.backgroundColor = UIColor(named: "grayC")
         view.snp.makeConstraints({ make in
             make.width.height.equalTo(16.0)
         })
+        view.tintColor = UIColor(named: "tripGreen")
         view.layer.masksToBounds = true
         view.layer.cornerRadius = 8.0
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -112,6 +118,17 @@ class NewTripProgressView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    
+    private var progressLine3: UIView = {
+        let view = UIView()
+        view.snp.makeConstraints({ make in
+            make.height.equalTo(4.0)
+        })
+        view.backgroundColor = UIColor(named: "tripGreen")
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -168,9 +185,9 @@ class NewTripProgressView: UIView {
             make.centerX.equalTo(progressPoint3.snp.centerX)
         })
         
-        progressSubPoint.snp.makeConstraints({ make in
-            make.centerY.centerX.equalTo(progressPoint1.snp.center)
-        })
+//        progressSubPoint.snp.makeConstraints({ make in
+//            make.centerY.centerX.equalTo(progressPoint1.snp.center)
+//        })
     }
     
 //    override func layoutSubviews() {
@@ -181,7 +198,7 @@ class NewTripProgressView: UIView {
         switch currentProgress{
         case 1:
             progressSubPoint.snp.makeConstraints({ make in
-                make.center.equalTo(progressPoint1.snp.center)
+                make.centerY.centerX.equalTo(progressPoint1.snp.center)
             })
             progressLabel2.textColor = UIColor(named: "tripGreen")
             progressLabel2.textColor = UIColor(named: "grayB")
@@ -199,8 +216,17 @@ class NewTripProgressView: UIView {
             break;
             
         case 2:
+            self.addSubview(progressLine3)
+            
+            progressLine3.snp.makeConstraints({ make in
+                make.leading.equalTo(progressPoint1.snp.trailing)
+                make.trailing.equalTo(progressPoint2.snp.leading)
+                make.top.equalToSuperview()
+            })
+            
             progressSubPoint.snp.makeConstraints({ make in
-                make.center.equalTo(progressPoint2.snp.center)
+                make.centerY.equalTo(progressPoint2.snp.centerY)
+                make.centerX.equalTo(progressPoint2.snp.centerX)
             })
             
             progressLabel2.textColor = UIColor(named: "tripGreen")
@@ -219,26 +245,24 @@ class NewTripProgressView: UIView {
             break;
             
         case 3:
-            //Animation
-            UIView.animate(withDuration: 1.0, animations: {
-                self.progressSubPoint.snp.makeConstraints({ make in
-                    make.center.equalTo(self.progressPoint3.snp.center)
-                })
-                self.progressLabel2.textColor = UIColor(named: "tripGreen")
-                self.progressLabel2.textColor = UIColor(named: "tripGreen")
-                self.progressLabel3.textColor = UIColor(named: "tripGreen")
-                
-                self.progressLine1.backgroundColor = UIColor(named: "tripGreen")
-                self.progressLine2.backgroundColor = UIColor(named: "tripGreen")
+            UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseInOut, animations: {
+                let translationX = self.progressPoint3.frame.maxX - self.progressPoint2.frame.maxX
+                self.progressSubPoint.transform = CGAffineTransform(translationX: translationX, y: 0)
+                self.progressLine3.transform = CGAffineTransform(translationX: translationX, y: 0)
                 
                 self.progressPoint1.backgroundColor = UIColor(named: "tripGreen")
                 self.progressPoint1.image = UIImage(named: "checkCircle_checked")
+                
+                self.bringSubviewToFront(self.progressPoint2)
                 self.progressPoint2.backgroundColor = UIColor(named: "tripGreen")
                 self.progressPoint2.image = UIImage(named: "checkCircle_checked")
+            })
+            UIView.animate(withDuration: 0.7, delay: 0.7, animations: {
                 self.progressPoint3.backgroundColor = UIColor(named: "tripGreen")
                 self.progressPoint3.image = nil
+            }, completion: { _ in
+                self.progressLabel3.textColor = UIColor(named: "tripGreen")
             })
-            
             break;
             
         default:

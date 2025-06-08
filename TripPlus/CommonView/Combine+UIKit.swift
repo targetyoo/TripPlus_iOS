@@ -129,3 +129,48 @@ public extension CombineCompatible where Self: UIBarButtonItem {
         .init(output: self)
     }
 }
+
+
+
+// MARK: - UITapGestureRecognizer
+public class GestureSubscription<S: Subscriber>: Subscription where S.Input == UITapGestureRecognizer {
+    private var subscriber: S?
+    private weak var gestureRecognizer: UITapGestureRecognizer?
+
+    public init(subscriber: S, gestureRecognizer: UITapGestureRecognizer) {
+        self.subscriber = subscriber
+        self.gestureRecognizer = gestureRecognizer
+        gestureRecognizer.addTarget(self, action: #selector(handleGesture))
+    }
+
+    public func request(_ demand: Subscribers.Demand) {}
+    public func cancel() { subscriber = nil }
+
+    @objc private func handleGesture() {
+        guard let gesture = gestureRecognizer else { return }
+        _ = subscriber?.receive(gesture)
+    }
+}
+
+public struct GesturePublisher: Publisher {
+    public typealias Output = UITapGestureRecognizer
+    public typealias Failure = Never
+
+    private let gestureRecognizer: UITapGestureRecognizer
+
+    public init(gestureRecognizer: UITapGestureRecognizer) {
+        self.gestureRecognizer = gestureRecognizer
+    }
+
+    public func receive<S>(subscriber: S) where S: Subscriber, Never == S.Failure, UITapGestureRecognizer == S.Input {
+        let subscription = GestureSubscription(subscriber: subscriber, gestureRecognizer: gestureRecognizer)
+        subscriber.receive(subscription: subscription)
+    }
+}
+
+public extension UITapGestureRecognizer {
+    var tapPublisher: GesturePublisher {
+        return GesturePublisher(gestureRecognizer: self)
+    }
+}
+

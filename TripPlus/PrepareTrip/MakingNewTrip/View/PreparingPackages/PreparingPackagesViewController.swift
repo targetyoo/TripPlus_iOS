@@ -9,7 +9,6 @@ import Foundation
 import SnapKit
 import UIKit
 
-
 class PreparingPackagesViewController: UIViewController {
 
 //    private lazy var contentView: UIView = {
@@ -18,6 +17,7 @@ class PreparingPackagesViewController: UIViewController {
 //        view.backgroundColor = UIColor(cgColor: CGColor(red: 68/255, green: 112/255, blue: 84/255, alpha: 1)) //Temp
 //        return view
 //    }()
+    
     
     private lazy var creatringPackIcon: UIImageView = {
        let view = UIImageView()
@@ -88,7 +88,7 @@ class PreparingPackagesViewController: UIViewController {
 //            let swiftUIView = CreatingPackagesContentView()
 //            let hostingController = UIHostingController(rootView: swiftUIView)
 //            self.navigationController?.pushViewController(hostingController, animated: true)
-            print("yo~")
+
             let settingPackagesVC = SettingPackagesViewController()
             self.navigationController?.pushViewController(settingPackagesVC, animated: true)
         }
@@ -97,12 +97,15 @@ class PreparingPackagesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.view.backgroundColor = UIColor(named: "tripGreen")
-        self.view.backgroundColor = UIColor(cgColor: CGColor(red: 68/255, green: 112/255, blue: 84/255, alpha: 1)) //Temp
         setViews()
+        setupNavigationBar()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = true
+//        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+    }
     
     private func setViews(){
 //        self.view.addSubview(contentView)
@@ -110,7 +113,8 @@ class PreparingPackagesViewController: UIViewController {
 //        contentView.snp.makeConstraints({ make in
 //            make.edges.equalToSuperview()
 //        })
-        
+        self.view.backgroundColor = UIColor(named: "tripGreen")
+
         [verticalStackView].forEach({self.view.addSubview($0)})
         
         verticalStackView.snp.makeConstraints({ make in
@@ -118,8 +122,7 @@ class PreparingPackagesViewController: UIViewController {
         })
     }
     
-   
-    
-
+    private func setupNavigationBar() {
+        navigationController?.navigationBar.isHidden = true
+    }
 }
-

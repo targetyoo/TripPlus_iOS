@@ -9,49 +9,53 @@ import Foundation
 import Combine
 
 class MakingNewTripModel {
+        
+    @Published var tripName = ""
+    
     @Published var packagePrepareType = "보통"
 
-    @Published var categoryItems: [String] = ["배낭 여행", "신혼 여행", "드라이브", "등산", "관광", "크루즈", "해외 여행", "국내 여행", "뚜벅이 여행", "출장", "호캉스"] //temp data
+//    @Published var departDate: Date = Date()
+//    @Published var arriveDate: Date = Date() + 1
     
-    @Published var locationItems: [String : String] = [
-        "강릉" : "대한민국, 강원도",
-        "부산광역시" : "대한민국, 경상도",
-        "도쿄" : "일본, 도쿄도",
-        "오사카" : "일본, 오사카부",
-        "제주도" : "대한민국, 제주특별자치도"
-    ] //Temp data
+//    @Published var selectedCategoryItems: [String] = []
+//    @Published var selectedLocationItems: [String] = []
+    
+
+//    @Published var categoryItems: [String] = ["배낭 여행", "신혼 여행", "드라이브", "등산", "관광", "크루즈", "해외 여행", "국내 여행", "뚜벅이 여행", "출장", "호캉스"] //temp data
+    
+//    @Published var locationItems: [String : String] = [
+//        "강릉" : "대한민국, 강원도",
+//        "부산광역시" : "대한민국, 경상도",
+//        "도쿄" : "일본, 도쿄도",
+//        "오사카" : "일본, 오사카부",
+//        "제주도" : "대한민국, 제주특별자치도"
+//    ] //Temp data
     
     
-    var locationItemKeys: [String] {
-           return Array(locationItems.keys) // Dictionary의 키를 배열로 변환
-    }
+//    var locationItemKeys: [String] {
+//           return Array(locationItems.keys) // Dictionary의 키를 배열로 변환
+//    }
     
-    @Published var selectedCategoryItems: [String] = []
-    @Published var selectedLocationItems: [String] = []
+  
     
     // Combine을 사용하여 버튼 클릭 이벤트를 처리할 수 있는 퍼블리셔
-    var backButtonTapped: AnyPublisher<Void, Never> {
-        return backButtonSubject.eraseToAnyPublisher()
+//    var backButtonTapped: AnyPublisher<Void, Never> {
+//        return backButtonSubject.eraseToAnyPublisher()
+//    }
+    
+//    var rightButtonTapped: AnyPublisher<Void, Never> {
+//        return rightButtonSubject.eraseToAnyPublisher()
+//    }
+    
+    
+//    var completeButtonTapped: AnyPublisher<Void, Never> {
+//        return completeButtonSubject.eraseToAnyPublisher()
+//    }
+    
+    
+    var textViewEditingChanged: AnyPublisher<String, Never> {
+        return textViewEditingChangedSubject.eraseToAnyPublisher()
     }
-    
-    var rightButtonTapped: AnyPublisher<Void, Never> {
-        return rightButtonSubject.eraseToAnyPublisher()
-    }
-    
-    
-    var completeButtonTapped: AnyPublisher<Void, Never> {
-        return completeButtonSubject.eraseToAnyPublisher()
-    }
-    
-    
-    var textViewDidBeginEditing: AnyPublisher<Void, Never> {
-        return textViewBeginEditingSubject.eraseToAnyPublisher()
-    }
-    
-    var textViewDidEndEditing: AnyPublisher<Void, Never> {
-        return textViewEndEditingSubject.eraseToAnyPublisher()
-    }
-    
     
     
     var openAddCategoryButtonTapped: AnyPublisher<Void, Never> {
@@ -67,54 +71,69 @@ class MakingNewTripModel {
     }
     
     
-    var addCategoryItem: AnyPublisher<Void, Never> {
-        return openAddLocationSubject.eraseToAnyPublisher()
+//    var addCategoryItem: AnyPublisher<Void, Never> {
+//        return openAddLocationSubject.eraseToAnyPublisher()
+//    }
+//    
+////    var addLocationItem: AnyPublisher<Void, Never> {
+////        return openAddLocationSubject.eraseToAnyPublisher()
+////    }
+    
+    var lessTabbed: AnyPublisher<Void, Never> {
+        return categoryLessSubject.eraseToAnyPublisher()
     }
     
-    var addLocationItem: AnyPublisher<Void, Never> {
-        return openAddLocationSubject.eraseToAnyPublisher()
+    var normalTabbed: AnyPublisher<Void, Never> {
+        return categoryNormalSubject.eraseToAnyPublisher()
+    }
+    
+    var moreTabbed: AnyPublisher<Void, Never> {
+        return categoryMoreSubject.eraseToAnyPublisher()
     }
     
     
+//    private let backButtonSubject = PassthroughSubject<Void, Never>()
+//    private let rightButtonSubject = PassthroughSubject<Void, Never>()
     
-    private let backButtonSubject = PassthroughSubject<Void, Never>()
-    private let rightButtonSubject = PassthroughSubject<Void, Never>()
-    
-    private let completeButtonSubject = PassthroughSubject<Void, Never>()
+//    private let completeButtonSubject = PassthroughSubject<Void, Never>()
     
     private let openAddCategorySubject = PassthroughSubject<Void, Never>()
     private let openAddLocationSubject = PassthroughSubject<Void, Never>()
     private let openAddDateSubject = PassthroughSubject<Void, Never>()
 
-    private let addCategorySubject = PassthroughSubject<Void, Never>()
-    private let addLocationSubject = PassthroughSubject<Void, Never>()
+//    private let addCategorySubject = PassthroughSubject<Void, Never>()
+//    private let addLocationSubject = PassthroughSubject<Void, Never>()
 
-    private let textViewBeginEditingSubject = PassthroughSubject<Void, Never>()
-    private let textViewEndEditingSubject = PassthroughSubject<Void, Never>()
+//    private let textViewBeginEditingSubject = PassthroughSubject<Void, Never>()
+//    private let textViewEndEditingSubject = PassthroughSubject<Void, Never>()
+    private let textViewEditingChangedSubject = PassthroughSubject<String, Never>()
+    
+    private let categoryLessSubject = PassthroughSubject<Void, Never>()
+    private let categoryNormalSubject = PassthroughSubject<Void, Never>()
+    private let categoryMoreSubject = PassthroughSubject<Void, Never>()
+
+    
+//    func backButtonAction() {
+//        backButtonSubject.send()
+//    }
+    
+//    func rightButtonAction() {
+//        rightButtonSubject.send()
+//    }
     
     
-    func backButtonAction() {
-        backButtonSubject.send()
-    }
     
-    func rightButtonAction() {
-        rightButtonSubject.send()
-    }
+//    func myTextViewDidBeginEditing() {
+//        textViewBeginEditingSubject.send()
+//    }
+//    
+//    func myTextViewDidEndEditing() {
+//        textViewEndEditingSubject.send()
+//    }
     
-    
-    
-    func myTextViewDidBeginEditing() {
-        textViewBeginEditingSubject.send()
-    }
-    
-    func myTextViewDidEndEditing() {
-        textViewEndEditingSubject.send()
-    }
-    
-    
-    func completeBtnAction(){
-        completeButtonSubject.send()
-    }
+//    func completeBtnAction(){
+//        completeButtonSubject.send()
+//    }
     
     
     func openAddCategoryVC() {
@@ -130,34 +149,59 @@ class MakingNewTripModel {
     }
     
     
-    
-    func addSelectedCategoryElement(element: String) {
-        addCategorySubject.send()
-        if !selectedCategoryItems.contains(element){
-            selectedCategoryItems.append(element)
+    func writingTitle(_ text: String) {
+        textViewEditingChangedSubject.send(text)
+        if tripName.count <= 20 {
+            tripName = text
+            print(tripName)
         }
     }
     
-    func removeSelectedCategoryElement(element: String) {
-        if selectedCategoryItems.contains(element){
-            if let index = selectedCategoryItems.firstIndex(of: element) {
-                selectedCategoryItems.remove(at: index)
-            }
-        }
+    func selectLess(){
+        categoryLessSubject.send()
+        packagePrepareType = "적게"
     }
     
-    func addSelectedLocationElement(element: String) {
-        addLocationSubject.send()
-        if !selectedLocationItems.contains(element){
-            selectedLocationItems.append(element)
-        }
+    func selectNormal(){
+        categoryNormalSubject.send()
+        packagePrepareType = "보통"
     }
     
-    func removeSelectedLocationElement(element: String) {
-        if let index = selectedLocationItems.firstIndex(of: element) {
-            selectedLocationItems.remove(at: index)
-        }
+    func selectMore(){
+        categoryMoreSubject.send()
+        packagePrepareType = "많이"
     }
+    
+    
+//    func addSelectedCategoryElement(element: String) {
+//        addCategorySubject.send()
+//        if !selectedCategoryItems.contains(element){
+//            selectedCategoryItems.append(element)
+//        }
+//    }
+//    
+//    func removeSelectedCategoryElement(element: String) {
+//        if selectedCategoryItems.contains(element){
+//            if let index = selectedCategoryItems.firstIndex(of: element) {
+//                selectedCategoryItems.remove(at: index)
+//            }
+//        }
+//    }
+    
+//    func addSelectedLocationElement(element: String) {
+//        addLocationSubject.send()
+//        if !selectedLocationItems.contains(element){
+//            selectedLocationItems.append(element)
+//        }
+//    }
+//    
+//    func removeSelectedLocationElement(element: String) {
+//        if let index = selectedLocationItems.firstIndex(of: element) {
+//            selectedLocationItems.remove(at: index)
+//        }
+//    }
+    
+
 }
 
 
