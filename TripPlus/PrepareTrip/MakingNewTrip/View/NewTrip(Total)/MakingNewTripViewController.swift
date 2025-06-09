@@ -272,6 +272,7 @@ class MakingNewTripViewController: UIViewController {
                 // 준비물 생성 중 페이지로 이동
                 let preparingPackagesVC = PreparingPackagesViewController()
                 
+                //TODO: Modal Fullscreen + Navigation Event
                 preparingPackagesVC.modalPresentationStyle = .fullScreen
                 self.navigationController?.setNavigationBarHidden(false, animated: true)
 //                self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true

@@ -54,6 +54,8 @@ struct DesignSystem{
     
     struct Button{
         private init() {}
+        //TODO: Constraint값도 공통 값이므로 추가 필요(Bottom - 50, leading trailing - 15)
+        
         static let height: CGFloat = 50.0
         static let cornerRadius: CGFloat = 14.0
         static let font: UIFont = UIFont(name: "PRETENDARD-REGULAR", size: 16.0)!
