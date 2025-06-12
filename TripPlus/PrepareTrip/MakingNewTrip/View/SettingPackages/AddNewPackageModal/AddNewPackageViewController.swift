@@ -11,7 +11,7 @@ import SnapKit
 import Combine
 
 class AddNewPackageViewController: UIViewController {
-    let viewModel = MakingNewPackageModel()
+    let viewModel = MakingNewPackageViewModel()
     let navigationVM = NavigationViewModel()
     private var cancellables = Set<AnyCancellable>()
 
@@ -288,11 +288,11 @@ extension AddNewPackageViewController: UICollectionViewDelegate, UICollectionVie
 
 extension AddNewPackageViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        // 여행 제목 20글자 제한
+        // 준비물 이름 15 글자 제한
         let currentText = textField.text ?? ""
         guard let stringRange = Range(range, in: currentText) else { return false }
         let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
-        return updatedText.count <= 20
+        return updatedText.count <= 15
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

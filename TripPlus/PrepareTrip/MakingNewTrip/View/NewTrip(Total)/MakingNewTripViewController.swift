@@ -55,7 +55,6 @@ class MakingNewTripViewController: UIViewController {
     private var navigationVM = NavigationViewModel()
     private var makingCategoryVM = MakingCategoryViewModel()
     private var makingLocationVM = MakingLocationViewModel()
-    
     private var cancellables = Set<AnyCancellable>()
         
     private lazy var makingNewTripView: MakingNewTripView = {
@@ -274,9 +273,21 @@ class MakingNewTripViewController: UIViewController {
                 
                 //TODO: Modal Fullscreen + Navigation Event
                 preparingPackagesVC.modalPresentationStyle = .fullScreen
-                self.navigationController?.setNavigationBarHidden(false, animated: true)
-//                self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
-                self.navigationController?.pushViewController(preparingPackagesVC, animated: true)
+                preparingPackagesVC.viewModel.preparingPackageFinished
+                    .sink{ [weak self] _packages in
+                        let settingPackagesVC = SettingPackagesViewController()
+                        settingPackagesVC.packages = _packages
+                        self?.navigationController?.pushViewController(settingPackagesVC, animated: true)
+                    }
+                    .store(in: &cancellables)
+                //preparingPackagesVC.준비물 준비에 필요한 데이터들 전달
+                present(preparingPackagesVC, animated: true, completion: nil)
+                
+                
+//                self.navigationController?.setNavigationBarHidden(false, animated: true)
+////                self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+//                self.navigationController?.pushViewController(preparingPackagesVC, animated: true)
+                
             }
             .store(in: &cancellables)
         
@@ -448,17 +459,17 @@ extension MakingNewTripViewController: UITextFieldDelegate {
 }
 
 
-//struct MyViewControllerRepresentable: UIViewControllerRepresentable {
-//    func makeUIViewController(context: Context) -> MakingNewTripViewController {
-//        return MakingNewTripViewController()
-//    }
-//
-//    func updateUIViewController(_ uiViewController: MakingNewTripViewController, context: Context) {
-//        // 필요 시 업데이트 로직 추가
-//    }
-//}
-//
-//// 3. SwiftUI Preview 제공
-//#Preview {
-//    MyViewControllerRepresentable()
-//}
+struct MyViewControllerRepresentable: UIViewControllerRepresentable {
+    func makeUIViewController(context: Context) -> MakingNewTripViewController {
+        return MakingNewTripViewController()
+    }
+
+    func updateUIViewController(_ uiViewController: MakingNewTripViewController, context: Context) {
+        // 필요 시 업데이트 로직 추가
+    }
+}
+
+// 3. SwiftUI Preview 제공
+#Preview {
+    MyViewControllerRepresentable()
+}

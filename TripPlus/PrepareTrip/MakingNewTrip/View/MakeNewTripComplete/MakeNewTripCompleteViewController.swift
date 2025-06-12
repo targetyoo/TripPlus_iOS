@@ -61,8 +61,12 @@ class MakeNewTripCompleteViewController: UIViewController{
         btn.setTitle("동행자 초대하기", for: .normal)
         btn.setTitleColor(UIColor(named: "grayA"), for: .normal)
         btn.setImage(UIImage(named: "copyLink"), for: .normal)
-        btn.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+        btn.tintColor = UIColor(named: "grayA")
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .bold)
         btn.layer.cornerRadius = 14.0
+        btn.semanticContentAttribute = .forceRightToLeft
+        btn.imageView?.contentMode = .scaleAspectFit
+        btn.imageEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: -8)
         btn.snp.makeConstraints({ make in
             make.width.equalTo(160.0)
             make.height.equalTo(35.0)
@@ -117,12 +121,12 @@ class MakeNewTripCompleteViewController: UIViewController{
         })
         
         completeIcon.snp.makeConstraints({ make in
-            make.bottom.equalTo(tripNameLabel).offset(-35.0)
+            make.bottom.equalTo(tripNameLabel.snp.top).offset(-35.0)
             make.centerX.equalToSuperview()
         })
         
         confirmBtn.snp.makeConstraints({ make in
-            make.bottom.equalToSuperview().offset(50.0)
+            make.bottom.equalToSuperview().offset(-50.0)
             make.leading.equalToSuperview().offset(15.0)
             make.trailing.equalToSuperview().offset(-15.0)
         })

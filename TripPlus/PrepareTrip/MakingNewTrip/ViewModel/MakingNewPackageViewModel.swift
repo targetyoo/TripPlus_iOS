@@ -1,5 +1,5 @@
 //
-//  MakingNewPackageModel.swift
+//  MakingNewPackageViewModel.swift
 //  TripPlus
 //
 //  Created by 유대상 on 5/31/25.
@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import Combine
 
-class MakingNewPackageModel {
+class MakingNewPackageViewModel {
     
     @Published var packageList: [PackageCellData] = [
         PackageCellData(title: "보조 배터리", icon: UIImage(systemName: "battery.100"), description: "언제 어디서 조난당할지 몰라요. \n여분의 전력은 선택이 아닌 필수입니다", isExpanded: false),
@@ -25,6 +25,10 @@ class MakingNewPackageModel {
     @Published var packageColor: UIColor = PaleteColorData.colors[0]!
 
     
+    var preparingPackageFinished: AnyPublisher<[PackageCellData], Never> {
+        return preparingPackageSubject.eraseToAnyPublisher()
+    }
+    
     var textViewEditingChanged: AnyPublisher<String, Never> {
         return textViewEditingChangedSubject.eraseToAnyPublisher()
     }
@@ -38,14 +42,27 @@ class MakingNewPackageModel {
     }
     
 
+    let preparingPackageSubject = PassthroughSubject<[PackageCellData], Never>()
     private let textViewEditingChangedSubject = PassthroughSubject<String, Never>()
     private let packageIconSubject = PassthroughSubject<UIImage, Never>()
     private let packageColorSubject = PassthroughSubject<UIColor, Never>()
 
 
+    
+    func preparingPackage(completion: @escaping () -> Void) {
+        //TODO: API 통신 후 send(준비물 Array 전달)
+        print("1")
+        print("찍고싶은만큼찍을건데?")
+        print("1")
+
+            self.preparingPackageSubject.send(self.packageList)
+        completion()
+    }
+    
+    
     func writingTitle(_ text: String) {
         textViewEditingChangedSubject.send(text)
-        if packageName.count <= 20 {
+        if packageName.count <= 15 {
             packageName = text
             print(packageName)
         }

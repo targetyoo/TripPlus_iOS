@@ -12,11 +12,11 @@ import SwiftUI
 import Combine
 
 class SettingPackagesViewController: UIViewController{
-    let viewModel = MakingNewPackageModel()
+    let viewModel = MakingNewPackageViewModel()
     let navigationVM = NavigationViewModel()
     private var cancellables = Set<AnyCancellable>()
 
-
+    var packages: [PackageCellData] = []
 //    private var tableTempData: [PackageCellData] = [
 //        PackageCellData(title: "보조 배터리", icon: UIImage(systemName: "battery.100"), description: "언제 어디서 조난당할지 몰라요. \n여분의 전력은 선택이 아닌 필수입니다", isExpanded: false),
 //        PackageCellData(title: "워터슈즈", icon: UIImage(systemName: "shoe.fill"), description: "연중 강수량이 높은 지역입니다. \n비싼 신발 들고가면 후회할지도 몰라요", isExpanded: false),

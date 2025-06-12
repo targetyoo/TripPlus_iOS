@@ -13,7 +13,7 @@ import Combine
 
 class PaleteCollectionViewCell: UICollectionViewCell {
     static let identifier = "PaleteCollectionViewCell"
-    let viewModel = MakingNewPackageModel()
+    let viewModel = MakingNewPackageViewModel()
     private var cancellables = Set<AnyCancellable>()
     let tapGesture = UITapGestureRecognizer()
 

@@ -8,6 +8,7 @@
 import Foundation
 import SnapKit
 import UIKit
+import Combine
 
 class PreparingPackagesViewController: UIViewController {
 
@@ -17,6 +18,10 @@ class PreparingPackagesViewController: UIViewController {
 //        view.backgroundColor = UIColor(cgColor: CGColor(red: 68/255, green: 112/255, blue: 84/255, alpha: 1)) //Temp
 //        return view
 //    }()
+    
+    let viewModel = MakingNewPackageViewModel()
+    private var cancellables = Set<AnyCancellable>()
+
     
     
     private lazy var creatringPackIcon: UIImageView = {
@@ -83,14 +88,16 @@ class PreparingPackagesViewController: UIViewController {
         generator.prepare()
         generator.impactOccurred()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
             //로드 완료 후 화면 이동
 //            let swiftUIView = CreatingPackagesContentView()
 //            let hostingController = UIHostingController(rootView: swiftUIView)
 //            self.navigationController?.pushViewController(hostingController, animated: true)
-
-            let settingPackagesVC = SettingPackagesViewController()
-            self.navigationController?.pushViewController(settingPackagesVC, animated: true)
+            
+            self.viewModel.preparingPackage(completion: {
+                print("2")
+                self.dismiss(animated: true, completion: nil)
+            })
         }
     }
     

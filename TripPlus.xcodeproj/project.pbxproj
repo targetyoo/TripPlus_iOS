@@ -43,7 +43,7 @@
 		817E74C32DEB22520012311E /* MyTripListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817E74C22DEB22520012311E /* MyTripListCollectionViewCell.swift */; };
 		817E74C52DEB28570012311E /* TripPreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817E74C42DEB28570012311E /* TripPreviewData.swift */; };
 		817E74C72DEB28660012311E /* PackageCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817E74C62DEB28650012311E /* PackageCellData.swift */; };
-		817E74C92DEB3AE20012311E /* MakingNewPackageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817E74C82DEB3AE20012311E /* MakingNewPackageModel.swift */; };
+		817E74C92DEB3AE20012311E /* MakingNewPackageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817E74C82DEB3AE20012311E /* MakingNewPackageViewModel.swift */; };
 		818E9A3B2D75AA2F008B9144 /* NewTripProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818E9A3A2D75AA2F008B9144 /* NewTripProgressView.swift */; };
 		81AFD05F2DECC608008736C6 /* NewTripData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AFD05E2DECC608008736C6 /* NewTripData.swift */; };
 		81AFD0612DECCA8C008736C6 /* NewPackageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AFD0602DECCA8C008736C6 /* NewPackageData.swift */; };
@@ -119,7 +119,7 @@
 		817E74C22DEB22520012311E /* MyTripListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTripListCollectionViewCell.swift; sourceTree = "<group>"; };
 		817E74C42DEB28570012311E /* TripPreviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripPreviewData.swift; sourceTree = "<group>"; };
 		817E74C62DEB28650012311E /* PackageCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageCellData.swift; sourceTree = "<group>"; };
-		817E74C82DEB3AE20012311E /* MakingNewPackageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakingNewPackageModel.swift; sourceTree = "<group>"; };
+		817E74C82DEB3AE20012311E /* MakingNewPackageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakingNewPackageViewModel.swift; sourceTree = "<group>"; };
 		818E9A3A2D75AA2F008B9144 /* NewTripProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTripProgressView.swift; sourceTree = "<group>"; };
 		81AFD05E2DECC608008736C6 /* NewTripData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTripData.swift; sourceTree = "<group>"; };
 		81AFD0602DECCA8C008736C6 /* NewPackageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPackageData.swift; sourceTree = "<group>"; };
@@ -433,7 +433,7 @@
 				E8B946CD2DEDE0E900709A7D /* MakeDateViewModel.swift */,
 				E8B946C42DEDCB1D00709A7D /* MakingCategoryViewModel.swift */,
 				E8B946C62DEDCB3400709A7D /* MakingLocationViewModel.swift */,
-				817E74C82DEB3AE20012311E /* MakingNewPackageModel.swift */,
+				817E74C82DEB3AE20012311E /* MakingNewPackageViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -682,7 +682,7 @@
 				8134227C2D50F08900E3035B /* Combine+UIKit.swift in Sources */,
 				813422822D50F0C200E3035B /* CommonMethod.swift in Sources */,
 				8134227D2D50F08900E3035B /* CommonConstValue.swift in Sources */,
-				817E74C92DEB3AE20012311E /* MakingNewPackageModel.swift in Sources */,
+				817E74C92DEB3AE20012311E /* MakingNewPackageViewModel.swift in Sources */,
 				817E74BF2DEB20240012311E /* MyTripPackageViewController.swift in Sources */,
 				817E74BD2DEB20020012311E /* MyTripPackageListViewController.swift in Sources */,
 				8134227E2D50F08900E3035B /* CommonTitle.swift in Sources */,
