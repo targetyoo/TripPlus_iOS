@@ -132,7 +132,7 @@ class MakingNewTripView: UIView {
     
     private lazy var travelLocationIcon: UIImageView = {
         let icon = UIImageView()
-        icon.image = UIImage(named: "travellocation")
+        icon.image = UIImage(named: "travelLocation")
         icon.tintColor = UIColor(named: "grayB")
         icon.snp.makeConstraints({ make in
             make.height.width.equalTo(DesignSystem.Common.icon_size)

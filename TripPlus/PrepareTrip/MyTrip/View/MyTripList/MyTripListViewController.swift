@@ -8,8 +8,12 @@
 import Foundation
 import UIKit
 import SnapKit
+import Combine
 
 class MyTripListViewController: UIViewController {
+    
+    private var viewModel = MyTripPageViewModel()
+    private var cancellablels = Set<AnyCancellable>()
     
     private lazy var myTripListCollectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -32,7 +36,7 @@ class MyTripListViewController: UIViewController {
     
     private lazy var textFieldContentView: UIView = {
         let view = UIView()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = UIColor(named: "grayC")
         view.snp.makeConstraints({ make in
             make.height.equalTo(40.0)
         })
@@ -44,13 +48,17 @@ class MyTripListViewController: UIViewController {
     private lazy var searchbar: UITextField = {
         let txtField = UITextField()
         txtField.placeholder = "여행을 검색해보세요"
+        txtField.textColor = UIColor(named: "grayB")
+        txtField.isEnabled = true
+        txtField.isUserInteractionEnabled = true
         txtField.translatesAutoresizingMaskIntoConstraints = false
         return txtField
     }()
     
     private lazy var searchBtn: UIButton = {
         let btn = UIButton()
-        btn.setImage(UIImage(systemName: "location.fill"), for: .normal)
+        btn.setImage(UIImage(named: "searchBarIcon"), for: .normal)
+        btn.imageView?.tintColor = UIColor(named: "grayB")
         btn.snp.makeConstraints({ make in
             make.width.height.equalTo(24.0)
         })
@@ -97,11 +105,23 @@ class MyTripListViewController: UIViewController {
 
 extension MyTripListViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        //TODO: Data 적용 필요
         return 15
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyTripListCollectionViewCell.identifier, for: indexPath) as? MyTripListCollectionViewCell else { return UICollectionViewCell() }
+        
+        cell.onDeleteButtonTapped = { [weak self] in
+        }
+        
+        cell.onCopyLinkButtonTapped = { [weak self] in
+            
+        }
+        cell.onSettingButtonTapped = { [weak self] in
+            
+        }
+        
 //        if collectionView == colorPalete{
 //            cell.configure(paleteColor: .systemBlue, paleteIcon: nil, isIconPalete: false)
 //        }else{

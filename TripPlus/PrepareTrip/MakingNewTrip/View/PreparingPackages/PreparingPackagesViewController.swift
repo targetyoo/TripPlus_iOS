@@ -82,20 +82,14 @@ class PreparingPackagesViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         let style = UIImpactFeedbackGenerator.FeedbackStyle.light // medium, heavy, rigid, soft
         let generator = UIImpactFeedbackGenerator(style: style)
         generator.prepare()
         generator.impactOccurred()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-            //로드 완료 후 화면 이동
-//            let swiftUIView = CreatingPackagesContentView()
-//            let hostingController = UIHostingController(rootView: swiftUIView)
-//            self.navigationController?.pushViewController(hostingController, animated: true)
-            
             self.viewModel.preparingPackage(completion: {
-                print("2")
+                //API 통신을 통해 준비물이 완료되면 dismiss
                 self.dismiss(animated: true, completion: nil)
             })
         }
@@ -111,15 +105,9 @@ class PreparingPackagesViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
-//        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
     
     private func setViews(){
-//        self.view.addSubview(contentView)
-        
-//        contentView.snp.makeConstraints({ make in
-//            make.edges.equalToSuperview()
-//        })
         self.view.backgroundColor = UIColor(named: "tripGreen")
 
         [verticalStackView].forEach({self.view.addSubview($0)})

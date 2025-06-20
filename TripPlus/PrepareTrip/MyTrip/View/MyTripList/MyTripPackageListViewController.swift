@@ -17,11 +17,11 @@ class MyTripPackageListViewController: UIViewController{
     
     private lazy var previousBtn : UIButton = {
         let btn = UIButton()
-        btn.setImage(UIImage(systemName: "lessthan"), for: .normal)
+        btn.setImage(UIImage(named: "arrow_right"), for: .normal)
         btn.snp.makeConstraints({ make in
             make.width.height.equalTo(24.0)
         })
-        btn.tintColor = .black
+        btn.tintColor = UIColor(named: "grayA")
         btn.addTarget(self, action: #selector(previousBtnTapped), for: .touchDown)
         btn.translatesAutoresizingMaskIntoConstraints = false
         return btn
@@ -29,11 +29,11 @@ class MyTripPackageListViewController: UIViewController{
     
     private lazy var nextBtn: UIButton = {
         let btn = UIButton()
-        btn.setImage(UIImage(systemName: "greaterthan"), for: .normal)
+        btn.setImage(UIImage(named: "arrow_left"), for: .normal)
         btn.snp.makeConstraints({ make in
             make.width.height.equalTo(24.0)
         })
-        btn.tintColor = .black
+        btn.tintColor = UIColor(named: "grayA")
         btn.addTarget(self, action: #selector(nextBtnTapped), for: .touchDown)
         btn.translatesAutoresizingMaskIntoConstraints = false
         return btn
@@ -42,6 +42,7 @@ class MyTripPackageListViewController: UIViewController{
     private lazy var tripTitle: UILabel = {
         let label = UILabel()
         label.text = "Trip Title"
+        label.textColor = UIColor(named: "grayA")
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

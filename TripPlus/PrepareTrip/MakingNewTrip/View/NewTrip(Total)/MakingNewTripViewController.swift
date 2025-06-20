@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 import SnapKit
 import Combine
-import SwiftUI
 
 extension MakingNewTripViewController: SelectCategoryDelegate {
     func finishSelectCategories(selectedCategories: [String]) {
@@ -88,6 +87,7 @@ class MakingNewTripViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
+        self.enableBtn()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -268,10 +268,9 @@ class MakingNewTripViewController: UIViewController {
         navigationVM.completeButtonTapped
             .sink{ [weak self] in
                 guard let self = self else { return }
+                self.createSuppliesBtn.isEnabled = false
                 // 준비물 생성 중 페이지로 이동
                 let preparingPackagesVC = PreparingPackagesViewController()
-                
-                //TODO: Modal Fullscreen + Navigation Event
                 preparingPackagesVC.modalPresentationStyle = .fullScreen
                 preparingPackagesVC.viewModel.preparingPackageFinished
                     .sink{ [weak self] _packages in
@@ -282,12 +281,6 @@ class MakingNewTripViewController: UIViewController {
                     .store(in: &cancellables)
                 //preparingPackagesVC.준비물 준비에 필요한 데이터들 전달
                 present(preparingPackagesVC, animated: true, completion: nil)
-                
-                
-//                self.navigationController?.setNavigationBarHidden(false, animated: true)
-////                self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
-//                self.navigationController?.pushViewController(preparingPackagesVC, animated: true)
-                
             }
             .store(in: &cancellables)
         
@@ -336,6 +329,10 @@ class MakingNewTripViewController: UIViewController {
             .store(in: &cancellables)
     }
 
+    private func enableBtn(){
+        //TODO: 여행을 등록할 Data가 있으면 Coloring, enable
+        self.createSuppliesBtn.isEnabled = true
+    }
 }
 
 
@@ -393,11 +390,6 @@ extension MakingNewTripViewController: UICollectionViewDelegate, UICollectionVie
                 cell.configure(onSelect: {
                     self.viewModel.openAddLocationVC()
                 })
-                //                cell.addBtn.publisher(for: .touchUpInside)
-                //                    .sink { [weak self] _ in
-                //                        self?.viewModel.openAddLocationVC()
-                //                    }
-                //                    .store(in: &cancellables)
                 return cell
             }
         }
@@ -459,17 +451,17 @@ extension MakingNewTripViewController: UITextFieldDelegate {
 }
 
 
-struct MyViewControllerRepresentable: UIViewControllerRepresentable {
-    func makeUIViewController(context: Context) -> MakingNewTripViewController {
-        return MakingNewTripViewController()
-    }
-
-    func updateUIViewController(_ uiViewController: MakingNewTripViewController, context: Context) {
-        // 필요 시 업데이트 로직 추가
-    }
-}
-
-// 3. SwiftUI Preview 제공
-#Preview {
-    MyViewControllerRepresentable()
-}
+//struct MyViewControllerRepresentable: UIViewControllerRepresentable {
+//    func makeUIViewController(context: Context) -> MakingNewTripViewController {
+//        return MakingNewTripViewController()
+//    }
+//
+//    func updateUIViewController(_ uiViewController: MakingNewTripViewController, context: Context) {
+//        // 필요 시 업데이트 로직 추가
+//    }
+//}
+//
+//// 3. SwiftUI Preview 제공
+//#Preview {
+//    MyViewControllerRepresentable()
+//}

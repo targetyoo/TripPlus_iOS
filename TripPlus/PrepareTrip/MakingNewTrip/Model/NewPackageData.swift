@@ -12,4 +12,4 @@ struct NewPackage{
     var title: String
     var icon: UIImage?
     var tintColor: UIColor?
- }
+}

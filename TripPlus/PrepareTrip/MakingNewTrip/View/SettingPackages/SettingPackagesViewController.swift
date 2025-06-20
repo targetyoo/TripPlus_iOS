@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 import SnapKit
-import SwiftUI
 import Combine
 
 class SettingPackagesViewController: UIViewController{
@@ -16,14 +15,7 @@ class SettingPackagesViewController: UIViewController{
     let navigationVM = NavigationViewModel()
     private var cancellables = Set<AnyCancellable>()
 
-    var packages: [PackageCellData] = []
-//    private var tableTempData: [PackageCellData] = [
-//        PackageCellData(title: "보조 배터리", icon: UIImage(systemName: "battery.100"), description: "언제 어디서 조난당할지 몰라요. \n여분의 전력은 선택이 아닌 필수입니다", isExpanded: false),
-//        PackageCellData(title: "워터슈즈", icon: UIImage(systemName: "shoe.fill"), description: "연중 강수량이 높은 지역입니다. \n비싼 신발 들고가면 후회할지도 몰라요", isExpanded: false),
-//        PackageCellData(title: "007 가방", icon: UIImage(systemName: "shoe.fill"), description: "가방을 통째로 도둑맞아도 전혀 걱정없는 가방 \n호신용으로도 사용할 수 있습니다", isExpanded: false),
-//        PackageCellData(title: "물티슈", icon: UIImage(systemName: "shoe.fill"), description: "야시장에서 이것저것 먹을 때, 무더운날 아이스크림을 먹을 때, 핑거푸드 먹을 때", isExpanded: false),
-//        PackageCellData(title: "감성 업그레이드 에세이", icon: UIImage(systemName: "shoe.fill"), description: "공항에서 비는 시간, 이 책 한권과 함께라면 나도 감성적인 여행자", isExpanded: false)
-//    ]
+    var packages: [PackageCellData] = [] //추천 준비물
     
     private let cellHeight: CGFloat = 65.0
     private let expandedCellHeight: CGFloat = 160.0 // 확장된 셀 높이
@@ -103,10 +95,9 @@ class SettingPackagesViewController: UIViewController{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.isHidden = false
-//        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
-        makeNewMyTripBtn.isUserInteractionEnabled = true
         self.tabBarController?.tabBar.isHidden = true
+        navigationController?.navigationBar.isHidden = false
+        makeNewMyTripBtn.isUserInteractionEnabled = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -177,18 +168,16 @@ class SettingPackagesViewController: UIViewController{
                 guard let self = self else { return }
                 makeNewMyTripBtn.isUserInteractionEnabled = false
                 newTripProgressView.configure(currentProgress: 3)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                    //Temp : Api 통신을 통해 여행 등록이 완료되면 넘어감
+                
+                    //Temp : Api 통신을 통해 여행 등록이 완료되면 준비물 생성 완료 페이지로 이동
                     let makeNewTripCompleteVC = MakeNewTripCompleteViewController()
                     makeNewTripCompleteVC.modalPresentationStyle = .fullScreen
                     self.navigationController?.pushViewController(makeNewTripCompleteVC, animated: true)
-                }
             }
             .store(in: &cancellables)
         
         navigationVM.backButtonTapped
             .sink { [weak self] in
-                //TODO: backButton을 눌렀을 때, PreparingPackagesViewController가 아닌 MakingNewTripViewController로 돌아가야 한다. PreparingPackagesViewController가 Stack에 추가되는 것이 아니라, Modal로 잠시 뜬 후 API통신이 끝나면 dismiss되었다가 이 화면이 push되어야함.
                 self?.navigationController?.popViewController(animated: true)
             }
             .store(in: &cancellables)
@@ -281,8 +270,7 @@ class SettingPackagesViewController: UIViewController{
         // 확장 상태 토글
         let wasExpanded = viewModel.packageList[indexPath.row].isExpanded
         viewModel.packageList[indexPath.row].isExpanded.toggle()
-        
-        // 애니메이션 적용
+                
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
             // 테이블 뷰 높이 업데이트
             self.settingPackageTableView.beginUpdates()
@@ -330,15 +318,15 @@ extension SettingPackagesViewController: UITableViewDelegate, UITableViewDataSou
         let cell = tableView.dequeueReusableCell(withIdentifier: PackageTableViewCell.identifier, for: indexPath) as! PackageTableViewCell
         
         if viewModel.packageList.count == indexPath.row {
-            cell.configure(with: "", icon: UIImage(systemName: "circle.dotted")!, isExpanded: false)
+            cell.configure(with: "", icon: UIImage(systemName: "circle.dotted")!, isExpanded: false, description: "")
             cell.onInfoButtonTapped = nil
             return cell
         }
         
         let item = viewModel.packageList[indexPath.row]
         //        cell.configure(with: item.0, icon: item.1) //item.0 = 튜플의 첫 번째 요소, item.1 = 튜플의 두 번째 요소 ...
-        cell.configure(with: item.title, icon: item.icon, isExpanded: item.isExpanded)
-        cell.onInfoButtonTapped = { [weak self] btn in
+        cell.configure(with: item.title, icon: item.icon, isExpanded: item.isExpanded, description: viewModel.packageList[indexPath.row].description)
+        cell.onInfoButtonTapped = { [weak self] in
             self?.toggleCellExpansion(at: indexPath)
             //            self?.presentPopover(from: btn)
         }
@@ -364,16 +352,15 @@ extension SettingPackagesViewController: UITableViewDelegate, UITableViewDataSou
             return nil // 데이터 추가 셀에는 스와이프 동작 비활성화
         }
         
-        let deleteAction = UIContextualAction(style: .destructive, title: "삭제") { [weak self] (action, view, completionHandler) in
+        let deleteAction = UIContextualAction(style: .destructive, title: nil) { [weak self] (action, view, completionHandler) in
             // 데이터 삭제
             self?.viewModel.packageList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
             //            self?.updateTableViewHeight()
             completionHandler(true)
         }
-        
-        // 삭제 버튼 커스터마이징 (선택 사항)
-        deleteAction.backgroundColor = .systemOrange
+        deleteAction.backgroundColor = UIColor(named: "tripOrange")
+        deleteAction.image = UIImage(named: "trashcan")
         
         let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
         return configuration

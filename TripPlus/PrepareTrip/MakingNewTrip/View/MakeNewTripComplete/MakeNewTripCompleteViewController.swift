@@ -8,9 +8,12 @@
 import Foundation
 import UIKit
 import SnapKit
+import Combine
 
 class MakeNewTripCompleteViewController: UIViewController{
-    
+    private var navigationVM = NavigationViewModel()
+    private var cancellables = Set<AnyCancellable>()
+
     private lazy var viewTitle: UILabel = {
         let label = UILabel()
         label.text = "여행 만들기"
@@ -55,7 +58,7 @@ class MakeNewTripCompleteViewController: UIViewController{
         return label
     }()
     
-    private lazy var inviteFriendsButton: UIButton = {
+    private lazy var inviteCompanionBtn: UIButton = {
         let btn = UIButton()
         btn.backgroundColor = UIColor(named: "grayC")
         btn.setTitle("동행자 초대하기", for: .normal)
@@ -88,29 +91,84 @@ class MakeNewTripCompleteViewController: UIViewController{
         return btn
     }()
     
+    //Companion Mode
+    private lazy var backButton: UIButton = {
+        let btn = UIButton()
+        btn.setImage(UIImage(named: "backArrow"), for: .normal)
+        btn.tintColor = UIColor(named: "grayA")
+        btn.setTitle("이전", for: .normal)
+        btn.setTitleColor(UIColor(named: "grayA"), for: .normal)
+        btn.setImage(UIImage(named: "back"), for: .normal)
+        btn.isHidden = true
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        return btn
+    }()
+    
+    private lazy var companionIcon: UIImageView = {
+        let imgView = UIImageView()
+        imgView.contentMode = .scaleAspectFit
+        imgView.image = UIImage(named: "companion")
+        imgView.snp.makeConstraints({ make in
+            make.width.height.equalTo(18.0)
+        })
+        imgView.translatesAutoresizingMaskIntoConstraints = false
+        return imgView
+    }()
+    
+    private lazy var companionName: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor(named: "grayA")
+        label.font = UIFont.systemFont(ofSize: 14.0, weight: .regular)
+        label.text = "사용자1, 사용자2"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private lazy var horizontalStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [companionIcon, companionName])
+        stackView.axis = .horizontal
+        stackView.spacing = 5.0
+        stackView.distribution = .equalSpacing
+        stackView.isHidden = true
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.navigationBar.isHidden = false
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        triggerHaptic()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setViews()
+        bindViewModel()
     }
     
     private func setViews(){
         self.navigationController?.navigationBar.isHidden = true
-        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         self.view.backgroundColor = UIColor(named: "grayD")
         
-        [viewTitle, completeIcon, tripNameLabel, createTripNoticeLabel, inviteFriendsButton, confirmBtn].forEach({self.view.addSubview($0)})
+        [viewTitle, completeIcon, tripNameLabel, createTripNoticeLabel, inviteCompanionBtn, confirmBtn].forEach({self.view.addSubview($0)})
         
         viewTitle.snp.makeConstraints({ make in
             make.top.equalToSuperview().offset(15.0)
             make.centerX.equalToSuperview()
         })
         
-        inviteFriendsButton.snp.makeConstraints({ make in
+        inviteCompanionBtn.snp.makeConstraints({ make in
             make.centerX.centerY.equalToSuperview()
         })
         
         createTripNoticeLabel.snp.makeConstraints({ make in
-            make.bottom.equalTo(inviteFriendsButton.snp.top).offset(-20.0)
+            make.bottom.equalTo(inviteCompanionBtn.snp.top).offset(-20.0)
             make.centerX.equalToSuperview()
         })
         
@@ -130,5 +188,51 @@ class MakeNewTripCompleteViewController: UIViewController{
             make.leading.equalToSuperview().offset(15.0)
             make.trailing.equalToSuperview().offset(-15.0)
         })
+    }
+    
+    private func bindViewModel(){
+        confirmBtn.publisher(for: .touchUpInside)
+            .sink { [weak self] _ in
+                self?.navigationVM.completeBtnAction()
+            }
+            .store(in: &cancellables)
+        
+        navigationVM.completeButtonTapped
+            .sink { [weak self] in
+                print("ddad")
+                self?.navigationController?.popToRootViewController(animated: true)
+            }
+            .store(in: &cancellables)
+    }
+    
+    
+    func openWithCompanionMode(){
+        [backButton, horizontalStackView].forEach({ self.view.addSubview($0) })
+        
+        backButton.snp.makeConstraints({ make in
+            make.top.equalToSuperview()
+            make.leading.equalToSuperview().offset(10.0)
+        })
+        
+        horizontalStackView.snp.makeConstraints({ make in
+            make.centerX.centerY.equalToSuperview()
+        })
+        
+        self.createTripNoticeLabel.text = "여행에 초대되었어요"
+        self.confirmBtn.setTitle("같이 여행 준비 하기", for: .normal)
+        self.inviteCompanionBtn.isHidden = true
+        self.viewTitle.isHidden = true
+        self.backButton.isHidden = false
+        self.horizontalStackView.isHidden = false
+    }
+    
+    func triggerHaptic() {
+        //얇은 진동 두번
+        let haptic = UIImpactFeedbackGenerator(style: .light)
+        haptic.prepare()
+        haptic.impactOccurred()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            haptic.impactOccurred()
+        }
     }
 }

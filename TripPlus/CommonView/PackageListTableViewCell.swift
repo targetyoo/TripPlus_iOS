@@ -12,13 +12,20 @@ import SnapKit
 class PackageTableViewCell: UITableViewCell {
     static let identifier = "PackageTableViewCell"
     
-//    var onInfoButtonTapped: (() -> Void)?
-    var onInfoButtonTapped: ((UIButton) -> Void)?
+    var onInfoButtonTapped: (() -> Void)?
+    //    var onInfoButtonTapped: ((UIButton) -> Void)?
+    var onCheckButtonTapped: (() -> Void)?
+    
+    var isExpanded: Bool = false{
+        didSet {
+            self.animateExpansion(isExpanded: isExpanded)
+        }
+    }
     
     private let iconImageView: UIImageView = {
         let imgView = UIImageView()
         imgView.contentMode = .scaleAspectFit
-        imgView.tintColor = .black
+        imgView.tintColor = UIColor(named: "grayA")
         imgView.snp.makeConstraints({ make in
             make.width.height.equalTo(24)
         })
@@ -29,7 +36,8 @@ class PackageTableViewCell: UITableViewCell {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14)
-        label.textColor = .black
+        label.textColor = UIColor(named: "grayA")
+        label.lineBreakMode = .byTruncatingTail
         label.snp.makeConstraints({ make in
             make.height.equalTo(24)
         })
@@ -38,11 +46,24 @@ class PackageTableViewCell: UITableViewCell {
     }()
     
     private let infoButton: UIButton = {
-        let btn = UIButton(type: .infoLight)
-        btn.tintColor = .gray
+        let btn = UIButton()
+        btn.setImage(UIImage(named: "infoIcon"), for: .normal)
+        btn.tintColor = UIColor(named: "grayB")
         btn.snp.makeConstraints({ make in
             make.width.height.equalTo(24)
         })
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        return btn
+    }()
+    
+    private lazy var checkButton: UIButton = {
+        let btn = UIButton()
+        btn.setImage(UIImage(named: "checkCircle"), for: .normal)
+        btn.tintColor = UIColor(named: "grayB")
+        btn.snp.makeConstraints({ make in
+            make.width.height.equalTo(24)
+        })
+        btn.translatesAutoresizingMaskIntoConstraints = false
         return btn
     }()
     
@@ -86,42 +107,47 @@ class PackageTableViewCell: UITableViewCell {
     }()
     
     
+    
     // 초기화
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
     }
-  
-//    override func awakeFromNib() {
-//        super.awakeFromNib()
-//        setupViews()
-//    }
+    
+    //    override func awakeFromNib() {
+    //        super.awakeFromNib()
+    //        setupViews()
+    //    }
     
     private func setupViews() {
         self.contentView.backgroundColor = .white
-        [iconImageView, titleLabel, infoButton, borderline, verticalStackView].forEach({self.contentView.addSubview($0)})
+        [iconImageView, titleLabel, infoButton, checkButton, borderline, verticalStackView].forEach({self.contentView.addSubview($0)})
         [descriptionTitle, descriptionBody].forEach({verticalStackView.addSubview($0)})
+        
+        checkButton.snp.makeConstraints({ make in
+            make.top.equalTo(contentView.snp.top).offset(20.0)
+            make.leading.equalToSuperview().offset(15.0)
+        })
+        checkButton.addTarget(self, action: #selector(checkButtonTapped), for: .touchUpInside)
         
         iconImageView.snp.makeConstraints { make in
             make.top.equalTo(contentView.snp.top).offset(20.0)
-            make.leading.equalTo(contentView).offset(15)
-//            make.centerY.equalTo(contentView)
+            make.leading.equalTo(checkButton.snp.trailing).offset(15)
+            //            make.centerY.equalTo(contentView)
         }
         
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(contentView.snp.top).offset(20.0)
             make.leading.equalTo(iconImageView.snp.trailing).offset(15)
-//            make.centerY.equalTo(contentView)
+            make.trailing.equalTo(infoButton.snp.leading).offset(-15)
         }
         
         infoButton.snp.makeConstraints { make in
             make.top.equalTo(contentView.snp.top).offset(20.0)
             make.trailing.equalTo(contentView).offset(-15)
-//            make.centerY.equalTo(contentView)
         }
-        
         infoButton.addTarget(self, action: #selector(infoButtonTapped), for: .touchUpInside)
-    
+        
         verticalStackView.snp.makeConstraints({ make in
             make.top.equalTo(titleLabel.snp.bottom).offset(20.0)
             make.leading.equalTo(contentView).offset(15.0)
@@ -131,7 +157,7 @@ class PackageTableViewCell: UITableViewCell {
         descriptionTitle.snp.makeConstraints({ make in
             make.top.leading.equalToSuperview().offset(10.0)
         })
-       
+        
         descriptionBody.snp.makeConstraints({ make in
             make.top.equalTo(descriptionTitle.snp.bottom).offset(5.0)
             make.leading.equalTo(descriptionTitle.snp.leading)
@@ -146,7 +172,11 @@ class PackageTableViewCell: UITableViewCell {
     }
     
     @objc private func infoButtonTapped() {
-        onInfoButtonTapped?(infoButton)
+        onInfoButtonTapped?()
+    }
+    
+    @objc private func checkButtonTapped() {
+        onCheckButtonTapped?()
     }
     
     func animateExpansion(isExpanded: Bool) {
@@ -156,16 +186,54 @@ class PackageTableViewCell: UITableViewCell {
         }, completion: nil)
     }
     
-
-    func configure(with title: String, icon: UIImage?, isExpanded: Bool) {
+    
+    //    func configure(with title: String, icon: UIImage?, isExpanded: Bool, description: String) {
+    func configure(with title: String, icon: UIImage?, isExpanded: Bool, description: String, needChecking: Bool = false) {
         titleLabel.text = title
         iconImageView.image = icon
-        verticalStackView.isHidden = !isExpanded // 확장 상태에 따라 표시/숨김
+        self.isExpanded = isExpanded // 확장 상태에 따라 표시/숨김
         
-        if titleLabel.text == "" {
+        if title == "" {
             infoButton.isHidden = true
         }else{
             infoButton.isHidden = false
+        }
+        
+        if description == ""{
+            infoButton.isHidden = true
+        }else{
+            infoButton.isHidden = false
+        }
+        
+        if needChecking{
+            checkButton.isHidden = false
+        }else{
+            if title == ""{
+                //TODO: UI가 부자연스러움. 회의 시 안건
+            }else{
+                //TODO: 수정소요 더 발생 시, configure 함수 분리 예정
+                iconImageView.snp.removeConstraints()
+                iconImageView.snp.makeConstraints({ make in
+                    make.top.equalTo(contentView.snp.top).offset(20.0)
+                    make.leading.equalTo(contentView.snp.leading).offset(15)
+                    make.width.height.equalTo(24)
+                })
+                
+                titleLabel.snp.makeConstraints { make in
+                    make.leading.equalTo(iconImageView.snp.trailing).offset(15)
+                }
+            }
+            checkButton.isHidden = true
+        }
+    }
+    
+    func isChecked(checked: Bool){
+        if checked{
+            checkButton.tintColor = UIColor(named: "tripGreen")
+            checkButton.setImage(UIImage(named: "checkCircle_checked"), for: .normal)
+        }else{
+            checkButton.tintColor = UIColor(named: "grayB")
+            checkButton.setImage(UIImage(named: "checkCircle"), for: .normal)
         }
     }
     

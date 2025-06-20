@@ -10,9 +10,7 @@ import UIKit
 import SnapKit
 import Combine
 
-
 class MyTripPageViewController: UIViewController {
-    
     private var cancellables = Set<AnyCancellable>()
     
     //사용자의 여행 목록이 한 개도 없을 경우 ====================================
@@ -131,7 +129,6 @@ class MyTripPageViewController: UIViewController {
                  // 현재 ViewController에서 새로운 ViewController로 이동
                  makingNewTripVC.modalPresentationStyle = .fullScreen
                  self?.navigationController?.setNavigationBarHidden(false, animated: true)
-                 self?.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
                  self?.navigationController?.pushViewController(makingNewTripVC, animated: true)
 
              }
@@ -139,11 +136,11 @@ class MyTripPageViewController: UIViewController {
         
         //TODO: 여행 데이터가 없다면..
 //        if 나의여행데이터.isEmpty{
-        [pageSegmentedControl, pageContentView].forEach({$0.isHidden = true})
-        [myTripEmptyView].forEach({$0.isHidden = false})
+//        [pageSegmentedControl, pageContentView].forEach({$0.isHidden = true})
+//        [myTripEmptyView].forEach({$0.isHidden = false})
 //        }else{
-//        [pageSegmentedControl, pageContentView].forEach({$0.isHidden = false})
-//        [myTripEmptyView].forEach({$0.isHidden = true})
+        [pageSegmentedControl, pageContentView].forEach({$0.isHidden = false})
+        [myTripEmptyView].forEach({$0.isHidden = true})
 //        }
     }
     
@@ -224,3 +221,21 @@ extension MyTripPageViewController: UIPageViewControllerDelegate {
         // 페이지 전환 완료 시 추가 작업이 필요한 경우 여기에 구현
     }
 }
+
+
+
+
+//struct MyViewControllerRepresentable: UIViewControllerRepresentable {
+//    func makeUIViewController(context: Context) -> MyTripPageViewController {
+//        return MyTripPageViewController()
+//    }
+//
+//    func updateUIViewController(_ uiViewController: MyTripPageViewController, context: Context) {
+//        // 필요 시 업데이트 로직 추가
+//    }
+//}
+//
+//// 3. SwiftUI Preview 제공
+//#Preview {
+//    MyViewControllerRepresentable()
+//}

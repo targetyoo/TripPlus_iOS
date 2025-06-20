@@ -78,6 +78,8 @@
 		E8B946CC2DEDD04400709A7D /* NavigationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B946CB2DEDD04400709A7D /* NavigationViewModel.swift */; };
 		E8B946CE2DEDE0E900709A7D /* MakeDateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B946CD2DEDE0E900709A7D /* MakeDateViewModel.swift */; };
 		E8B946D02DEF3ECF00709A7D /* PaleteData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B946CF2DEF3ECF00709A7D /* PaleteData.swift */; };
+		E8C354A42DFD08E8003C523B /* MyTripPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C354A32DFD08E8003C523B /* MyTripPageViewModel.swift */; };
+		E8C354A62DFD111D003C523B /* CompanionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C354A52DFD111D003C523B /* CompanionCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -156,6 +158,8 @@
 		E8B946CB2DEDD04400709A7D /* NavigationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewModel.swift; sourceTree = "<group>"; };
 		E8B946CD2DEDE0E900709A7D /* MakeDateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeDateViewModel.swift; sourceTree = "<group>"; };
 		E8B946CF2DEF3ECF00709A7D /* PaleteData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaleteData.swift; sourceTree = "<group>"; };
+		E8C354A32DFD08E8003C523B /* MyTripPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyTripPageViewModel.swift; path = TripPlus/PrepareTrip/MyTrip/MyTripPageViewModel.swift; sourceTree = SOURCE_ROOT; };
+		E8C354A52DFD111D003C523B /* CompanionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanionCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -301,6 +305,7 @@
 				813422782D50F08900E3035B /* ListCollectionViewCell.swift */,
 				813422732D50F08900E3035B /* CardCollectionViewCell.swift */,
 				813422722D50F08900E3035B /* AlignedFlowLayout.swift */,
+				817E74B02DE8B3310012311E /* PackageListTableViewCell.swift */,
 			);
 			path = CommonView;
 			sourceTree = "<group>";
@@ -311,7 +316,6 @@
 				814F45202D48168F00E5480C /* SelectedItems.swift */,
 				814F44FB2D47BBD600E5480C /* SearchBarView.swift */,
 				818E9A3A2D75AA2F008B9144 /* NewTripProgressView.swift */,
-				817E74B02DE8B3310012311E /* PackageListTableViewCell.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -351,6 +355,7 @@
 				817E74BA2DEB1FCA0012311E /* CustomSegment.swift */,
 				817E74BC2DEB20020012311E /* MyTripPackageListViewController.swift */,
 				817E74BE2DEB20240012311E /* MyTripPackageViewController.swift */,
+				E8C354A52DFD111D003C523B /* CompanionCollectionViewCell.swift */,
 				817E74C02DEB22360012311E /* MyTripListViewController.swift */,
 				817E74C22DEB22520012311E /* MyTripListCollectionViewCell.swift */,
 			);
@@ -397,6 +402,7 @@
 		81AFD05B2DECAB8A008736C6 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				E8C354A32DFD08E8003C523B /* MyTripPageViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -698,6 +704,7 @@
 				81F958F82D58959700CDE027 /* AddItemCell.swift in Sources */,
 				817E74B12DE8B3310012311E /* PackageListTableViewCell.swift in Sources */,
 				81F958F92D58959700CDE027 /* MakingNewTripView.swift in Sources */,
+				E8C354A42DFD08E8003C523B /* MyTripPageViewModel.swift in Sources */,
 				815EC2082D64F4A300C2A89B /* DateCollectionViewHeader.swift in Sources */,
 				81F958FA2D58959700CDE027 /* MakingNewTripViewController.swift in Sources */,
 				E8B946C72DEDCB3400709A7D /* MakingLocationViewModel.swift in Sources */,
@@ -711,6 +718,7 @@
 				E8B946D02DEF3ECF00709A7D /* PaleteData.swift in Sources */,
 				817E74C72DEB28660012311E /* PackageCellData.swift in Sources */,
 				814F45022D47BBD600E5480C /* SearchBarView.swift in Sources */,
+				E8C354A62DFD111D003C523B /* CompanionCollectionViewCell.swift in Sources */,
 				81F958F12D58959300CDE027 /* LocationCollectionViewCell.swift in Sources */,
 				81F958F22D58959300CDE027 /* SelectLocationViewController.swift in Sources */,
 				81F958FF2D58959900CDE027 /* MyTripEmptyView.swift in Sources */,

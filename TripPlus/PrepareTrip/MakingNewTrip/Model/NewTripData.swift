@@ -17,3 +17,7 @@ struct NewTripData{
     
     var packages : [NewPackage]
 }
+
+struct Companion{
+    var companion: [String] = []
+}
